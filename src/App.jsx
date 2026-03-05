@@ -11,7 +11,7 @@ import { useState, useMemo, useRef, useCallback, useEffect } from "react";
 // ─── TOKENS (Provio Corporate Identity Kit v1.0) ───
 const C={navy:"#0B192C",nm:"#0E1E33",nc:"#12243B",nl:"#182D48",teal:"#45D0B9",td:"#2EA897",slate:"#758396",w:"#FFFFFF",w9:"rgba(255,255,255,0.92)",w8:"rgba(255,255,255,0.8)",w6:"rgba(255,255,255,0.6)",w4:"rgba(255,255,255,0.4)",w2:"rgba(255,255,255,0.2)",w1:"rgba(255,255,255,0.1)",w05:"rgba(255,255,255,0.05)",w03:"rgba(255,255,255,0.03)",red:"#EF4444",amber:"#F59E0B",green:"#10B981",blue:"#3B82F6",purple:"#8B5CF6",orange:"#F97316"};
 
-const CSS=`@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{overflow-x:hidden}::selection{background:${C.teal};color:${C.navy}}@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes fi{from{opacity:0}to{opacity:1}}@keyframes si{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.fu{animation:fu .6s ease forwards;opacity:0}.fu1{animation:fu .6s .1s ease forwards;opacity:0}.fu2{animation:fu .6s .2s ease forwards;opacity:0}.fu3{animation:fu .6s .3s ease forwards;opacity:0}.fi{animation:fi .4s ease}.si{animation:si .3s ease forwards;opacity:0}::-webkit-scrollbar{display:none}`;
+const CSS=`@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{overflow-x:hidden}::selection{background:${C.teal};color:${C.navy}}@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes fi{from{opacity:0}to{opacity:1}}@keyframes si{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.fu{animation:fu .6s ease forwards;opacity:0}.fu1{animation:fu .6s .1s ease forwards;opacity:0}.fu2{animation:fu .6s .2s ease forwards;opacity:0}.fu3{animation:fu .6s .3s ease forwards;opacity:0}.fi{animation:fi .4s ease}.si{animation:si .3s ease forwards;opacity:0}.card-hover{transition:transform .2s ease,box-shadow .2s ease}.card-hover:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}::-webkit-scrollbar{display:none}`;
 
 const MATURITY=[
   {level:1,label:"Initial",floor:0,ceiling:20,color:C.red,desc:"No significant AI strategy or adoption. The institution is operating as if AI does not exist or is a distant concern."},
@@ -91,15 +91,15 @@ function scoreEdu(responses){
 function getRec(sectionId,score){
   const t=score<30?"critical":score<50?"developing":score<70?"solid":"strong";
   const R={
-    strategic_direction:{critical:{obs:"Your college currently lacks a formal AI strategy and governance framework. Without a roadmap, AI adoption will be reactive and fragmented. This represents the most significant strategic risk identified.",actions:["Commission a rapid 4-week AI landscape assessment.","Draft a three-year AI roadmap with measurable objectives.","Present to the Governing Body and establish AI as a standing agenda item.","Appoint a senior leader with explicit AI strategy accountability."],ctx:"By H1 2027, the DfE will publish formal expectations for AI in FE. By H2 2027, Ofsted will evaluate AI strategy as part of leadership judgements. Window: 12-18 months."},developing:{obs:"Elements of AI awareness and early planning are in place, but the approach lacks coherence and governance rigour. This is the most common position in FE — colleges that move decisively now will create significant advantage.",actions:["Formalise strategic thinking into a board-approved document.","Increase board reporting to at least termly with structured format.","Conduct an AI policy audit across all existing policies.","Establish measurable AI objectives at college level."],ctx:"The Gatsby Foundation found colleges with structured governance progressed significantly faster. Institutions at your score typically need 6-12 months to reach the Embedding level."},solid:{obs:"A credible strategic foundation exists. The challenge is deepening — ensuring intent translates into consistent practice and governance scrutinises outcomes rather than activity.",actions:["Introduce external benchmarking into board reporting.","Establish a mid-year AI-specific strategic review.","Commission an independent external review of your AI strategy.","Position the college externally as AI-forward through sector networks."],ctx:"Institutions at your level often plateau without external accountability. By H2 2027, the bar for effective AI governance will rise significantly."},strong:{obs:"Sector-leading strategic capability. The combination of operational strategy, active board engagement, and integrated policy creates conditions for sustained transformation.",actions:["Use strategic strength to drive improvement in Pedagogical Transformation.","Establish the college as a sector reference point.","Introduce predictive governance using the Horizon Map.","Consider establishing a formal AI ethics committee with external members."],ctx:"You are among a small minority with this maturity. Your challenge is sustaining advantage and channelling strategic strength into pedagogical change."}},
-    teaching_learning:{critical:{obs:"Teaching and assessment have not adapted meaningfully to AI. Students are assessed on skills AI can perform, access to tools is limited, and detection is prioritised over redesign.",actions:["Audit your five highest-enrolment programmes — could AI produce competent responses to assessed tasks?","Shift from detection-first to design-first assessment approaches.","Provide enterprise-grade AI tool access for students.","Integrate industry-standard AI tools into vocational training."],ctx:"Ofqual is encouraging innovation in qualification design. By H1 2027, qualification reform will accelerate as Skills England formalises expectations."},developing:{obs:"Changes remain partial and uneven. The experience of AI depends on which department a student encounters. The challenge is moving from isolated good practice to embedded standard.",actions:["Establish a college-wide assessment redesign programme targeting 50% of qualifications.","Develop a consistent position on AI detection across all departments.","Create a shared library of AI-enhanced assessment exemplars.","Pilot universal AI access in two departments and measure impact."],ctx:"92% of students use AI tools, 88% in assessments. Institutions transitioning from prohibition to productive integration report better outcomes."},solid:{obs:"Genuine adaptation is underway. The next challenge is moving from accommodation to leadership — proactively redesigning learning around AI opportunities.",actions:["Move beyond AI-proofing to AI-enhanced assessments requiring productive AI use.","Develop AI-integrated practical assessments mirroring workplace reality.","Establish a teaching innovation fund for AI experimentation.","Share your redesign experience with the wider sector."],ctx:"Your practice could influence national standards. By H2 2027, AI-integrated assessment will be expected for effective teaching."},strong:{obs:"Advanced practice in AI-integrated teaching. Focus on sustainability as staff change, qualifications evolve, and AI advances.",actions:["Establish rolling annual AI-relevance review cycle.","Develop student AI literacy progressions across full programmes.","Document your methodology as a replicable framework.","Investigate AI-powered tools evaluating practical competence."],ctx:"You are at the frontier. What is advanced in 2026 will be baseline by 2028. Continuous innovation is an ongoing capability."}},
-    pedagogical_transformation:{critical:{obs:"This is the most significant finding. Your college has not fundamentally rethought what it teaches and why. The teaching model remains unchanged — content delivered, outputs produced, assessments evaluating products AI can generate. This is a philosophical gap about what education is for.",actions:["Conduct a curriculum vulnerability audit — quantify what % of assessed tasks AI can perform.","Identify human capabilities each programme should develop but currently does not.","Pilot a fundamentally redesigned module in two departments.","Begin the conversation about the lecturer role as elevation, not replacement."],ctx:"This carries 25% of total weight. By H2 2027, Ofsted will evaluate AI integration in teaching. You have approximately 18 months to begin demonstrable evolution."},developing:{obs:"Some departments are exploring, but the core model has not changed in most classrooms. Surface-level adaptation — adding AI content or adjusting assessments — is not the same as genuine transformation.",actions:["Extend good practice into a college-wide pedagogical development programme.","Redesign timetables in two departments for more discussion, coaching, and problem-solving.","Establish formal occupational mapping with employer input annually.","Involve students through AI panels and co-design workshops."],ctx:"Fastest progress occurs where transformation is college-wide, not departmental. By H1 2028, a National AI Literacy Standard will mandate outcomes across all Level 2+ qualifications."},solid:{obs:"Genuine progress, but risk the plateau of adequacy — where initial progress creates complacency while AI capability accelerates and the bar rises continuously.",actions:["Push beyond assessment redesign to full learning experience redesign.","Develop a pedagogical framework making your AI-era teaching philosophy explicit.","Invest in research partnerships evaluating impact on outcomes.","Begin developing adaptive learning pathways at different paces."],ctx:"By H1 2029, the AI-native cohort arrives — students who have never known education without AI. Your current practice will feel like a starting point."},strong:{obs:"Leading edge of pedagogical transformation in FE. Exceptional practice. Focus on sustaining momentum and preparing for the next wave of change.",actions:["Document your journey as a publishable case study.","Establish a research programme on long-term graduate impact.","Prepare for adaptive learning at scale and human-AI collaboration assessment.","Mentor other institutions — articulating your approach deepens understanding."],ctx:"You are among a very small number nationally at this level. Your practice is the model policy-makers and inspectors will reference."}},
-    staff_readiness:{critical:{obs:"Staff readiness is a critical bottleneck. Most have not received meaningful training, no community of practice exists, and AI is not in workflows. Untrained staff do not use AI, reinforcing anxiety and resistance.",actions:["Launch low-barrier AI familiarisation — structured exploration, no assessment.","Appoint 4-6 AI Champions with ring-fenced time and leadership backing.","Shift CPD to role-specific applications, not generic tool training.","Build AI experimentation into existing meetings, not as extra demand."],ctx:"72% of educators cite confidence as the biggest barrier. Teacher AI usage doubled but only 27% believe they have adequate skills. Champions networks drive fastest progress."},developing:{obs:"Investment has begun but impact is uneven. Some enthusiastic, others anxious. Without peer-led structures, development relies on individual initiative which does not sustain cultural change.",actions:["Establish cross-departmental Community of Practice meeting fortnightly.","Develop a confidence audit understanding specific barriers per group.","Focus CPD on learning design capability, not just tool use.","Celebrate and publicise staff AI successes for social proof."],ctx:"Peer-led learning is consistently more effective than formal training. By H1 2028, AI literacy will be expected for all educators."},solid:{obs:"Above sector average. Transition from early adoption to norm is underway. Challenge: supporting remaining non-adopters and evolving CPD from familiarisation to transformation.",actions:["Transition CPD from awareness to learning design mastery.","Address non-adopters with targeted, non-threatening support.","Establish peer observation focused on AI-enhanced teaching.","Develop career pathways recognising AI pedagogical expertise."],ctx:"The binding constraint is now time and support for deeper pedagogical redesign, not confidence. The transition takes 12-18 months of sustained experimentation."},strong:{obs:"Sector-leading. High training, active communities, embedded workflows. This culture took years — protect and develop it deliberately.",actions:["Position your model as a sector exemplar.","Invest in advanced practitioner research and innovation.","Monitor staff wellbeing related to AI pace of change.","Ensure recruitment assesses AI readiness and learning design."],ctx:"AI capability is a moving target. Staff advanced in 2026 need ongoing development to remain so in 2028."}},
-    operations:{critical:{obs:"Operational AI is minimal. Data siloed, processes manual, no predictive analytics. The college lacks intelligence AI can provide — unable to identify at-risk students or optimise resources.",actions:["Prioritise data maturity — audit MIS, VLE, finance integration.","Implement predictive retention analytics as first high-impact deployment.","Automate three most time-consuming admin processes.","Develop an operational AI roadmap sequenced by readiness and impact."],ctx:"AI automation delivers 10-15% workload reductions. Predictive analytics improve retention by up to 20%. By H2 2027, operational efficiency becomes a survival imperative."},developing:{obs:"Adoption has begun but remains partial. Data maturity is improving. Build systematically rather than adopting tools in isolation.",actions:["Invest in data integration as enabling infrastructure.","Expand analytics to enrolment forecasting and workload modelling.","Quantify productivity gains and present to the board.","Ensure operational gains are reinvested in teaching quality."],ctx:"Colleges seeing greatest benefit invested in data infrastructure first and AI applications second."},solid:{obs:"Strong operations with meaningful AI adoption. This foundation is valuable but only if it serves pedagogical transformation — efficiency without educational evolution means running smoothly while teaching for a world that no longer exists.",actions:["Redirect freed time and resources into teaching innovation.","Develop real-time dashboards for managers and governors.","Explore AI-powered timetabling for flexible scheduling.","Quantify the productivity dividend for financial planning."],ctx:"The strategic question is how productivity gains are being reinvested. The most effective colleges channel savings into teaching quality."},strong:{obs:"Advanced and well-embedded. This enables everything else. Priority: channel gains into pedagogical innovation.",actions:["Channel efficiency gains into pedagogical investment.","Develop predictive curriculum demand models 18-24 months ahead.","Share your experience with the sector.","Prepare for autonomous workflow agents."],ctx:"Marginal returns from further operational investment are now lower than returns from pedagogical transformation."}},
+    strategic_direction:{critical:{obs:"Your college currently lacks a formal AI strategy and governance framework. Without a roadmap, AI adoption will be reactive and fragmented. This represents the most significant strategic risk identified.",actions:["Commission a rapid 4-week AI landscape assessment.","Draft a three-year AI roadmap with measurable objectives.","Present to the Governing Body and establish AI as a standing agenda item.","Appoint a senior leader with explicit AI strategy accountability."],ctx:"By H1 2027, the DfE will publish formal expectations for AI in FE. By H2 2027, Ofsted will evaluate AI strategy as part of leadership judgements. Window: 12-18 months."},developing:{obs:"Elements of AI awareness and early planning are in place, but the approach lacks coherence and governance rigour. This is the most common position in FE — colleges that move decisively now will create significant advantage.",actions:["Formalise strategic thinking into a board-approved document.","Increase board reporting to at least termly with structured format.","Conduct an AI policy audit across all existing policies.","Establish measurable AI objectives at college level."],ctx:"The Gatsby Foundation found colleges with structured governance progressed significantly faster. Institutions at your score typically need 6-12 months to reach the Embedding level."},solid:{obs:"A credible strategic foundation exists. The challenge is deepening — ensuring intent translates into consistent practice and governance scrutinises outcomes rather than activity.",actions:["Introduce external benchmarking into board reporting.","Establish a mid-year AI-specific strategic review.","Commission an independent external review of your AI strategy.","Position the college externally as AI-forward through sector networks."],ctx:"Institutions at your level often plateau without external accountability. By H2 2027, the bar for effective AI governance will rise significantly."},strong:{obs:"Sector-leading governance. The priority now is sustaining momentum and using your position to influence sector standards.",actions:["Publish your AI strategy as a sector resource.","Establish board-level AI outcome metrics.","Develop a board succession plan ensuring ongoing AI literacy.","Contribute to national FE AI governance standards."],ctx:"You are ahead of regulatory requirements. Use this lead to shape standards rather than simply meet them."}},
+    teaching_learning:{critical:{obs:"Teaching and assessment have not adapted meaningfully to AI. Students are assessed on skills AI can perform, access to tools is limited, and detection is prioritised over redesign.",actions:["Audit your five highest-enrolment programmes — could AI produce competent responses to assessed tasks?","Shift from detection-first to design-first assessment approaches.","Provide enterprise-grade AI tool access for students.","Integrate industry-standard AI tools into vocational training."],ctx:"Ofqual is encouraging innovation in qualification design. By H1 2027, qualification reform will accelerate as Skills England formalises expectations."},developing:{obs:"Changes remain partial and uneven. The experience of AI depends on which department a student encounters. The challenge is moving from isolated good practice to embedded standard.",actions:["Establish a college-wide assessment redesign programme targeting 50% of qualifications.","Develop a consistent position on AI detection across all departments.","Create a shared library of AI-enhanced assessment exemplars.","Pilot universal AI access in two departments and measure impact."],ctx:"92% of students use AI tools, 88% in assessments. Institutions transitioning from prohibition to productive integration report better outcomes."},solid:{obs:"Genuine adaptation is underway. The next challenge is moving from accommodation to leadership — proactively redesigning learning around AI opportunities.",actions:["Move beyond AI-proofing to AI-enhanced assessments requiring productive AI use.","Develop AI-integrated practical assessments mirroring workplace reality.","Establish a teaching innovation fund for AI experimentation.","Share your redesign experience with the wider sector."],ctx:"Your practice could influence national standards. By H2 2027, AI-integrated assessment will be expected for effective teaching."},strong:{obs:"Advanced practice in AI-integrated teaching. Focus on sustainability and sector influence.",actions:["Develop an AI teaching innovation fund.","Create a formal research programme evaluating impact on outcomes.","Position as a Centre of Excellence.","Lead sector CPD in AI-integrated teaching."],ctx:"You are at the frontier. The priority is deepening evidence and sharing what works."}},
+    pedagogical_transformation:{critical:{obs:"This is the most significant finding. Your college has not fundamentally rethought what it teaches and why. The teaching model remains unchanged — content delivered, outputs produced, assessments evaluating products AI can generate. This is a philosophical gap about what education is for.",actions:["Conduct a curriculum vulnerability audit — quantify what % of assessed tasks AI can perform.","Identify human capabilities each programme should develop but currently does not.","Pilot a fundamentally redesigned module in two departments.","Begin the conversation about the lecturer role as elevation, not replacement."],ctx:"This carries 25% of total weight. By H2 2027, Ofsted will evaluate AI integration in teaching. You have approximately 18 months to begin demonstrable evolution."},developing:{obs:"Some departments are exploring, but the core model has not changed in most classrooms. Surface-level adaptation — adding AI content or adjusting assessments — is not the same as genuine transformation.",actions:["Extend good practice into a college-wide pedagogical development programme.","Redesign timetables in two departments for more discussion, coaching, and problem-solving.","Establish formal occupational mapping with employer input annually.","Involve students through AI panels and co-design workshops."],ctx:"Fastest progress occurs where transformation is college-wide, not departmental. By H1 2028, a National AI Literacy Standard will mandate outcomes across all Level 2+ qualifications."},solid:{obs:"Genuine progress, but risk the plateau of adequacy — where initial progress creates complacency while AI capability accelerates and the bar rises continuously.",actions:["Push beyond assessment redesign to full learning experience redesign.","Develop a pedagogical framework making your AI-era teaching philosophy explicit.","Invest in research partnerships evaluating impact on outcomes.","Begin developing adaptive learning pathways."],ctx:"The institutions leading this work are investing in research partnerships and publishing their approach. By H1 2028, expectations will rise significantly."},strong:{obs:"Sector-leading transformation. You are redesigning what learning is for, not just how it is delivered.",actions:["Publish your pedagogical framework as a sector resource.","Lead national research on AI-era learning outcomes.","Develop advanced adaptive learning pathways.","Position as an international reference point."],ctx:"You are at the frontier of pedagogical transformation. Sustaining this requires continuous investment in research and external challenge."}},
+    staff_readiness:{critical:{obs:"Staff readiness is a critical bottleneck. Most have not received meaningful training, no community of practice exists, and AI is not in workflows. Untrained staff do not use AI, reinforcing anxiety and resistance.",actions:["Launch low-barrier AI familiarisation — structured exploration, no assessment.","Appoint 4-6 AI Champions with ring-fenced time and leadership backing.","Shift CPD to role-specific applications, not generic tool training.","Build AI experimentation into existing meetings, not as extra demand."],ctx:"72% of educators cite confidence as the biggest barrier. Teacher AI usage doubled but only 27% believe they have adequate skills. Champions networks drive fastest progress."},developing:{obs:"Investment has begun but impact is uneven. Some enthusiastic, others anxious. Without peer-led structures, development relies on individual initiative which does not sustain cultural change.",actions:["Establish cross-departmental Community of Practice meeting fortnightly.","Develop a confidence audit understanding specific barriers per group.","Focus CPD on learning design capability, not just tool use.","Celebrate and publicise staff AI successes for social proof."],ctx:"Peer-led learning is consistently more effective than formal training. By H1 2028, AI literacy will be expected for all educators."},solid:{obs:"Above sector average. Transition from early adoption to norm is underway. Challenge: supporting remaining non-adopters and evolving CPD from familiarisation to transformation.",actions:["Transition CPD from awareness to learning design mastery.","Address non-adopters with targeted, non-threatening support.","Establish peer observation focused on AI-enhanced teaching.","Develop career pathways recognising AI pedagogical expertise."],ctx:"The binding constraint is now time and support for deeper pedagogical redesign, not confidence. The transition takes 12-18 months of sustained experimentation."},strong:{obs:"Sector-leading staff capability. AI is embedded in practice and culture.",actions:["Position as a CPD provider for other institutions.","Develop advanced AI pedagogy qualifications.","Establish research partnerships with HEIs.","Lead national CPD standards for AI in FE."],ctx:"You have built something rare — genuine cultural change. The priority is sustaining it and sharing it."}},
+    operations:{critical:{obs:"Operational AI is minimal. Data siloed, processes manual, no predictive analytics. The college lacks intelligence AI can provide — unable to identify at-risk students or optimise resources.",actions:["Prioritise data maturity — audit MIS, VLE, finance integration.","Implement predictive retention analytics as first high-impact deployment.","Automate three most time-consuming admin processes.","Develop an operational AI roadmap sequenced by readiness and impact."],ctx:"AI automation delivers 10-15% workload reductions. Predictive analytics improve retention by up to 20%. By H2 2027, operational efficiency becomes a survival imperative."},developing:{obs:"Adoption has begun but remains partial. Data maturity is improving. Build systematically rather than adopting tools in isolation.",actions:["Invest in data integration as enabling infrastructure.","Expand analytics to enrolment forecasting and workload modelling.","Quantify productivity gains and present to the board.","Ensure operational gains are reinvested in teaching quality."],ctx:"Colleges seeing greatest benefit invested in data infrastructure first and AI applications second."},solid:{obs:"Strong operations with meaningful AI adoption. This foundation is valuable but only if it serves pedagogical transformation — efficiency without educational evolution means running smoothly while teaching for a world that no longer exists.",actions:["Redirect freed time and resources into teaching innovation.","Develop real-time dashboards for managers and governors.","Explore AI-powered timetabling for flexible scheduling.","Quantify the productivity dividend for financial planning."],ctx:"The strategic question is how productivity gains are being reinvested. The most effective colleges channel savings into teaching quality."},strong:{obs:"Advanced and well-embedded. This enables everything else. Priority: channel gains into pedagogical innovation.",actions:["Channel efficiency gains into pedagogical transformation.","Develop AI-enabled personalised timetabling.","Build predictive curriculum demand modelling.","Position operational excellence as a strategic asset."],ctx:"Operational AI at this level frees significant resource for the harder work of pedagogical transformation."}},
     ethics_governance:{critical:{obs:"Ethical governance is minimal. DPIAs not routine, equity unaddressed, no bias monitoring. This represents regulatory risk and equity risk — FE serves disadvantaged learners most vulnerable to unmonitored AI.",actions:["Implement mandatory DPIA for any AI processing student data.","Conduct an equity audit of AI tool access by demographic.","Establish bias monitoring before deploying AI for admissions or assessment.","Review safeguarding for AI-specific risks."],ctx:"The EU AI Act classifies education as high-risk. The UK Ethics Framework establishes seven principles. By H1 2028, AI impact assessments become mandatory."},developing:{obs:"Ethics work has begun but is inconsistent — applied to major tools but not embedded systematically in all deployment.",actions:["Extend DPIA to all AI tools, not just major ones.","Develop an AI ethics checklist staff can apply independently.","Establish termly ethical review of all deployed systems.","Engage students in ethical governance."],ctx:"Governance should apply to every deployment and be embedded in processes rather than applied retrospectively."},solid:{obs:"Developing well. Challenge: ensuring governance scales with expanding deployment without becoming a bottleneck.",actions:["Develop your framework as a publishable model.","Introduce algorithmic transparency reporting.","Establish external advisory relationship for AI ethics.","Prepare for regulatory tightening by H1 2028."],ctx:"Strong governance accelerates beneficial AI adoption by providing clear guardrails for confident experimentation."},strong:{obs:"Robust and well-embedded — a significant strength as regulation tightens.",actions:["Position as sector exemplar.","Develop advanced equity monitoring by demographic group.","Prepare for AI rights framework expected by H1 2031.","Consider formal AI ethics committee."],ctx:"You are ahead of regulatory requirements and positioned to influence national standards."}},
-    workforce_alignment:{critical:{obs:"Workforce alignment is critically weak. Employer engagement infrequent, levy untapped, most areas lack AI literacy. Students are being trained for occupations as they existed years ago.",actions:["Establish monthly AI-focused employer advisory sessions.","Develop Growth and Skills Levy strategy — design three AI courses.","Mandate AI literacy in employability modules across all areas.","Conduct regional AI skills gap analysis."],ctx:"90% of enterprises face AI skills shortages by 2026. The levy allows 50% for modular courses. By H1 2027, employer surveys will measure graduate AI-readiness."},developing:{obs:"Some engagement exists but not frequent enough. The levy remains underutilised. Employability updates are inconsistent across programme areas.",actions:["Increase employer engagement to monthly for priority areas.","Scale levy-funded provision beyond pilots.","Extend AI employability content to all curriculum areas.","Track graduate AI readiness as a formal metric."],ctx:"The levy reform creates significant revenue opportunity. Employer satisfaction surveys will soon measure AI-readiness of graduates."},solid:{obs:"Progressing with regular engagement and growing levy use. Challenge: moving from responsive to proactive — anticipating needs before employers articulate them.",actions:["Use Horizon Map data to anticipate needs 12-18 months ahead.","Develop employer partnership models with direct curriculum contribution.","Position as a regional AI skills hub.","Explore cross-border credential recognition."],ctx:"Proactive curriculum intelligence distinguishes the strongest colleges in workforce alignment."},strong:{obs:"Sector-leading with systematic engagement and comprehensive AI literacy. Well-positioned as a regional hub.",actions:["Establish as the definitive regional source of AI skills intelligence.","Develop advanced employer co-investment models.","Lead regional AI apprenticeship standard development.","Create graduate AI portfolio system."],ctx:"Your position enables you to shape what AI-ready graduates look like, not just respond to definitions."}},
+    workforce_alignment:{critical:{obs:"Workforce alignment is critically weak. Employer engagement infrequent, levy untapped, most areas lack AI literacy. Students are being trained for occupations as they existed years ago.",actions:["Establish monthly AI-focused employer advisory sessions.","Develop Growth and Skills Levy strategy — design three AI courses.","Mandate AI literacy in employability modules across all areas.","Conduct regional AI skills gap analysis."],ctx:"90% of enterprises face AI skills shortages by 2026. The levy allows 50% for modular courses. By H1 2027, employer surveys will measure graduate AI-readiness."},developing:{obs:"Some engagement exists but not frequent enough. The levy remains underutilised. Employability updates are inconsistent across programme areas.",actions:["Increase employer engagement to monthly for priority areas.","Scale levy-funded provision beyond pilots.","Extend AI employability content to all curriculum areas.","Track graduate AI readiness as a formal metric."],ctx:"The levy reform creates significant revenue opportunity. Employer satisfaction surveys will soon measure AI-readiness of graduates."},solid:{obs:"Progressing with regular engagement and growing levy use. Challenge: moving from responsive to proactive — anticipating needs before employers articulate them.",actions:["Use Horizon Map data to anticipate needs 12-18 months ahead.","Develop employer partnership models with direct curriculum contribution.","Position as a regional AI skills hub.","Explore cross-border credential recognition."],ctx:"Proactive curriculum intelligence distinguishes the strongest colleges in workforce alignment."},strong:{obs:"Sector-leading with systematic engagement and comprehensive AI literacy. Well-positioned as a regional hub.",actions:["Establish as the definitive regional source of AI skills intelligence.","Develop advanced employer co-investment models.","Lead regional AI apprenticeship standard development.","Create graduate AI portfolio systems."],ctx:"You are positioned to shape regional skills strategy. The priority is converting intelligence into influence."}},
     student_experience:{critical:{obs:"Student experience is a blind spot. No surveys on AI usage, no AI personalisation in services. 92% of students already use AI — they are more experienced than many staff, yet the institution has not asked what they need.",actions:["Conduct an immediate student AI survey.","Establish a student AI advisory panel this term.","Audit student services for AI enhancement opportunities.","Provide clear guidance on productive and ethical AI use."],ctx:"Jisc found students want to be partners, not passengers. By H1 2029, entering students will have never known a world without AI."},developing:{obs:"Engagement has begun but is not systematic. Students are consulted but do not directly influence AI decisions.",actions:["Formalise feedback into structured termly surveys with visible action.","Pilot AI-powered personalised learning in one programme.","Create student AI ambassador roles.","Include students on AI governance groups."],ctx:"Institutions involving students report higher satisfaction and outcomes. Students often have more AI experience than staff."},solid:{obs:"Developing well. Next step: moving from consultation to genuine co-design with real student influence.",actions:["Run co-design workshops each term.","Develop AI-powered 24/7 support systems.","Track correlation between AI services and outcomes.","Prepare for 2027-2028 intake with higher expectations."],ctx:"The shift from consultation to co-design distinguishes good practice from exceptional."},strong:{obs:"Well-integrated with active feedback and AI-enhanced services. Students genuinely shape the approach.",actions:["Position as sector best practice.","Develop personalised AI learning companions.","Explore student-led AI innovation.","Build graduate AI portfolio system."],ctx:"Engaged students provide better intelligence, driving better decisions in a positive cycle."}},
-    financial_sustainability:{critical:{obs:"Financial planning has not incorporated AI. No productivity dividend in forecasts, limited awareness of competitive threats. In a precarious FE environment, this is a strategic blind spot.",actions:["Conduct rapid AI efficiency audit — identify five highest-cost processes.","Build competitive threat analysis of non-traditional providers.","Include AI productivity dividend in next financial forecast.","Frame AI investment as survival strategy, not innovation project."],ctx:"AI automation delivers 10-15% savings. Non-traditional competitors are eroding share. First enrolment shock projected H2 2027."},developing:{obs:"Awareness is growing but not yet in concrete planning. Potential savings are not tracked or strategically reinvested.",actions:["Quantify existing savings and project forward with targets.","Develop new revenue through levy-funded employer courses.","Monitor competitor activity systematically.","Invest in agility to launch new provision within one academic cycle."],ctx:"Speed to market is becoming a competitive advantage. The levy creates the fastest-growing revenue segment."},solid:{obs:"Financial planning reflects AI's importance. Focus on quantification and accountability — tracking projected savings against actual outcomes.",actions:["Establish quarterly AI financial metrics reporting.","Develop scenario planning for H2 2027 enrolment shock.","Diversify revenue through adult AI upskilling.","Position AI efficiency as quality improvement, not just cost reduction."],ctx:"Scenario planning is essential. Model 10%, 15%, and 20% enrolment drops with AI-enabled responses."},strong:{obs:"Well-aligned with AI's potential. AI treated as efficiency lever and competitive advantage with concrete targets.",actions:["Use financial strength to fund pedagogical transformation.","Develop advanced modelling integrating AI with curriculum demand.","Explore employer co-investment and outcome-based contracts.","Prepare for funding model evolution expected H2 2028."],ctx:"Your position enables weathering demographic and competitive pressures while investing in transformation."}},
+    financial_sustainability:{critical:{obs:"Financial planning has not incorporated AI. No productivity dividend in forecasts, limited awareness of competitive threats. In a precarious FE environment, this is a strategic blind spot.",actions:["Conduct rapid AI efficiency audit — identify five highest-cost processes.","Build competitive threat analysis of non-traditional providers.","Include AI productivity dividend in next financial forecast.","Frame AI investment as survival strategy, not innovation project."],ctx:"AI automation delivers 10-15% savings. Non-traditional competitors are eroding share. First enrolment shock projected H2 2027."},developing:{obs:"Awareness is growing but not yet in concrete planning. Potential savings are not tracked or strategically reinvested.",actions:["Quantify existing savings and project forward with targets.","Develop new revenue through levy-funded employer courses.","Monitor competitor activity systematically.","Invest in agility to launch new provision within one academic cycle."],ctx:"Speed to market is becoming a competitive advantage. The levy creates the fastest-growing revenue segment."},solid:{obs:"Financial planning reflects AI's importance. Focus on quantification and accountability — tracking projected savings against actual outcomes.",actions:["Establish quarterly AI financial metrics reporting.","Develop scenario planning for H2 2027 enrolment shock.","Diversify revenue through adult AI upskilling.","Position AI efficiency as quality improvement, not just cost reduction."],ctx:"Scenario planning is essential. Model 10%, 15%, and 20% enrolment drops with AI-enabled responses."},strong:{obs:"Well-aligned with AI's potential. AI treated as efficiency lever and competitive advantage with concrete targets.",actions:["Use financial strength to fund pedagogical transformation.","Develop advanced modelling integrating AI with curriculum demand.","Explore employer co-investment and outcome-based contracts.","Prepare for funding reform by building diversified revenue streams."],ctx:"Financial strength is an enabler. The priority is deploying it strategically to build lasting competitive advantage."}}
   };
   const sec=R[sectionId];return sec?sec[t]:{obs:"Analysis pending.",actions:["Review findings."],ctx:""};
 }
@@ -187,62 +187,279 @@ function genReport(name,role,results,responses){
   const secs=Object.entries(results.sections).map(([id,data])=>({id,...data}));
   const sc=s=>s<30?"#EF4444":s<50?"#F59E0B":s<70?"#3B82F6":"#45D0B9";
   const sorted=[...secs].sort((a,b)=>a.score-b.score);
-  let h=`<!DOCTYPE html><html><head><meta charset="utf-8"><title>PROVIO Report — ${name||"College"}</title><style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap');*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Open Sans',sans-serif;color:#1E293B}@media print{.pb{page-break-before:always}.no-print{display:none}}.pg{max-width:800px;margin:0 auto;padding:48px 40px}.dp{background:#0B192C;color:#fff;padding:48px 40px;max-width:100%}.bt{font-size:13px;line-height:1.7;color:#475569}.lb{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#45D0B9;margin-bottom:12px}h1{font-family:Montserrat;font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.02em}h2{font-family:Montserrat;font-size:20px;font-weight:700;margin-bottom:12px}h3{font-family:Montserrat;font-size:15px;font-weight:600;margin-bottom:8px}.fb{padding:16px;border-radius:8px;margin-bottom:14px;border-left:3px solid}.ft{font-size:9px;color:#94A3B8;margin-top:40px;padding-top:16px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between}.cx{background:rgba(69,208,185,.05);border-left:3px solid #45D0B9;padding:14px;border-radius:6px;margin-top:16px}</style></head><body>`;
+  let h="<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>PROVIO Report — "+(name||"College")+"</title><style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap');*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Open Sans',sans-serif;color:#1E293B}@media print{.pb{page-break-before:always}.no-print{display:none}}.pg{max-width:800px;margin:0 auto;padding:48px 40px}.dp{background:#0B192C;color:#fff;padding:48px 40px;max-width:100%}.bt{font-size:13px;line-height:1.7;color:#475569}.lb{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#45D0B9;margin-bottom:12px}h1{font-family:Montserrat;font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.02em}h2{font-family:Montserrat;font-size:20px;font-weight:700;margin-bottom:12px}h3{font-family:Montserrat;font-size:15px;font-weight:600;margin-bottom:8px}.fb{padding:16px;border-radius:8px;margin-bottom:14px;border-left:3px solid}.ft{font-size:9px;color:#94A3B8;margin-top:40px;padding-top:16px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between}.cx{background:rgba(69,208,185,.05);border-left:3px solid #45D0B9;padding:14px;border-radius:6px;margin-top:16px}</style></head><body>";
   // Cover
-  h+=`<div class="dp" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center"><div style="max-width:700px;margin:0 auto"><div class="lb">PROVIO EDUCATION INTELLIGENCE</div><h1 style="font-size:36px;margin-bottom:16px">AI Readiness<br>Diagnostic Report</h1><div style="width:50px;height:3px;background:#45D0B9;border-radius:2px;margin-bottom:28px"></div><p style="font-size:16px;color:rgba(255,255,255,.5);margin-bottom:48px">Prepared for ${name||"[College]"}</p><div style="display:flex;gap:40px"><div><div style="font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em">RESPONDENT</div><div style="font-size:12px;color:rgba(255,255,255,.8);margin-top:4px">${role||"Senior Leader"}</div></div><div><div style="font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em">DATE</div><div style="font-size:12px;color:rgba(255,255,255,.8);margin-top:4px">${d}</div></div></div></div></div>`;
+  h+="<div class=\"dp\" style=\"min-height:100vh;display:flex;flex-direction:column;justify-content:center\"><div style=\"max-width:700px;margin:0 auto\"><div class=\"lb\">PROVIO EDUCATION INTELLIGENCE</div><h1 style=\"font-size:36px;margin-bottom:16px\">AI Readiness<br>Diagnostic Report</h1><div style=\"width:50px;height:3px;background:#45D0B9;border-radius:2px;margin-bottom:28px\"></div><p style=\"font-size:16px;color:rgba(255,255,255,.5);margin-bottom:48px\">Prepared for "+(name||"[College]")+"</p><div style=\"display:flex;gap:40px\"><div><div style=\"font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em\">RESPONDENT</div><div style=\"font-size:12px;color:rgba(255,255,255,.8);margin-top:4px\">"+(role||"Senior Leader")+"</div></div><div><div style=\"font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em\">DATE</div><div style=\"font-size:12px;color:rgba(255,255,255,.8);margin-top:4px\">"+d+"</div></div></div></div></div>";
   // Exec summary
-  h+=`<div class="pg pb"><div class="lb">EXECUTIVE SUMMARY</div><h1 style="margin-bottom:20px">Your College at a Glance</h1><div style="display:flex;align-items:center;gap:24px;margin:20px 0"><div style="width:80px;height:80px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid ${results.maturity.color};background:${results.maturity.color}15"><div style="font-size:28px;font-weight:700;color:${results.maturity.color}">${results.composite}</div><div style="font-size:9px;color:#94A3B8">/100</div></div><div><h2>Maturity Level: ${results.maturity.label}</h2><p class="bt">${results.maturity.desc}</p></div></div>`;
-  h+=`<div class="fb" style="background:rgba(239,68,68,.05);border-color:#EF4444"><div style="font-size:11px;font-weight:700;color:#EF4444;margin-bottom:4px">WEAKEST — ${sorted[0].name}: ${sorted[0].score}/100</div><p class="bt">This dimension requires the most urgent attention.</p></div>`;
-  h+=`<div class="fb" style="background:rgba(59,130,246,.05);border-color:#3B82F6"><div style="font-size:11px;font-weight:700;color:#3B82F6;margin-bottom:4px">STRONGEST — ${sorted[sorted.length-1].name}: ${sorted[sorted.length-1].score}/100</div><p class="bt">This provides a foundation for broader transformation.</p></div>`;
-  h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>Executive Summary</span></div></div>`;
+  h+="<div class=\"pg pb\"><div class=\"lb\">EXECUTIVE SUMMARY</div><h1 style=\"margin-bottom:20px\">Your College at a Glance</h1><div style=\"display:flex;align-items:center;gap:24px;margin:20px 0\"><div style=\"width:80px;height:80px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid "+results.maturity.color+";background:"+results.maturity.color+"15\"><div style=\"font-size:28px;font-weight:700;color:"+results.maturity.color+"\">"+results.composite+"</div><div style=\"font-size:9px;color:#94A3B8\">/100</div></div><div><h2>Maturity Level: "+results.maturity.label+"</h2><p class=\"bt\">"+results.maturity.desc+"</p></div></div>";
+  h+="<div class=\"fb\" style=\"background:rgba(239,68,68,.05);border-color:#EF4444\"><div style=\"font-size:11px;font-weight:700;color:#EF4444;margin-bottom:4px\">WEAKEST — "+sorted[0].name+": "+sorted[0].score+"/100</div><p class=\"bt\">This dimension requires the most urgent attention.</p></div>";
+  h+="<div class=\"fb\" style=\"background:rgba(59,130,246,.05);border-color:#3B82F6\"><div style=\"font-size:11px;font-weight:700;color:#3B82F6;margin-bottom:4px\">STRONGEST — "+sorted[sorted.length-1].name+": "+sorted[sorted.length-1].score+"/100</div><p class=\"bt\">This provides a foundation for broader transformation.</p></div>";
+  h+="<div class=\"ft\"><span>PROVIO Education Intelligence</span><span>Executive Summary</span></div></div>";
   // Scores
-  h+=`<div class="pg pb"><div class="lb">READINESS PROFILE</div><h2>Section Scores</h2>`;
-  for(const s of secs){h+=`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between"><span style="font-size:12px;font-weight:600">${s.name}</span><span style="font-size:12px;font-weight:700;color:${sc(s.score)}">${s.score}/100 <span style="font-size:10px;color:#94A3B8;font-weight:400">(${Math.round(s.weight*100)}%)</span></span></div><div style="height:6px;background:#E2E8F0;border-radius:3px;margin-top:6px"><div style="height:100%;width:${Math.max(s.score,2)}%;background:${sc(s.score)};border-radius:3px"></div></div></div>`;}
-  h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>Readiness Profile</span></div></div>`;
+  h+="<div class=\"pg pb\"><div class=\"lb\">READINESS PROFILE</div><h2>Section Scores</h2>";
+  for(const s of secs){h+="<div style=\"margin-bottom:14px\"><div style=\"display:flex;justify-content:space-between\"><span style=\"font-size:12px;font-weight:600\">"+s.name+"</span><span style=\"font-size:12px;font-weight:700;color:"+sc(s.score)+"\">"+s.score+"/100 <span style=\"font-size:10px;color:#94A3B8;font-weight:400\">("+Math.round(s.weight*100)+"%)</span></span></div><div style=\"height:6px;background:#E2E8F0;border-radius:3px;margin-top:6px\"><div style=\"height:100%;width:"+Math.max(s.score,2)+"%;background:"+sc(s.score)+";border-radius:3px\"></div></div></div>";}
+  h+="<div class=\"ft\"><span>PROVIO Education Intelligence</span><span>Readiness Profile</span></div></div>";
   // Section pages
-  for(const s of secs){const r=getRec(s.id,s.score);h+=`<div class="pg pb"><div class="lb">SECTION ANALYSIS</div><h2>${s.name} — ${s.score}/100</h2><div style="height:6px;background:#E2E8F0;border-radius:3px;margin:8px 0 16px"><div style="height:100%;width:${Math.max(s.score,2)}%;background:${sc(s.score)};border-radius:3px"></div></div><p style="font-size:11px;color:#94A3B8;margin-bottom:20px">Weight: ${Math.round(s.weight*100)}%</p><h3>Diagnostic Observation</h3><p class="bt" style="margin-bottom:20px">${r.obs}</p><h3>Recommended Actions</h3>`;for(let i=0;i<r.actions.length;i++){h+=`<div style="display:flex;gap:8px;margin-bottom:10px"><span style="color:#45D0B9;font-weight:700;font-size:13px;flex-shrink:0">${i+1}.</span><p class="bt" style="margin:0">${r.actions[i]}</p></div>`;}if(r.ctx){h+=`<div class="cx"><div style="font-size:11px;font-weight:700;color:#45D0B9;margin-bottom:6px">Sector Context & Timeline</div><p class="bt" style="margin:0;font-size:12px">${r.ctx}</p></div>`;}h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>${s.name}</span></div></div>`;}
+  for(const s of secs){const r=getRec(s.id,s.score);h+="<div class=\"pg pb\"><div class=\"lb\">SECTION ANALYSIS</div><h2>"+s.name+" — "+s.score+"/100</h2><div style=\"height:6px;background:#E2E8F0;border-radius:3px;margin:8px 0 16px\"><div style=\"height:100%;width:"+Math.max(s.score,2)+"%;background:"+sc(s.score)+";border-radius:3px\"></div></div><p style=\"font-size:11px;color:#94A3B8;margin-bottom:20px\">Weight: "+Math.round(s.weight*100)+"%</p><h3>Diagnostic Observation</h3><p class=\"bt\" style=\"margin-bottom:20px\">"+r.obs+"</p><h3>Recommended Actions</h3>";for(let i=0;i<r.actions.length;i++){h+="<div style=\"display:flex;gap:8px;margin-bottom:10px\"><span style=\"color:#45D0B9;font-weight:700;font-size:13px;flex-shrink:0\">"+(i+1)+".</span><p class=\"bt\" style=\"margin:0\">"+r.actions[i]+"</p></div>";}if(r.ctx){h+="<div class=\"cx\"><div style=\"font-size:11px;font-weight:700;color:#45D0B9;margin-bottom:6px\">Sector Context &amp; Timeline</div><p class=\"bt\" style=\"margin:0;font-size:12px\">"+r.ctx+"</p></div>";}h+="<div class=\"ft\"><span>PROVIO Education Intelligence</span><span>"+s.name+"</span></div></div>";}
   // Methodology
-  h+=`<div class="pg pb"><div class="lb">METHODOLOGY</div><h2>About This Report</h2><p class="bt" style="margin-bottom:16px"><strong>Scoring:</strong> Weighted average of nine sections. Pedagogical Transformation carries 25%.</p><p class="bt" style="margin-bottom:16px"><strong>Maturity Model:</strong> Five levels from Initial (0-20) to Transforming (81-100), drawing from the Digital Education Council, MITRE, Jisc, and ATD frameworks.</p><p class="bt"><strong>Research:</strong> Grounded in Ofsted 2025, Jisc, Gatsby Foundation, Skills England, and DfE evidence.</p><div style="background:#0B192C;color:#fff;padding:24px;border-radius:10px;margin-top:28px"><h3 style="color:#fff;margin-bottom:12px">What Happens Next</h3><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px">1. <strong style="color:#45D0B9">Share this report</strong> with your Senior Leadership Team and Governing Body.</p><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px">2. <strong style="color:#45D0B9">Prioritise the quick wins</strong> — actions requiring minimal investment.</p><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px">3. <strong style="color:#45D0B9">Re-run in 6 months</strong> to track progress.</p><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7">4. <strong style="color:#45D0B9">Join the network</strong> of colleges benchmarking together.</p></div><div style="text-align:center;margin-top:24px"><div style="font-size:12px;font-weight:700;color:#45D0B9">PROVIO — Futures, Proven</div><div style="font-size:10px;color:#94A3B8;margin-top:4px">Free and independent</div></div></div>`;
-  h+=`<div class="no-print" style="text-align:center;padding:32px"><button onclick="window.print()" style="padding:14px 40px;background:#45D0B9;color:#0B192C;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:Montserrat">Save as PDF</button><p style="font-size:12px;color:#94A3B8;margin-top:8px">Print → Save as PDF</p></div></body></html>`;
+  h+="<div class=\"pg pb\"><div class=\"lb\">METHODOLOGY</div><h2>About This Report</h2><p class=\"bt\" style=\"margin-bottom:16px\"><strong>Scoring:</strong> Weighted average of nine sections. Pedagogical Transformation carries 25%.</p><p class=\"bt\" style=\"margin-bottom:16px\"><strong>Maturity Model:</strong> Five levels from Initial (0-20) to Transforming (81-100), drawing from the Digital Education Council, MITRE, Jisc, and ATD frameworks.</p><p class=\"bt\"><strong>Research:</strong> Grounded in Ofsted 2025, Jisc, Gatsby Foundation, Skills England, and DfE evidence.</p><div style=\"background:#0B192C;color:#fff;padding:24px;border-radius:10px;margin-top:28px\"><h3 style=\"color:#fff;margin-bottom:12px\">What Happens Next</h3><p style=\"font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px\">1. <strong style=\"color:#45D0B9\">Share this report</strong> with your Senior Leadership Team and Governing Body.</p><p style=\"font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px\">2. <strong style=\"color:#45D0B9\">Prioritise the quick wins</strong> — actions requiring minimal investment.</p><p style=\"font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px\">3. <strong style=\"color:#45D0B9\">Re-run in 6 months</strong> to track progress.</p><p style=\"font-size:12px;color:rgba(255,255,255,.6);line-height:1.7\">4. <strong style=\"color:#45D0B9\">Join the network</strong> of colleges benchmarking together.</p></div><div style=\"text-align:center;margin-top:24px\"><div style=\"font-size:12px;font-weight:700;color:#45D0B9\">PROVIO — Futures, Proven</div><div style=\"font-size:10px;color:#94A3B8;margin-top:4px\">Free and independent</div></div></div>";
+  h+="<div class=\"no-print\" style=\"text-align:center;padding:32px\"><button onclick=\"window.print()\" style=\"padding:14px 40px;background:#45D0B9;color:#0B192C;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:Montserrat\">Save as PDF</button><p style=\"font-size:12px;color:#94A3B8;margin-top:8px\">Print → Save as PDF</p></div></body></html>";
   return h;
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// SHARED UI COMPONENTS
+// SHARED UI COMPONENTS — REDESIGNED
 // ═══════════════════════════════════════════════════════════════════
-function Nav({active,onNav}){
-  const items=[{id:"home",l:"Home"},{id:"education",l:"Education Intelligence"},{id:"business",l:"Business Intelligence"},{id:"horizon",l:"Horizon Map"},{id:"insight",l:"Insight"},{id:"about",l:"About"}];
-  return(<nav style={{padding:"14px 0",borderBottom:`1px solid ${C.w05}`,position:"sticky",top:0,zIndex:100,background:`${C.navy}F0`,backdropFilter:"blur(16px)"}}><div style={{maxWidth:1100,margin:"0 auto",padding:"0 24px",display:"flex",justifyContent:"space-between",alignItems:"center"}}><div onClick={()=>onNav("home")} style={{display:"flex",alignItems:"center",gap:6,cursor:"pointer"}}><svg width="160" height="36" viewBox="0 0 360 80"><path d="M 18 72 C 14 50, 14 30, 24 16 C 30 7, 40 2, 50 0" stroke="#45D0B9" strokeWidth="5.5" strokeLinecap="round" fill="none"/><polygon points="49,-3 57,3 49,7" fill="#45D0B9"/><text x="54" y="50" fontFamily="Montserrat,sans-serif" fontWeight="800" fontSize="52" fill="#FFFFFF" letterSpacing="3">PROVIO</text><text x="58" y="70" fontFamily="Montserrat,sans-serif" fontWeight="500" fontSize="11.5" fill="#758396" letterSpacing="5.5">FUTURES, PROVEN</text></svg></div><div style={{display:"flex",gap:4}}>{items.map(i=>(<button key={i.id} onClick={()=>onNav(i.id)} style={{padding:"6px 12px",borderRadius:7,fontSize:11,fontWeight:500,cursor:"pointer",fontFamily:"Open Sans",transition:"all .2s",background:active===i.id?`${C.teal}12`:"transparent",border:`1px solid ${active===i.id?C.teal+"40":"transparent"}`,color:active===i.id?C.teal:C.w4}}>{i.l}</button>))}</div></div></nav>);
+
+// Logo SVG inline (shared)
+function Logo({width,height}){
+  const w=width||160;const h=height||36;
+  return(
+    <svg width={w} height={h} viewBox="0 0 360 80">
+      <path d="M 18 72 C 14 50, 14 30, 24 16 C 30 7, 40 2, 50 0" stroke={C.teal} strokeWidth="5.5" strokeLinecap="round" fill="none"/>
+      <polygon points="49,-3 57,3 49,7" fill={C.teal}/>
+      <text x="54" y="50" fontFamily="Montserrat,sans-serif" fontWeight="800" fontSize="52" fill={C.w} letterSpacing="3">PROVIO</text>
+      <text x="58" y="70" fontFamily="Montserrat,sans-serif" fontWeight="500" fontSize="11.5" fill={C.slate} letterSpacing="5.5">FUTURES, PROVEN</text>
+    </svg>
+  );
 }
-function Footer({onNav}){return(<footer style={{borderTop:`1px solid ${C.w05}`,padding:"32px 0"}}><div style={{maxWidth:1100,margin:"0 auto",padding:"0 24px",display:"flex",justifyContent:"space-between",alignItems:"center"}}><svg width="110" height="24" viewBox="0 0 360 80"><path d="M 18 72 C 14 50, 14 30, 24 16 C 30 7, 40 2, 50 0" stroke="#45D0B9" strokeWidth="5.5" strokeLinecap="round" fill="none"/><polygon points="49,-3 57,3 49,7" fill="#45D0B9"/><text x="54" y="50" fontFamily="Montserrat,sans-serif" fontWeight="800" fontSize="52" fill="#FFFFFF" letterSpacing="3">PROVIO</text></svg><span style={{fontSize:10,color:C.slate}}>© 2026 Provio · West Midlands</span></div></footer>);}
-function SL({text,color=C.teal}){return(<div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}><div style={{width:24,height:1,background:color}}/><span style={{fontSize:10,fontWeight:600,letterSpacing:"0.25em",color,textTransform:"uppercase"}}>{text}</span></div>);}
-function Btn({children,onClick,primary,style:s}){return(<button onClick={onClick} style={{padding:"13px 28px",borderRadius:10,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",transition:"all .2s",background:primary?C.teal:"transparent",color:primary?C.navy:C.w6,border:primary?"none":`1px solid ${C.w1}`,boxShadow:primary?`0 0 30px ${C.teal}20`:"none",...s}} onMouseOver={e=>primary&&(e.target.style.transform="translateY(-2px)")} onMouseOut={e=>primary&&(e.target.style.transform="translateY(0)")}>{children}</button>);}
+
+function Nav({active,onNav}){
+  const items=[{id:"home",l:"Home"},{id:"education",l:"Education"},{id:"business",l:"Business"},{id:"horizon",l:"Horizon Map"},{id:"insight",l:"Insight"},{id:"about",l:"About"}];
+  return(
+    <nav style={{height:64,borderBottom:"1px solid "+C.w05,position:"sticky",top:0,zIndex:100,background:"rgba(11,25,44,0.92)",backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)"}}>
+      <div style={{maxWidth:1200,margin:"0 auto",padding:"0 32px",height:"100%",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <div onClick={()=>onNav("home")} style={{cursor:"pointer",display:"flex",alignItems:"center"}}>
+          <Logo width={140} height={32}/>
+        </div>
+        <div style={{display:"flex",gap:2,alignItems:"center"}}>
+          {items.map(i=>(
+            <button key={i.id} onClick={()=>onNav(i.id)} style={{padding:"6px 14px",borderRadius:6,fontSize:13,fontWeight:active===i.id?600:400,cursor:"pointer",fontFamily:"Open Sans",transition:"all .18s",background:"transparent",border:"none",color:active===i.id?C.teal:C.w4,borderBottom:active===i.id?"2px solid "+C.teal:"2px solid transparent",position:"relative",top:1}}>{i.l}</button>
+          ))}
+        </div>
+        <button onClick={()=>onNav("education")} style={{padding:"9px 20px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",background:C.teal,color:C.navy,border:"none",transition:"all .18s",whiteSpace:"nowrap"}} onMouseOver={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 6px 20px rgba(69,208,185,0.3)";}} onMouseOut={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none";}}>Begin Assessment</button>
+      </div>
+    </nav>
+  );
+}
+
+function Footer({onNav}){
+  return(
+    <footer style={{borderTop:"1px solid "+C.w05,padding:"40px 0",background:C.navy}}>
+      <div style={{maxWidth:1200,margin:"0 auto",padding:"0 32px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <div style={{cursor:"pointer"}} onClick={()=>onNav("home")}><Logo width={120} height={27}/></div>
+        <div style={{display:"flex",gap:24,alignItems:"center"}}>
+          {[{id:"education",l:"Education"},{id:"business",l:"Business"},{id:"horizon",l:"Horizon Map"},{id:"about",l:"About"}].map(i=>(
+            <button key={i.id} onClick={()=>onNav(i.id)} style={{background:"none",border:"none",color:C.w4,fontSize:12,cursor:"pointer",fontFamily:"Open Sans"}}>{i.l}</button>
+          ))}
+        </div>
+        <span style={{fontSize:11,color:C.slate}}>© 2026 Provio · West Midlands</span>
+      </div>
+    </footer>
+  );
+}
+
+// Section label component
+function SL({text,color}){
+  const col=color||C.teal;
+  return(
+    <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:16}}>
+      <div style={{width:28,height:1,background:col}}/>
+      <span style={{fontSize:10,fontWeight:700,letterSpacing:"0.22em",color:col,textTransform:"uppercase",fontFamily:"Montserrat"}}>{text}</span>
+    </div>
+  );
+}
+
+// Primary/secondary button
+function Btn({children,onClick,primary,style:s}){
+  return(
+    <button onClick={onClick} style={{padding:"12px 28px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",transition:"all .18s",background:primary?C.teal:"transparent",color:primary?C.navy:C.w6,border:primary?"none":"1px solid "+C.w2,...s}}
+      onMouseOver={e=>{e.currentTarget.style.transform="translateY(-2px)";if(primary)e.currentTarget.style.boxShadow="0 8px 24px rgba(69,208,185,0.25)";}}
+      onMouseOut={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none";}}>
+      {children}
+    </button>
+  );
+}
 
 // Survey question renderer
-function SurveyQ({q,qi,response,onAnswer,accent=C.teal,hasScore=true}){
-  return(<div style={{marginBottom:24,paddingBottom:24,borderBottom:`1px solid ${C.w03}`}}><p style={{fontSize:13,color:C.w8,lineHeight:1.5,marginBottom:12}}><span style={{color:accent,fontWeight:600,marginRight:6}}>{qi+1}.</span>{q.text}</p><div style={{display:"flex",flexDirection:"column",gap:5}}>{q.options.map((opt,oi)=>{const label=hasScore?opt.label:opt;const val=hasScore?opt.score:oi;const sel=response===val;return(<button key={oi} onClick={()=>onAnswer(val)} style={{padding:"11px 14px",borderRadius:8,textAlign:"left",cursor:"pointer",fontSize:12,lineHeight:1.4,transition:"all .2s",fontFamily:"Open Sans",background:sel?`${accent}10`:C.w03,border:`1px solid ${sel?accent+"40":C.w05}`,color:sel?accent:C.w6,transform:sel?"translateX(3px)":"translateX(0)"}}><span style={{display:"inline-flex",width:18,height:18,borderRadius:"50%",alignItems:"center",justifyContent:"center",marginRight:8,fontSize:9,fontWeight:600,background:sel?accent:C.w05,color:sel?C.navy:C.w4}}>{String.fromCharCode(97+oi)}</span>{label}</button>);})}</div></div>);
+function SurveyQ({q,qi,response,onAnswer,accent,hasScore}){
+  const ac=accent||C.teal;
+  return(
+    <div style={{marginBottom:24,paddingBottom:24,borderBottom:"1px solid "+C.w03}}>
+      <p style={{fontSize:14,color:C.w8,lineHeight:1.6,marginBottom:14}}>
+        <span style={{color:ac,fontWeight:700,marginRight:8}}>{qi+1}.</span>{q.text}
+      </p>
+      <div style={{display:"flex",flexDirection:"column",gap:6}}>
+        {q.options.map((opt,oi)=>{
+          const label=hasScore?opt.label:opt;
+          const val=hasScore?opt.score:oi;
+          const sel=response===val;
+          return(
+            <button key={oi} onClick={()=>onAnswer(val)} style={{padding:"11px 16px",borderRadius:8,textAlign:"left",cursor:"pointer",fontSize:13,lineHeight:1.4,transition:"all .18s",fontFamily:"Open Sans",background:sel?(ac+"18"):C.w03,border:"1px solid "+(sel?(ac+"50"):C.w05),color:sel?ac:C.w6,transform:sel?"translateX(4px)":"translateX(0)"}}>
+              <span style={{display:"inline-flex",width:20,height:20,borderRadius:"50%",alignItems:"center",justifyContent:"center",marginRight:10,fontSize:9,fontWeight:700,background:sel?ac:C.w05,color:sel?C.navy:C.w4}}>{String.fromCharCode(97+oi)}</span>{label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════════
 // PAGE: HOME
 // ═══════════════════════════════════════════════════════════════════
 function Home({onNav}){
-  return(<div>
-    <section style={{maxWidth:1100,margin:"0 auto",padding:"80px 24px 64px"}}><SL text="Futures, Proven"/><h1 className="fu1" style={{fontFamily:"Montserrat",fontSize:44,fontWeight:700,lineHeight:1.12,letterSpacing:"-0.03em",maxWidth:650}}>Intelligence and pathways for the <span style={{color:C.teal}}>AI transition</span></h1><p className="fu2" style={{fontSize:16,color:C.w6,maxWidth:520,lineHeight:1.7,marginTop:22}}>PROVIO brings together colleges, businesses, and young people to navigate the shift to AI — with evidence, practical tools, and a growing intelligence network.</p><div className="fu3" style={{display:"flex",gap:12,marginTop:32}}><Btn primary onClick={()=>onNav("education")}>Education Intelligence</Btn><Btn onClick={()=>onNav("business")}>Business Intelligence</Btn></div></section>
-    <section style={{borderTop:`1px solid ${C.w05}`,background:C.nm}}><div style={{maxWidth:1100,margin:"0 auto",padding:"64px 24px"}}><SL text="What we do"/><h2 style={{fontFamily:"Montserrat",fontSize:26,fontWeight:700,marginBottom:32}}>Three connected challenges. <span style={{color:C.w4}}>One conversation.</span></h2><div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:16}}>{[{l:"For Colleges",icon:"◉",c:C.teal,t:"Education Intelligence",d:"A diagnostic giving senior leaders an evidence-based picture of AI readiness, mapped against six years of sector change.",cta:"Begin assessment",nav:"education"},{l:"For Businesses",icon:"◆",c:C.orange,t:"Business Intelligence",d:"A free initial assessment highlighting where AI could add value — and a pathway to a deeper audit at no cost.",cta:"Take the survey",nav:"business"},{l:"For Young People",icon:"◈",c:C.purple,t:"AI Futures Pathway",d:"An intensive programme training 18-24 year olds to conduct professional AI audits — building careers by proving the business case.",cta:"Coming soon",nav:null}].map((p,i)=>(<div key={i} style={{padding:24,borderRadius:12,background:C.nc,border:`1px solid ${C.w05}`,display:"flex",flexDirection:"column"}}><div style={{fontSize:10,color:p.c,letterSpacing:"0.2em",fontWeight:600,textTransform:"uppercase",marginBottom:4}}>{p.l}</div><div style={{fontSize:18,color:p.c,marginBottom:10}}>{p.icon}</div><h3 style={{fontFamily:"Montserrat",fontSize:15,fontWeight:600,marginBottom:8}}>{p.t}</h3><p style={{fontSize:12,color:C.w4,lineHeight:1.6,flex:1}}>{p.d}</p>{p.nav?<button onClick={()=>onNav(p.nav)} style={{marginTop:14,padding:"8px 0",background:"none",border:"none",color:p.c,fontSize:12,fontWeight:600,cursor:"pointer",textAlign:"left"}}>{p.cta} →</button>:<span style={{marginTop:14,fontSize:11,color:C.w2}}>{p.cta}</span>}</div>))}</div></div></section>
-    <section style={{borderTop:`1px solid ${C.w05}`}}><div style={{maxWidth:1100,margin:"0 auto",padding:"64px 24px"}}><SL text="Latest Insight"/><div style={{display:"grid",gridTemplateColumns:"2fr 1fr",gap:24}}><div style={{padding:28,borderRadius:14,background:C.nc,border:`1px solid ${C.w05}`,cursor:"pointer"}} onClick={()=>onNav("insight")}><div style={{fontSize:10,color:C.amber,letterSpacing:"0.15em",fontWeight:600,marginBottom:8}}>FEATURED</div><h3 style={{fontFamily:"Montserrat",fontSize:20,fontWeight:700,marginBottom:10,lineHeight:1.3}}>The Two Shocks</h3><p style={{fontSize:13,color:C.w4,lineHeight:1.6,marginBottom:14}}>The rush to the trades feels like the right response to AI. It is — but only for now. The second shock is closer than most colleges are planning for, and it will reshape vocational education as profoundly as the first.</p><span style={{fontSize:12,color:C.teal,fontWeight:600}}>Read the full analysis →</span></div><div style={{padding:24,borderRadius:14,background:C.w03,border:`1px solid ${C.w05}`,display:"flex",flexDirection:"column",justifyContent:"center"}}><div style={{fontSize:10,color:C.w4,letterSpacing:"0.15em",fontWeight:600,marginBottom:10}}>KEY INSIGHT</div><p style={{fontSize:22,fontFamily:"Montserrat",fontWeight:700,lineHeight:1.3,marginBottom:8}}>The trades are safe. <span style={{color:C.amber}}>For now.</span></p><p style={{fontSize:12,color:C.w4,lineHeight:1.5}}>Embodied robotics will enter unstructured work environments by the late 2020s. Colleges preparing students only for manual execution are solving the first problem while sleepwalking into the second.</p></div></div></div></section>
-    <section style={{borderTop:`1px solid ${C.w05}`}}><div style={{maxWidth:1100,margin:"0 auto",padding:"64px 24px"}}><SL text="The Intelligence Network"/><h2 style={{fontFamily:"Montserrat",fontSize:26,fontWeight:700,marginBottom:10,maxWidth:550}}>Every engagement makes the next one <span style={{color:C.teal}}>more valuable</span></h2><p style={{fontSize:14,color:C.w4,maxWidth:500,lineHeight:1.7,marginBottom:32}}>Every audit, every diagnostic, every employer adds to a growing picture of how AI is landing across the UK economy. The intelligence compounds.</p><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>{[{t:"For businesses",d:"Your assessment shows where you stand relative to your sector. More participants means richer context for everyone."},{t:"For colleges",d:"Your diagnostic benchmarks within a growing sector dataset. More colleges means more precise benchmarking."},{t:"For the sector",d:"A bottom-up map of how AI is reshaping local economies — intelligence policy-makers and sector bodies can draw on."},{t:"For everyone",d:"The intelligence deepens, benchmarks sharpen, recommendations improve. A resource no single organisation could build alone."}].map((item,i)=>(<div key={i} style={{padding:20,borderRadius:10,background:C.w03,border:`1px solid ${C.w05}`}}><h4 style={{fontFamily:"Montserrat",fontSize:13,fontWeight:600,color:C.teal,marginBottom:6}}>{item.t}</h4><p style={{fontSize:12,color:C.w4,lineHeight:1.6}}>{item.d}</p></div>))}</div></div></section>
-  </div>);
+  const cards=[
+    {l:"For Colleges",icon:"◉",c:C.teal,t:"Education Intelligence",d:"A diagnostic giving senior leaders an evidence-based picture of AI readiness, mapped against six years of sector change.",cta:"Begin assessment",nav:"education"},
+    {l:"For Businesses",icon:"◆",c:C.orange,t:"Business Intelligence",d:"A free initial assessment highlighting where AI could add value — and a pathway to a deeper audit at no cost.",cta:"Take the survey",nav:"business"},
+    {l:"For Young People",icon:"◈",c:C.purple,t:"AI Futures Pathway",d:"An intensive programme training 18-24 year olds to conduct professional AI audits — building careers by proving the business case.",cta:"Coming soon",nav:null}
+  ];
+  const netItems=[
+    {t:"For businesses",d:"Your assessment shows where you stand relative to your sector. More participants means richer context for everyone."},
+    {t:"For colleges",d:"Your diagnostic benchmarks within a growing sector dataset. More colleges means more precise benchmarking."},
+    {t:"For the sector",d:"A bottom-up map of how AI is reshaping local economies — intelligence policy-makers and sector bodies can draw on."},
+    {t:"For everyone",d:"The intelligence deepens, benchmarks sharpen, recommendations improve. A resource no single organisation could build alone."}
+  ];
+
+  return(
+    <div>
+      {/* Hero */}
+      <section style={{background:C.navy,padding:"96px 0 80px"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px"}}>
+          <SL text="Futures, Proven"/>
+          <h1 className="fu1" style={{fontFamily:"Montserrat",fontSize:48,fontWeight:700,lineHeight:1.08,letterSpacing:"-0.03em",maxWidth:680,marginBottom:22}}>
+            Intelligence and pathways<br/>for the <span style={{color:C.teal}}>AI transition</span>
+          </h1>
+          <p className="fu2" style={{fontSize:17,color:C.w6,maxWidth:540,lineHeight:1.75,marginBottom:36,fontFamily:"Open Sans"}}>
+            PROVIO brings together colleges, businesses, and young people to navigate the shift to AI — with evidence, practical tools, and a growing intelligence network.
+          </p>
+          <div className="fu3" style={{display:"flex",gap:14}}>
+            <Btn primary onClick={()=>onNav("education")}>Education Intelligence</Btn>
+            <Btn onClick={()=>onNav("business")}>Business Intelligence</Btn>
+          </div>
+        </div>
+      </section>
+
+      {/* Three pillars */}
+      <section style={{borderTop:"1px solid "+C.w05,background:C.nm,padding:"72px 0"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px"}}>
+          <SL text="What we do"/>
+          <h2 style={{fontFamily:"Montserrat",fontSize:28,fontWeight:700,marginBottom:36}}>Three connected challenges. <span style={{color:C.w4}}>One conversation.</span></h2>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:20}}>
+            {cards.map((p,i)=>(
+              <div key={i} className="card-hover" style={{padding:28,borderRadius:12,background:C.nc,border:"1px solid "+C.w05,display:"flex",flexDirection:"column"}}>
+                <div style={{fontSize:10,color:p.c,letterSpacing:"0.22em",fontWeight:700,textTransform:"uppercase",fontFamily:"Montserrat",marginBottom:6}}>{p.l}</div>
+                <div style={{fontSize:22,color:p.c,marginBottom:12}}>{p.icon}</div>
+                <h3 style={{fontFamily:"Montserrat",fontSize:16,fontWeight:600,marginBottom:10}}>{p.t}</h3>
+                <p style={{fontSize:13,color:C.w4,lineHeight:1.65,flex:1,fontFamily:"Open Sans"}}>{p.d}</p>
+                {p.nav
+                  ? <button onClick={()=>onNav(p.nav)} style={{marginTop:16,padding:"8px 0",background:"none",border:"none",color:p.c,fontSize:13,fontWeight:600,cursor:"pointer",textAlign:"left",fontFamily:"Montserrat"}}>{p.cta} →</button>
+                  : <span style={{marginTop:16,fontSize:11,color:C.w2,fontFamily:"Open Sans"}}>{p.cta}</span>
+                }
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest insight */}
+      <section style={{borderTop:"1px solid "+C.w05,background:C.navy,padding:"72px 0"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px"}}>
+          <SL text="Latest Insight"/>
+          <div style={{display:"grid",gridTemplateColumns:"2fr 1fr",gap:24}}>
+            <div className="card-hover" style={{padding:32,borderRadius:12,background:C.nc,border:"1px solid "+C.w05,cursor:"pointer"}} onClick={()=>onNav("insight")}>
+              <div style={{fontSize:10,color:C.amber,letterSpacing:"0.18em",fontWeight:700,fontFamily:"Montserrat",marginBottom:10}}>FEATURED ANALYSIS</div>
+              <h3 style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginBottom:12,lineHeight:1.25}}>The Two Shocks</h3>
+              <p style={{fontSize:14,color:C.w4,lineHeight:1.7,marginBottom:16,fontFamily:"Open Sans"}}>The rush to the trades feels like the right response to AI. It is — but only for now. The second shock is closer than most colleges are planning for, and it will reshape vocational education as profoundly as the first.</p>
+              <span style={{fontSize:13,color:C.teal,fontWeight:600,fontFamily:"Montserrat"}}>Read the full analysis →</span>
+            </div>
+            <div style={{padding:28,borderRadius:12,background:C.w03,border:"1px solid "+C.w05,display:"flex",flexDirection:"column",justifyContent:"center"}}>
+              <div style={{fontSize:10,color:C.w4,letterSpacing:"0.18em",fontWeight:700,fontFamily:"Montserrat",marginBottom:12}}>KEY INSIGHT</div>
+              <p style={{fontSize:20,fontFamily:"Montserrat",fontWeight:700,lineHeight:1.3,marginBottom:10}}>The trades are safe. <span style={{color:C.amber}}>For now.</span></p>
+              <p style={{fontSize:13,color:C.w4,lineHeight:1.6,fontFamily:"Open Sans"}}>Embodied robotics will enter unstructured work environments by the late 2020s. Colleges preparing students only for manual execution are solving the first problem while sleepwalking into the second.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intelligence network */}
+      <section style={{borderTop:"1px solid "+C.w05,background:C.nm,padding:"72px 0"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px"}}>
+          <SL text="The Intelligence Network"/>
+          <h2 style={{fontFamily:"Montserrat",fontSize:28,fontWeight:700,marginBottom:12,maxWidth:560}}>Every engagement makes the next one <span style={{color:C.teal}}>more valuable</span></h2>
+          <p style={{fontSize:14,color:C.w4,maxWidth:500,lineHeight:1.75,marginBottom:36,fontFamily:"Open Sans"}}>Every audit, every diagnostic, every employer adds to a growing picture of how AI is landing across the UK economy. The intelligence compounds.</p>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
+            {netItems.map((item,i)=>(
+              <div key={i} className="card-hover" style={{padding:22,borderRadius:10,background:C.nc,border:"1px solid "+C.w05}}>
+                <h4 style={{fontFamily:"Montserrat",fontSize:13,fontWeight:600,color:C.teal,marginBottom:8}}>{item.t}</h4>
+                <p style={{fontSize:13,color:C.w4,lineHeight:1.65,fontFamily:"Open Sans"}}>{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════════
 // PAGE: EDUCATION INTELLIGENCE
 // ═══════════════════════════════════════════════════════════════════
 function Education({onNav,onStartSurvey}){
-  return(<div>
-    <section style={{maxWidth:1100,margin:"0 auto",padding:"72px 24px 56px"}}><SL text="Education Intelligence"/><h1 className="fu1" style={{fontFamily:"Montserrat",fontSize:40,fontWeight:700,lineHeight:1.12,letterSpacing:"-0.03em",maxWidth:600}}>How ready is your college for <span style={{color:C.teal}}>what's coming?</span></h1><p className="fu2" style={{fontSize:16,color:C.w6,maxWidth:520,lineHeight:1.7,marginTop:22}}>A diagnostic built on sector research. Complete the assessment and receive a personalised report on your institution's AI readiness and the forces shaping the next six years.</p><div className="fu3" style={{display:"flex",gap:12,marginTop:32}}><Btn primary onClick={onStartSurvey}>Begin Assessment</Btn><Btn onClick={()=>onNav("horizon")}>View the Horizon Map</Btn></div><div className="fu3" style={{display:"flex",gap:36,marginTop:48,paddingTop:24,borderTop:`1px solid ${C.w05}`}}>{[{v:"25+",u:"pages",l:"Personalised report"},{v:"9",u:"dimensions",l:"AI readiness assessed"},{v:"15",u:"min",l:"To complete"},{v:"2032",u:"",l:"Horizon mapped"}].map((s,i)=>(<div key={i}><div style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700}}>{s.v}<span style={{fontSize:12,color:C.teal,marginLeft:3,fontWeight:500}}>{s.u}</span></div><div style={{fontSize:10,color:C.w4,marginTop:2}}>{s.l}</div></div>))}</div></section>
-    <section style={{borderTop:`1px solid ${C.w05}`,background:C.nm}}><div style={{maxWidth:1100,margin:"0 auto",padding:"64px 24px"}}><SL text="What you receive"/><h2 style={{fontFamily:"Montserrat",fontSize:26,fontWeight:700,marginBottom:32}}>A report your governors will actually read.</h2><div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:16}}>{[{t:"AI Readiness Index",d:"Composite score across nine weighted dimensions with a five-level maturity model."},{t:"Curriculum Vulnerability",d:"How much of what you teach could AI already do? An evidence-based assessment."},{t:"Human Capabilities Radar",d:"Confidence across six human skills AI cannot replicate."},{t:"Personalised Recommendations",d:"Quick wins, strategic initiatives, and longer-term transformation priorities."},{t:"Sector Benchmarking",d:"How you compare against the emerging sector baseline."},{t:"Horizon Map 2026–2032",d:"Six-monthly forecast of technology, policy, markets, and expectations."}].map((item,i)=>(<div key={i} style={{padding:22,borderRadius:12,background:C.nc,border:`1px solid ${C.w05}`}}><h3 style={{fontFamily:"Montserrat",fontSize:13,fontWeight:600,marginBottom:6}}>{item.t}</h3><p style={{fontSize:11,color:C.w4,lineHeight:1.6}}>{item.d}</p></div>))}</div></div></section>
-  </div>);
+  const features=[
+    {t:"AI Readiness Index",d:"Composite score across nine weighted dimensions with a five-level maturity model."},
+    {t:"Curriculum Vulnerability",d:"How much of what you teach could AI already do? An evidence-based assessment."},
+    {t:"Human Capabilities Radar",d:"Confidence across six human skills AI cannot replicate."},
+    {t:"Personalised Recommendations",d:"Quick wins, strategic initiatives, and longer-term transformation priorities."},
+    {t:"Sector Benchmarking",d:"How you compare against the emerging sector baseline."},
+    {t:"Horizon Map 2026–2032",d:"Six-monthly forecast of technology, policy, markets, and expectations."}
+  ];
+  const stats=[{v:"25+",u:"pages",l:"Personalised report"},{v:"9",u:"dimensions",l:"AI readiness assessed"},{v:"15",u:"min",l:"To complete"},{v:"2032",u:"",l:"Horizon mapped"}];
+
+  return(
+    <div>
+      <section style={{background:C.navy,padding:"88px 0 72px"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px"}}>
+          <SL text="Education Intelligence"/>
+          <h1 className="fu1" style={{fontFamily:"Montserrat",fontSize:44,fontWeight:700,lineHeight:1.08,letterSpacing:"-0.03em",maxWidth:620,marginBottom:22}}>
+            How ready is your college<br/>for <span style={{color:C.teal}}>what's coming?</span>
+          </h1>
+          <p className="fu2" style={{fontSize:16,color:C.w6,maxWidth:520,lineHeight:1.75,marginBottom:36,fontFamily:"Open Sans"}}>
+            A diagnostic built on sector research. Complete the assessment and receive a personalised report on your institution's AI readiness and the forces shaping the next six years.
+          </p>
+          <div className="fu3" style={{display:"flex",gap:14,marginBottom:52}}>
+            <Btn primary onClick={onStartSurvey}>Begin Assessment</Btn>
+            <Btn onClick={()=>onNav("horizon")}>View the Horizon Map</Btn>
+          </div>
+          <div style={{display:"flex",gap:48,paddingTop:28,borderTop:"1px solid "+C.w05}}>
+            {stats.map((s,i)=>(
+              <div key={i}>
+                <div style={{fontFamily:"Montserrat",fontSize:26,fontWeight:700,color:C.w}}>
+                  {s.v}<span style={{fontSize:13,color:C.teal,marginLeft:4,fontWeight:500}}>{s.u}</span>
+                </div>
+                <div style={{fontSize:11,color:C.w4,marginTop:3,fontFamily:"Open Sans"}}>{s.l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section style={{borderTop:"1px solid "+C.w05,background:C.nm,padding:"72px 0"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px"}}>
+          <SL text="What you receive"/>
+          <h2 style={{fontFamily:"Montserrat",fontSize:26,fontWeight:700,marginBottom:36}}>A report your governors will actually read.</h2>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:18}}>
+            {features.map((item,i)=>(
+              <div key={i} className="card-hover" style={{padding:24,borderRadius:12,background:C.nc,border:"1px solid "+C.w05}}>
+                <div style={{width:32,height:3,background:C.teal,borderRadius:2,marginBottom:14}}/>
+                <h3 style={{fontFamily:"Montserrat",fontSize:14,fontWeight:600,marginBottom:8}}>{item.t}</h3>
+                <p style={{fontSize:12,color:C.w4,lineHeight:1.65,fontFamily:"Open Sans"}}>{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -256,23 +473,113 @@ function EduSurvey({onBack}){
 
   if(view==="results"){
     const secs=Object.entries(results.sections).map(([id,d])=>({id,...d}));const sorted=[...secs].sort((a,b)=>a.score-b.score);
-    return(<div style={{maxWidth:800,margin:"0 auto",padding:"48px 24px"}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:40}}><button onClick={onBack} style={{fontSize:12,color:C.w4,background:"none",border:`1px solid ${C.w1}`,padding:"6px 14px",borderRadius:6,cursor:"pointer"}}>← Back to site</button><button onClick={()=>setView("survey")} style={{fontSize:12,color:C.w4,background:"none",border:`1px solid ${C.w1}`,padding:"6px 14px",borderRadius:6,cursor:"pointer"}}>Edit Responses</button></div>
-      <div className="fi" style={{textAlign:"center",marginBottom:44}}><div style={{fontSize:10,color:C.teal,letterSpacing:"0.25em",fontWeight:600,marginBottom:14}}>{name||"YOUR COLLEGE"}</div><div style={{width:120,height:120,borderRadius:"50%",margin:"0 auto 16px",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",background:`${results.maturity.color}12`,border:`3px solid ${results.maturity.color}`}}><div style={{fontFamily:"Montserrat",fontSize:36,fontWeight:700,color:results.maturity.color}}>{results.composite}</div><div style={{fontSize:10,color:C.w4}}>/100</div></div><div style={{fontFamily:"Montserrat",fontSize:20,fontWeight:700}}>Maturity: <span style={{color:results.maturity.color}}>{results.maturity.label}</span></div><p style={{fontSize:12,color:C.w4,maxWidth:400,margin:"6px auto 0",lineHeight:1.5}}>{results.maturity.desc}</p></div>
-      <div style={{background:C.nc,padding:22,borderRadius:12,border:`1px solid ${C.w05}`,marginBottom:24}}><div style={{fontSize:10,color:C.w4,letterSpacing:"0.15em",fontWeight:600,marginBottom:12}}>SECTION SCORES</div>{secs.map((s,i)=>{const c=s.score<30?C.red:s.score<50?C.amber:s.score<70?C.blue:C.teal;return(<div key={i} style={{marginBottom:8}}><div style={{display:"flex",justifyContent:"space-between",marginBottom:2}}><span style={{fontSize:11,color:C.w6}}>{s.name}</span><span style={{fontSize:11,fontWeight:600,color:c}}>{s.score}</span></div><div style={{height:4,background:C.w05,borderRadius:2}}><div style={{height:"100%",width:`${Math.max(s.score,2)}%`,borderRadius:2,background:c,transition:"width .6s"}}/></div></div>);})}</div>
-      <div style={{padding:28,borderRadius:14,textAlign:"center",background:`linear-gradient(135deg,${C.nc},${C.nl})`,border:`1px solid ${C.w1}`,marginBottom:24}}><div style={{fontSize:10,color:C.teal,letterSpacing:"0.2em",fontWeight:600,marginBottom:8}}>YOUR REPORT</div><h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:8}}>Download your personalised report</h3><p style={{fontSize:12,color:C.w4,maxWidth:400,margin:"0 auto 16px",lineHeight:1.5}}>Detailed analysis, personalised recommendations, sector context, and methodology.</p><Btn primary onClick={download}>Download Report</Btn><p style={{fontSize:10,color:C.w2,marginTop:8}}>Opens in new tab — Print → Save as PDF</p></div>
-    </div>);
+    return(
+      <div style={{maxWidth:800,margin:"0 auto",padding:"56px 32px"}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:44}}>
+          <button onClick={onBack} style={{fontSize:12,color:C.w4,background:"none",border:"1px solid "+C.w1,padding:"7px 16px",borderRadius:7,cursor:"pointer",fontFamily:"Open Sans"}}>← Back to site</button>
+          <button onClick={()=>setView("survey")} style={{fontSize:12,color:C.w4,background:"none",border:"1px solid "+C.w1,padding:"7px 16px",borderRadius:7,cursor:"pointer",fontFamily:"Open Sans"}}>Edit Responses</button>
+        </div>
+        <div className="fi" style={{textAlign:"center",marginBottom:48}}>
+          <div style={{fontSize:10,color:C.teal,letterSpacing:"0.25em",fontWeight:700,fontFamily:"Montserrat",marginBottom:16}}>{name||"YOUR COLLEGE"}</div>
+          <div style={{width:128,height:128,borderRadius:"50%",margin:"0 auto 18px",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",background:results.maturity.color+"14",border:"3px solid "+results.maturity.color}}>
+            <div style={{fontFamily:"Montserrat",fontSize:38,fontWeight:700,color:results.maturity.color}}>{results.composite}</div>
+            <div style={{fontSize:10,color:C.w4,fontFamily:"Open Sans"}}>/100</div>
+          </div>
+          <div style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700}}>Maturity: <span style={{color:results.maturity.color}}>{results.maturity.label}</span></div>
+          <p style={{fontSize:13,color:C.w4,maxWidth:420,margin:"8px auto 0",lineHeight:1.6,fontFamily:"Open Sans"}}>{results.maturity.desc}</p>
+        </div>
+        <div style={{background:C.nc,padding:24,borderRadius:12,border:"1px solid "+C.w05,marginBottom:24}}>
+          <div style={{fontSize:10,color:C.w4,letterSpacing:"0.18em",fontWeight:700,fontFamily:"Montserrat",marginBottom:14}}>SECTION SCORES</div>
+          {secs.map((s,i)=>{const c=s.score<30?C.red:s.score<50?C.amber:s.score<70?C.blue:C.teal;return(
+            <div key={i} style={{marginBottom:10}}>
+              <div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}>
+                <span style={{fontSize:12,color:C.w6,fontFamily:"Open Sans"}}>{s.name}</span>
+                <span style={{fontSize:12,fontWeight:600,color:c,fontFamily:"Montserrat"}}>{s.score}</span>
+              </div>
+              <div style={{height:4,background:C.w05,borderRadius:2}}>
+                <div style={{height:"100%",width:Math.max(s.score,2)+"%",borderRadius:2,background:c,transition:"width .6s"}}/>
+              </div>
+            </div>
+          );})}
+        </div>
+        <div style={{padding:32,borderRadius:14,textAlign:"center",background:"linear-gradient(135deg,"+C.nc+","+C.nl+")",border:"1px solid "+C.w1,marginBottom:24}}>
+          <div style={{fontSize:10,color:C.teal,letterSpacing:"0.22em",fontWeight:700,fontFamily:"Montserrat",marginBottom:10}}>YOUR REPORT</div>
+          <h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:10}}>Download your personalised report</h3>
+          <p style={{fontSize:13,color:C.w4,maxWidth:400,margin:"0 auto 18px",lineHeight:1.6,fontFamily:"Open Sans"}}>Detailed analysis, personalised recommendations, sector context, and methodology.</p>
+          <Btn primary onClick={download}>Download Report</Btn>
+          <p style={{fontSize:11,color:C.w2,marginTop:10,fontFamily:"Open Sans"}}>Opens in new tab — Print → Save as PDF</p>
+        </div>
+      </div>
+    );
   }
 
-  return(<div style={{maxWidth:700,margin:"0 auto",padding:"36px 24px"}} ref={ref}>
-    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}><button onClick={onBack} style={{fontSize:12,color:C.w4,background:"none",border:`1px solid ${C.w1}`,padding:"5px 12px",borderRadius:6,cursor:"pointer"}}>← Back</button><span style={{fontSize:11,color:C.w4}}>{answered}/{totalQ}</span></div>
-    <div style={{height:2,background:C.w05,marginBottom:28}}><div style={{height:"100%",width:`${(answered/totalQ)*100}%`,background:C.teal,transition:"width .3s"}}/></div>
-    {sec===0&&answered===0&&(<div className="fi" style={{marginBottom:28,padding:22,background:C.nc,borderRadius:12,border:`1px solid ${C.w05}`}}><div style={{fontSize:10,color:C.teal,letterSpacing:"0.2em",fontWeight:600,marginBottom:8}}>BEFORE WE BEGIN</div><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}><div><label style={{fontSize:10,color:C.w4,display:"block",marginBottom:3}}>College Name</label><input value={name} onChange={e=>setName(e.target.value)} placeholder="e.g. Westlands College" style={{width:"100%",padding:"10px 12px",background:C.w05,border:`1px solid ${C.w1}`,borderRadius:7,color:C.w,fontSize:12,outline:"none",fontFamily:"Open Sans"}}/></div><div><label style={{fontSize:10,color:C.w4,display:"block",marginBottom:3}}>Your Role</label><input value={role} onChange={e=>setRole(e.target.value)} placeholder="e.g. Vice Principal" style={{width:"100%",padding:"10px 12px",background:C.w05,border:`1px solid ${C.w1}`,borderRadius:7,color:C.w,fontSize:12,outline:"none",fontFamily:"Open Sans"}}/></div></div></div>)}
-    <div style={{display:"flex",gap:4,marginBottom:24,flexWrap:"wrap"}}>{EDU_SECTIONS.map((s,i)=>{const done=s.questions.filter(q=>responses[q.id]!==undefined).length===s.questions.length;const active=i===sec;return(<button key={s.id} onClick={()=>setSec(i)} style={{padding:"6px 10px",borderRadius:6,fontSize:9,fontWeight:500,cursor:"pointer",fontFamily:"Open Sans",background:active?`${C.teal}12`:done?`${C.green}08`:"transparent",border:`1px solid ${active?C.teal+"40":C.w05}`,color:active?C.teal:done?C.green:C.w4}}>{done?"✓ ":s.icon+" "}{s.name}</button>);})}</div>
-    <div className="fi" key={section.id}><div style={{marginBottom:4}}><span style={{fontSize:9,color:C.w2,letterSpacing:"0.15em"}}>SECTION {sec+1}/{EDU_SECTIONS.length}</span><span style={{fontSize:9,color:C.w1,margin:"0 4px"}}>·</span><span style={{fontSize:9,color:C.w2}}>{Math.round(section.weight*100)}% weight</span></div><h2 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:4}}>{section.name}</h2><p style={{fontSize:11,color:C.w4,marginBottom:24}}>{section.desc}</p>{section.questions.map((q,qi)=>(<SurveyQ key={q.id} q={q} qi={qi} response={responses[q.id]} onAnswer={v=>setResponses(p=>({...p,[q.id]:v}))} accent={C.teal} hasScore={true}/>))}</div>
-    <div style={{display:"flex",justifyContent:"space-between"}}><button onClick={()=>{setSec(Math.max(0,sec-1));ref.current?.scrollIntoView({behavior:"smooth"})}} disabled={sec===0} style={{padding:"10px 18px",borderRadius:8,fontSize:12,background:"none",border:`1px solid ${C.w1}`,color:sec===0?C.w1:C.w4,cursor:sec===0?"default":"pointer"}}>← Previous</button>{sec<EDU_SECTIONS.length-1?<button onClick={()=>{setSec(sec+1);ref.current?.scrollIntoView({behavior:"smooth"})}} style={{padding:"10px 22px",borderRadius:8,fontSize:12,fontWeight:600,cursor:"pointer",background:C.teal,border:"none",color:C.navy,fontFamily:"Montserrat"}}>Next →</button>:<button onClick={()=>{setView("results");window.scrollTo({top:0})}} style={{padding:"10px 22px",borderRadius:8,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",border:"none",background:answered>=totalQ*.5?C.teal:C.w1,color:answered>=totalQ*.5?C.navy:C.w4}}>View Results →</button>}</div>
-    {answered>0&&(<div style={{marginTop:22,padding:"12px 16px",borderRadius:10,background:C.nc,border:`1px solid ${C.w05}`,display:"flex",justifyContent:"space-between",alignItems:"center"}}><div><div style={{fontSize:8,color:C.w2,letterSpacing:"0.15em"}}>LIVE SCORE</div><div style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,color:results.maturity.color}}>{results.composite}<span style={{fontSize:11,color:C.w2,fontWeight:400}}>/100</span></div></div><div style={{padding:"4px 12px",borderRadius:14,fontSize:10,fontWeight:600,background:`${results.maturity.color}12`,color:results.maturity.color,border:`1px solid ${results.maturity.color}30`,fontFamily:"Montserrat"}}>{results.maturity.label}</div></div>)}
-  </div>);
+  return(
+    <div style={{maxWidth:700,margin:"0 auto",padding:"40px 32px"}} ref={ref}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}}>
+        <button onClick={onBack} style={{fontSize:12,color:C.w4,background:"none",border:"1px solid "+C.w1,padding:"6px 14px",borderRadius:6,cursor:"pointer",fontFamily:"Open Sans"}}>← Back</button>
+        <span style={{fontSize:12,color:C.w4,fontFamily:"Open Sans"}}>{answered}/{totalQ} answered</span>
+      </div>
+      {/* Progress bar */}
+      <div style={{height:3,background:C.w05,borderRadius:2,marginBottom:30}}>
+        <div style={{height:"100%",width:((answered/totalQ)*100)+"%",background:C.teal,borderRadius:2,transition:"width .3s"}}/>
+      </div>
+      {sec===0&&answered===0&&(
+        <div className="fi" style={{marginBottom:28,padding:24,background:C.nc,borderRadius:12,border:"1px solid "+C.w05}}>
+          <div style={{fontSize:10,color:C.teal,letterSpacing:"0.2em",fontWeight:700,fontFamily:"Montserrat",marginBottom:10}}>BEFORE WE BEGIN</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
+            <div>
+              <label style={{fontSize:11,color:C.w4,display:"block",marginBottom:4,fontFamily:"Open Sans"}}>College Name</label>
+              <input value={name} onChange={e=>setName(e.target.value)} placeholder="e.g. Westlands College" style={{width:"100%",padding:"10px 13px",background:C.w05,border:"1px solid "+C.w1,borderRadius:7,color:C.w,fontSize:13,outline:"none",fontFamily:"Open Sans"}}/>
+            </div>
+            <div>
+              <label style={{fontSize:11,color:C.w4,display:"block",marginBottom:4,fontFamily:"Open Sans"}}>Your Role</label>
+              <input value={role} onChange={e=>setRole(e.target.value)} placeholder="e.g. Vice Principal" style={{width:"100%",padding:"10px 13px",background:C.w05,border:"1px solid "+C.w1,borderRadius:7,color:C.w,fontSize:13,outline:"none",fontFamily:"Open Sans"}}/>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Section tabs */}
+      <div style={{display:"flex",gap:5,marginBottom:26,flexWrap:"wrap"}}>
+        {EDU_SECTIONS.map((s,i)=>{
+          const done=s.questions.filter(q=>responses[q.id]!==undefined).length===s.questions.length;
+          const active=i===sec;
+          return(
+            <button key={s.id} onClick={()=>setSec(i)} style={{padding:"6px 12px",borderRadius:6,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",background:active?(C.teal+"14"):done?(C.green+"0A"):"transparent",border:"1px solid "+(active?(C.teal+"50"):done?(C.green+"30"):C.w05),color:active?C.teal:done?C.green:C.w4}}>
+              {done?"✓ ":(s.icon+" ")}{s.name}
+            </button>
+          );
+        })}
+      </div>
+      <div className="fi" key={section.id}>
+        <div style={{marginBottom:6}}>
+          <span style={{fontSize:9,color:C.w2,letterSpacing:"0.15em",fontFamily:"Montserrat"}}>SECTION {sec+1}/{EDU_SECTIONS.length}</span>
+          <span style={{fontSize:9,color:C.w1,margin:"0 5px"}}>·</span>
+          <span style={{fontSize:9,color:C.w2,fontFamily:"Montserrat"}}>{Math.round(section.weight*100)}% weight</span>
+        </div>
+        <h2 style={{fontFamily:"Montserrat",fontSize:20,fontWeight:700,marginBottom:5}}>{section.name}</h2>
+        <p style={{fontSize:12,color:C.w4,marginBottom:26,fontFamily:"Open Sans"}}>{section.desc}</p>
+        {section.questions.map((q,qi)=>(
+          <SurveyQ key={q.id} q={q} qi={qi} response={responses[q.id]} onAnswer={v=>setResponses(p=>({...p,[q.id]:v}))} accent={C.teal} hasScore={true}/>
+        ))}
+      </div>
+      <div style={{display:"flex",justifyContent:"space-between",marginTop:8}}>
+        <button onClick={()=>{setSec(Math.max(0,sec-1));ref.current&&ref.current.scrollIntoView({behavior:"smooth"});}} disabled={sec===0} style={{padding:"10px 20px",borderRadius:8,fontSize:12,background:"none",border:"1px solid "+C.w1,color:sec===0?C.w1:C.w4,cursor:sec===0?"default":"pointer",fontFamily:"Open Sans"}}>← Previous</button>
+        {sec<EDU_SECTIONS.length-1
+          ? <button onClick={()=>{setSec(sec+1);ref.current&&ref.current.scrollIntoView({behavior:"smooth"});}} style={{padding:"10px 24px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",background:C.teal,border:"none",color:C.navy,fontFamily:"Montserrat"}}>Next →</button>
+          : <button onClick={()=>{setView("results");window.scrollTo({top:0});}} style={{padding:"10px 24px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",border:"none",background:answered>=totalQ*.5?C.teal:C.w1,color:answered>=totalQ*.5?C.navy:C.w4}}>View Results →</button>
+        }
+      </div>
+      {answered>0&&(
+        <div style={{marginTop:24,padding:"14px 18px",borderRadius:10,background:C.nc,border:"1px solid "+C.w05,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <div>
+            <div style={{fontSize:9,color:C.w2,letterSpacing:"0.18em",fontFamily:"Montserrat",marginBottom:2}}>LIVE SCORE</div>
+            <div style={{fontFamily:"Montserrat",fontSize:20,fontWeight:700,color:results.maturity.color}}>{results.composite}<span style={{fontSize:11,color:C.w2,fontWeight:400}}>/100</span></div>
+          </div>
+          <div style={{padding:"5px 14px",borderRadius:16,fontSize:11,fontWeight:600,background:results.maturity.color+"14",color:results.maturity.color,border:"1px solid "+results.maturity.color+"35",fontFamily:"Montserrat"}}>{results.maturity.label}</div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -283,24 +590,95 @@ function Business({onNav}){
   const totalQ=BIZ_SECTIONS.reduce((s,c)=>s+c.questions.length,0);const answered=Object.keys(responses).length;const section=BIZ_SECTIONS[sec];
 
   if(showResults){
-    const drain=BIZ_SECTIONS[2].questions[0].options[responses.b_drain||0];const barrier=BIZ_SECTIONS[1].questions[2].options[responses.b_barrier||0];const noAI=responses.b_used===3;const wantsAudit=responses.b_want===0;const urgent=responses.b_when===0;
-    return(<div style={{maxWidth:650,margin:"0 auto",padding:"56px 24px"}}><SL text="Your Results" color={C.orange}/><h1 style={{fontFamily:"Montserrat",fontSize:28,fontWeight:700,marginBottom:20}}>Thank you for completing the assessment.</h1>
-      <div style={{padding:22,borderRadius:12,background:`${C.orange}08`,border:`1px solid ${C.orange}20`,marginBottom:16}}><div style={{fontSize:11,fontWeight:700,color:C.orange,marginBottom:4}}>Your biggest opportunity</div><p style={{fontSize:13,color:C.w8,lineHeight:1.6,margin:0}}>The area consuming the most repetitive time is <strong style={{color:C.orange}}>{drain?.toLowerCase()}</strong>.{noAI?" Since you're not currently using AI, there is likely significant untapped potential here.":" AI tools targeted here typically deliver measurable savings within weeks."}</p></div>
-      <div style={{padding:22,borderRadius:12,background:C.w03,border:`1px solid ${C.w05}`,marginBottom:16}}><div style={{fontSize:11,fontWeight:700,color:C.teal,marginBottom:4}}>Your main barrier</div><p style={{fontSize:12,color:C.w6,lineHeight:1.6}}><strong style={{color:C.w8}}>{barrier?.toLowerCase()}</strong> — this is one of the most common challenges. Our structured AI audit is designed to address exactly this by having a trained assessor examine your operation and identify concrete opportunities.</p></div>
-      <div style={{padding:22,borderRadius:12,background:C.nc,border:`1px solid ${C.w1}`,marginBottom:20}}><div style={{fontSize:13,fontWeight:700,marginBottom:10}}>What happens next</div><p style={{fontSize:12,color:C.w6,lineHeight:1.7,marginBottom:14}}>{wantsAudit?"You indicated interest in a free AI audit. A trained PROVIO associate can visit your business and deliver a professional assessment at no cost.":"Leave your details and we'll be in touch to discuss the best next step for your business."}</p><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>{[{k:"name",p:"Your name"},{k:"biz",p:"Business name"},{k:"email",p:"Email"},{k:"phone",p:"Phone (optional)"}].map(f=>(<input key={f.k} placeholder={f.p} value={contact[f.k]} onChange={e=>setContact(p=>({...p,[f.k]:e.target.value}))} style={{padding:"10px 12px",background:C.w05,border:`1px solid ${C.w1}`,borderRadius:7,color:C.w,fontSize:12,outline:"none",fontFamily:"Open Sans"}}/>))}</div><button style={{marginTop:12,padding:"11px 0",background:C.orange,color:C.navy,border:"none",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",width:"100%"}}>Submit</button></div>
-      <button onClick={()=>{setShowResults(false);setSec(0)}} style={{fontSize:11,color:C.w4,background:"none",border:`1px solid ${C.w1}`,padding:"6px 14px",borderRadius:6,cursor:"pointer"}}>← Revise answers</button>
-    </div>);
+    const drain=BIZ_SECTIONS[2].questions[0].options[responses.b_drain||0];const barrier=BIZ_SECTIONS[1].questions[2].options[responses.b_barrier||0];const noAI=responses.b_used===3;const wantsAudit=responses.b_want===0;
+    return(
+      <div style={{maxWidth:660,margin:"0 auto",padding:"64px 32px"}}>
+        <SL text="Your Results" color={C.orange}/>
+        <h1 style={{fontFamily:"Montserrat",fontSize:28,fontWeight:700,marginBottom:24}}>Thank you for completing the assessment.</h1>
+        <div style={{padding:24,borderRadius:12,background:C.orange+"0A",border:"1px solid "+C.orange+"25",marginBottom:16}}>
+          <div style={{fontSize:11,fontWeight:700,color:C.orange,marginBottom:5,fontFamily:"Montserrat"}}>Your biggest opportunity</div>
+          <p style={{fontSize:14,color:C.w8,lineHeight:1.65,margin:0,fontFamily:"Open Sans"}}>The area consuming the most repetitive time is <strong style={{color:C.orange}}>{drain&&drain.toLowerCase()}</strong>.{noAI?" Since you're not currently using AI, there is likely significant untapped potential here.":" AI tools targeted here typically deliver measurable savings within weeks."}</p>
+        </div>
+        <div style={{padding:24,borderRadius:12,background:C.w03,border:"1px solid "+C.w05,marginBottom:16}}>
+          <div style={{fontSize:11,fontWeight:700,color:C.teal,marginBottom:5,fontFamily:"Montserrat"}}>Your main barrier</div>
+          <p style={{fontSize:13,color:C.w6,lineHeight:1.65,fontFamily:"Open Sans"}}><strong style={{color:C.w8}}>{barrier&&barrier.toLowerCase()}</strong> — this is one of the most common challenges. Our structured AI audit is designed to address exactly this by having a trained assessor examine your operation and identify concrete opportunities.</p>
+        </div>
+        <div style={{padding:26,borderRadius:12,background:C.nc,border:"1px solid "+C.w1,marginBottom:22}}>
+          <div style={{fontSize:14,fontWeight:700,fontFamily:"Montserrat",marginBottom:12}}>What happens next</div>
+          <p style={{fontSize:13,color:C.w6,lineHeight:1.7,marginBottom:16,fontFamily:"Open Sans"}}>{wantsAudit?"You indicated interest in a free AI audit. A trained PROVIO associate can visit your business and deliver a professional assessment at no cost.":"Leave your details and we'll be in touch to discuss the best next step for your business."}</p>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
+            {[{k:"name",p:"Your name"},{k:"biz",p:"Business name"},{k:"email",p:"Email"},{k:"phone",p:"Phone (optional)"}].map(f=>(
+              <input key={f.k} placeholder={f.p} value={contact[f.k]} onChange={e=>setContact(p=>({...p,[f.k]:e.target.value}))} style={{padding:"10px 13px",background:C.w05,border:"1px solid "+C.w1,borderRadius:7,color:C.w,fontSize:13,outline:"none",fontFamily:"Open Sans"}}/>
+            ))}
+          </div>
+          <button style={{padding:"12px 0",background:C.orange,color:C.navy,border:"none",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",width:"100%"}}>Submit</button>
+        </div>
+        <button onClick={()=>{setShowResults(false);setSec(0);}} style={{fontSize:12,color:C.w4,background:"none",border:"1px solid "+C.w1,padding:"7px 16px",borderRadius:6,cursor:"pointer",fontFamily:"Open Sans"}}>← Revise answers</button>
+      </div>
+    );
   }
 
-  return(<div>
-    <section style={{maxWidth:1100,margin:"0 auto",padding:"72px 24px 36px"}}><SL text="Business Intelligence" color={C.orange}/><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:48}}><div><h1 className="fu1" style={{fontFamily:"Montserrat",fontSize:36,fontWeight:700,lineHeight:1.12}}>Could AI save your business <span style={{color:C.orange}}>5 hours a week?</span></h1><p className="fu2" style={{fontSize:15,color:C.w6,lineHeight:1.7,marginTop:18,maxWidth:420}}>Take this 3-minute assessment to find out where AI could help — and if you want to go deeper, a trained assessor can audit your business for free.</p></div><div style={{padding:24,borderRadius:12,background:C.nc,border:`1px solid ${C.w05}`}}><div style={{fontSize:10,color:C.orange,letterSpacing:"0.15em",fontWeight:600,marginBottom:8}}>HOW IT WORKS</div>{[{n:"1",t:"Complete this short survey",d:"11 questions about your business and where you spend time."},{n:"2",t:"Get your initial insight",d:"We highlight where AI could make the biggest difference."},{n:"3",t:"Go deeper if you want",d:"A trained associate carries out a full audit — completely free."}].map((s,i)=>(<div key={i} style={{display:"flex",gap:10,marginBottom:14}}><div style={{width:24,height:24,borderRadius:6,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center",background:`${C.orange}12`,fontSize:12,fontWeight:700,color:C.orange}}>{s.n}</div><div><div style={{fontSize:12,fontWeight:600,marginBottom:1}}>{s.t}</div><div style={{fontSize:11,color:C.w4,lineHeight:1.4}}>{s.d}</div></div></div>))}</div></div></section>
-    <section ref={ref} style={{borderTop:`1px solid ${C.w05}`,background:C.nm}}><div style={{maxWidth:650,margin:"0 auto",padding:"44px 24px"}}>
-      <div style={{display:"flex",justifyContent:"space-between",marginBottom:6}}><span style={{fontSize:11,color:C.w4}}>{answered}/{totalQ}</span></div><div style={{height:2,background:C.w05,marginBottom:24}}><div style={{height:"100%",width:`${(answered/totalQ)*100}%`,background:C.orange,transition:"width .3s"}}/></div>
-      <div style={{display:"flex",gap:5,marginBottom:24}}>{BIZ_SECTIONS.map((s,i)=>{const done=s.questions.filter(q=>responses[q.id]!==undefined).length===s.questions.length;const active=i===sec;return(<button key={s.id} onClick={()=>setSec(i)} style={{padding:"6px 12px",borderRadius:7,fontSize:10,fontWeight:500,cursor:"pointer",fontFamily:"Open Sans",background:active?`${C.orange}12`:done?`${C.green}08`:"transparent",border:`1px solid ${active?C.orange+"40":C.w05}`,color:active?C.orange:done?C.green:C.w4}}>{done?"✓ ":s.icon+" "}{s.name}</button>);})}</div>
-      <div className="fi" key={section.id}><h3 style={{fontFamily:"Montserrat",fontSize:17,fontWeight:600,marginBottom:20}}>{section.name}</h3>{section.questions.map((q,qi)=>(<SurveyQ key={q.id} q={q} qi={qi} response={responses[q.id]} onAnswer={v=>setResponses(p=>({...p,[q.id]:v}))} accent={C.orange} hasScore={false}/>))}</div>
-      <div style={{display:"flex",justifyContent:"space-between"}}><button onClick={()=>{setSec(Math.max(0,sec-1));ref.current?.scrollIntoView({behavior:"smooth"})}} disabled={sec===0} style={{padding:"10px 18px",borderRadius:8,fontSize:12,background:"none",border:`1px solid ${C.w1}`,color:sec===0?C.w1:C.w4,cursor:sec===0?"default":"pointer"}}>← Previous</button>{sec<BIZ_SECTIONS.length-1?<button onClick={()=>{setSec(sec+1);ref.current?.scrollIntoView({behavior:"smooth"})}} style={{padding:"10px 22px",borderRadius:8,fontSize:12,fontWeight:600,cursor:"pointer",background:C.orange,border:"none",color:C.navy,fontFamily:"Montserrat"}}>Next →</button>:<button onClick={()=>setShowResults(true)} style={{padding:"10px 22px",borderRadius:8,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",border:"none",background:answered>=totalQ*.6?C.orange:C.w1,color:answered>=totalQ*.6?C.navy:C.w4}}>See Results →</button>}</div>
-    </div></section>
-  </div>);
+  return(
+    <div>
+      <section style={{background:C.navy,padding:"88px 0 56px"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px"}}>
+          <SL text="Business Intelligence" color={C.orange}/>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:56,alignItems:"start"}}>
+            <div>
+              <h1 className="fu1" style={{fontFamily:"Montserrat",fontSize:40,fontWeight:700,lineHeight:1.1,marginBottom:20}}>Could AI save your business <span style={{color:C.orange}}>5 hours a week?</span></h1>
+              <p className="fu2" style={{fontSize:15,color:C.w6,lineHeight:1.75,fontFamily:"Open Sans",maxWidth:420}}>Take this 3-minute assessment to find out where AI could help — and if you want to go deeper, a trained assessor can audit your business for free.</p>
+            </div>
+            <div style={{padding:28,borderRadius:12,background:C.nc,border:"1px solid "+C.w05}}>
+              <div style={{fontSize:10,color:C.orange,letterSpacing:"0.2em",fontWeight:700,fontFamily:"Montserrat",marginBottom:14}}>HOW IT WORKS</div>
+              {[{n:"1",t:"Complete this short survey",d:"11 questions about your business and where you spend time."},{n:"2",t:"Get your initial insight",d:"We highlight where AI could make the biggest difference."},{n:"3",t:"Go deeper if you want",d:"A trained associate carries out a full audit — completely free."}].map((s,i)=>(
+                <div key={i} style={{display:"flex",gap:12,marginBottom:16}}>
+                  <div style={{width:26,height:26,borderRadius:6,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center",background:C.orange+"14",fontSize:12,fontWeight:700,color:C.orange,fontFamily:"Montserrat"}}>{s.n}</div>
+                  <div>
+                    <div style={{fontSize:13,fontWeight:600,marginBottom:2,fontFamily:"Montserrat"}}>{s.t}</div>
+                    <div style={{fontSize:12,color:C.w4,lineHeight:1.5,fontFamily:"Open Sans"}}>{s.d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section ref={ref} style={{borderTop:"1px solid "+C.w05,background:C.nm,padding:"52px 0"}}>
+        <div style={{maxWidth:660,margin:"0 auto",padding:"0 32px"}}>
+          <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
+            <span style={{fontSize:12,color:C.w4,fontFamily:"Open Sans"}}>{answered}/{totalQ} answered</span>
+          </div>
+          <div style={{height:3,background:C.w05,borderRadius:2,marginBottom:26}}>
+            <div style={{height:"100%",width:((answered/totalQ)*100)+"%",background:C.orange,borderRadius:2,transition:"width .3s"}}/>
+          </div>
+          <div style={{display:"flex",gap:6,marginBottom:26}}>
+            {BIZ_SECTIONS.map((s,i)=>{
+              const done=s.questions.filter(q=>responses[q.id]!==undefined).length===s.questions.length;
+              const active=i===sec;
+              return(
+                <button key={s.id} onClick={()=>setSec(i)} style={{padding:"7px 14px",borderRadius:7,fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",background:active?(C.orange+"14"):done?(C.green+"0A"):"transparent",border:"1px solid "+(active?(C.orange+"50"):done?(C.green+"30"):C.w05),color:active?C.orange:done?C.green:C.w4}}>
+                  {done?"✓ ":(s.icon+" ")}{s.name}
+                </button>
+              );
+            })}
+          </div>
+          <div className="fi" key={section.id}>
+            <h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:22}}>{section.name}</h3>
+            {section.questions.map((q,qi)=>(
+              <SurveyQ key={q.id} q={q} qi={qi} response={responses[q.id]} onAnswer={v=>setResponses(p=>({...p,[q.id]:v}))} accent={C.orange} hasScore={false}/>
+            ))}
+          </div>
+          <div style={{display:"flex",justifyContent:"space-between",marginTop:8}}>
+            <button onClick={()=>{setSec(Math.max(0,sec-1));ref.current&&ref.current.scrollIntoView({behavior:"smooth"});}} disabled={sec===0} style={{padding:"10px 20px",borderRadius:8,fontSize:12,background:"none",border:"1px solid "+C.w1,color:sec===0?C.w1:C.w4,cursor:sec===0?"default":"pointer",fontFamily:"Open Sans"}}>← Previous</button>
+            {sec<BIZ_SECTIONS.length-1
+              ? <button onClick={()=>{setSec(sec+1);ref.current&&ref.current.scrollIntoView({behavior:"smooth"});}} style={{padding:"10px 24px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",background:C.orange,border:"none",color:C.navy,fontFamily:"Montserrat"}}>Next →</button>
+              : <button onClick={()=>setShowResults(true)} style={{padding:"10px 24px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",border:"none",background:answered>=totalQ*.6?C.orange:C.w1,color:answered>=totalQ*.6?C.navy:C.w4}}>See Results →</button>
+            }
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -309,38 +687,147 @@ function Business({onNav}){
 function HorizonMap({onNav}){
   const[idx,setIdx]=useState(0);const[expanded,setExpanded]=useState(null);const[all,setAll]=useState(false);const ref=useRef(null);
   const p=HORIZON[idx];const cc=CONF_COLORS[p.conf];
-  const go=i=>{setIdx(i);setExpanded(null);setAll(false);ref.current?.scrollIntoView({behavior:"smooth"});};
+  const go=i=>{setIdx(i);setExpanded(null);setAll(false);ref.current&&ref.current.scrollIntoView({behavior:"smooth"});};
   useEffect(()=>{const h=e=>{if(e.key==="ArrowRight"&&idx<HORIZON.length-1)go(idx+1);if(e.key==="ArrowLeft"&&idx>0)go(idx-1);};window.addEventListener("keydown",h);return()=>window.removeEventListener("keydown",h);},[idx]);
 
-  return(<div style={{maxWidth:900,margin:"0 auto",padding:"48px 24px"}}>
-    <SL text="The Horizon Map"/><h1 style={{fontFamily:"Montserrat",fontSize:32,fontWeight:700,lineHeight:1.15,marginBottom:10}}>What's coming for FE <span style={{color:C.teal}}>2026–2032</span></h1><p style={{fontSize:14,color:C.w4,maxWidth:500,lineHeight:1.6,marginBottom:28}}>Four forces, eight windows, six years. Browse each period to see how technology, policy, the labour market, and expectations will reshape the sector.</p>
-    <div style={{display:"flex",gap:3,marginBottom:12}}>{HORIZON.map((_,i)=>{const c=CONF_COLORS[HORIZON[i].conf];return(<div key={i} style={{flex:1,height:i===idx?4:2,borderRadius:2,background:i<=idx?c:C.w1,transition:"all .3s"}}/>);})}</div>
-    <div style={{position:"sticky",top:56,zIndex:9,background:`${C.navy}F0`,backdropFilter:"blur(12px)",padding:"10px 0",borderBottom:`1px solid ${C.w05}`,marginBottom:24}}><div style={{display:"flex",gap:5,overflowX:"auto"}}>{HORIZON.map((h,i)=>{const active=i===idx;const c=CONF_COLORS[h.conf];return(<button key={h.id} onClick={()=>go(i)} style={{flexShrink:0,padding:"8px 16px",borderRadius:8,cursor:"pointer",fontFamily:"Montserrat",background:active?`${c}15`:C.w03,border:`1px solid ${active?c+"50":C.w05}`}}><div style={{fontSize:13,fontWeight:700,color:active?c:C.w4}}>{h.label}</div><div style={{fontSize:8,color:active?`${c}99`:C.w2}}>{h.range.split(" ").slice(0,2).join(" ")}</div></button>);})}</div></div>
-    <div ref={ref} className="fi" key={p.id}>
-      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:4}}><h2 style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700}}>{p.label}</h2><div style={{padding:"3px 12px",borderRadius:16,fontSize:10,fontWeight:600,background:`${cc}12`,color:cc,border:`1px solid ${cc}30`}}>{CONF_LABELS[p.conf]}</div></div>
-      <p style={{fontSize:13,color:C.w4,marginBottom:4}}>{p.range}</p>
-      <div style={{display:"flex",justifyContent:"flex-end",marginBottom:16}}><button onClick={()=>{setAll(!all);setExpanded(null)}} style={{padding:"5px 12px",borderRadius:5,fontSize:10,background:all?`${C.teal}12`:C.w03,border:`1px solid ${all?C.teal+"30":C.w05}`,color:all?C.teal:C.w4,cursor:"pointer",fontFamily:"Open Sans"}}>{all?"Collapse all":"Expand all"}</button></div>
-      <div style={{display:"flex",flexDirection:"column",gap:8}}>{Object.entries(p.tracks).map(([key,data],i)=>{const m=TRACK_META[key];const isExp=all||expanded===key;return(<div key={key} onClick={()=>{if(all){setAll(false);setExpanded(key)}else setExpanded(expanded===key?null:key)}} style={{borderRadius:10,overflow:"hidden",cursor:"pointer",background:isExp?`${m.accent}06`:C.w03,border:`1px solid ${isExp?m.accent+"25":C.w05}`,transition:"all .3s"}}><div style={{padding:"14px 18px",display:"flex",alignItems:"flex-start",gap:12,borderLeft:`3px solid ${isExp?m.accent:C.w1}`}}><span style={{fontSize:18,flexShrink:0,marginTop:1}}>{m.icon}</span><div style={{flex:1}}><div style={{fontSize:9,color:m.accent,letterSpacing:"0.15em",fontWeight:600,textTransform:"uppercase",marginBottom:2}}>{m.label}</div><div style={{fontSize:14,fontWeight:600,lineHeight:1.3}}>{data.h}</div>{!isExp&&<p style={{fontSize:11,color:C.w4,marginTop:4,lineHeight:1.4,display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{data.d}</p>}</div><div style={{color:isExp?m.accent:C.w4,fontSize:12,flexShrink:0,transition:"transform .3s",transform:isExp?"rotate(180deg)":"rotate(0)"}}>▾</div></div>{isExp&&<div style={{padding:"0 18px 16px 53px",borderLeft:`3px solid ${m.accent}`}}><p style={{fontSize:12,color:C.w6,lineHeight:1.7}}>{data.d}</p></div>}</div>);})}</div>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:32,paddingTop:20,borderTop:`1px solid ${C.w05}`}}><button onClick={()=>idx>0&&go(idx-1)} disabled={idx===0} style={{padding:"10px 20px",borderRadius:8,fontSize:12,background:"none",border:`1px solid ${C.w1}`,color:idx===0?C.w1:C.w4,cursor:idx===0?"default":"pointer"}}>← {idx>0?HORIZON[idx-1].label:""}</button><span style={{fontSize:11,color:C.w2}}>{idx+1}/{HORIZON.length}</span><button onClick={()=>idx<HORIZON.length-1&&go(idx+1)} disabled={idx===HORIZON.length-1} style={{padding:"10px 20px",borderRadius:8,fontSize:12,fontWeight:600,fontFamily:"Montserrat",border:"none",background:idx===HORIZON.length-1?C.w05:C.teal,color:idx===HORIZON.length-1?C.w2:C.navy,cursor:idx===HORIZON.length-1?"default":"pointer"}}>{idx<HORIZON.length-1?HORIZON[idx+1].label:""} →</button></div>
-      <div style={{marginTop:36,padding:28,borderRadius:12,textAlign:"center",background:`linear-gradient(135deg,${C.nc},${C.nl})`,border:`1px solid ${C.w1}`}}><div style={{fontSize:10,color:C.teal,letterSpacing:"0.2em",fontWeight:600,marginBottom:8}}>EDUCATION INTELLIGENCE</div><h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:8}}>How ready is your college for what's coming?</h3><p style={{fontSize:12,color:C.w4,maxWidth:400,margin:"0 auto 16px",lineHeight:1.5}}>Take the free diagnostic and receive a personalised report mapping your institution against this timeline.</p><Btn primary onClick={()=>onNav("education")}>Begin Assessment</Btn></div>
+  return(
+    <div style={{maxWidth:900,margin:"0 auto",padding:"56px 32px"}}>
+      <SL text="The Horizon Map"/>
+      <h1 style={{fontFamily:"Montserrat",fontSize:36,fontWeight:700,lineHeight:1.12,marginBottom:12}}>What's coming for FE <span style={{color:C.teal}}>2026–2032</span></h1>
+      <p style={{fontSize:14,color:C.w4,maxWidth:520,lineHeight:1.7,marginBottom:32,fontFamily:"Open Sans"}}>Four forces, eight windows, six years. Browse each period to see how technology, policy, the labour market, and expectations will reshape the sector.</p>
+
+      {/* Timeline dots */}
+      <div style={{display:"flex",gap:4,marginBottom:14}}>
+        {HORIZON.map((_,i)=>{
+          const c=CONF_COLORS[HORIZON[i].conf];
+          return(<div key={i} style={{flex:1,height:i===idx?5:3,borderRadius:3,background:i<=idx?c:C.w1,transition:"all .3s"}}/>);
+        })}
+      </div>
+
+      {/* Period selector */}
+      <div style={{position:"sticky",top:64,zIndex:9,background:"rgba(11,25,44,0.94)",backdropFilter:"blur(14px)",WebkitBackdropFilter:"blur(14px)",padding:"12px 0",borderBottom:"1px solid "+C.w05,marginBottom:28}}>
+        <div style={{display:"flex",gap:6,overflowX:"auto"}}>
+          {HORIZON.map((h,i)=>{
+            const active=i===idx;const c=CONF_COLORS[h.conf];
+            return(
+              <button key={h.id} onClick={()=>go(i)} style={{flexShrink:0,padding:"9px 18px",borderRadius:8,cursor:"pointer",fontFamily:"Montserrat",background:active?(c+"18"):C.w03,border:"1px solid "+(active?(c+"55"):C.w05),transition:"all .2s"}}>
+                <div style={{fontSize:13,fontWeight:700,color:active?c:C.w4}}>{h.label}</div>
+                <div style={{fontSize:9,color:active?(c+"AA"):C.w2,marginTop:1}}>{h.range.split(" ").slice(0,2).join(" ")}</div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div ref={ref} className="fi" key={p.id}>
+        <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:6}}>
+          <h2 style={{fontFamily:"Montserrat",fontSize:26,fontWeight:700}}>{p.label}</h2>
+          <div style={{padding:"4px 14px",borderRadius:16,fontSize:10,fontWeight:700,fontFamily:"Montserrat",background:cc+"14",color:cc,border:"1px solid "+cc+"35"}}>{CONF_LABELS[p.conf]}</div>
+        </div>
+        <p style={{fontSize:13,color:C.w4,marginBottom:6,fontFamily:"Open Sans"}}>{p.range}</p>
+        <div style={{display:"flex",justifyContent:"flex-end",marginBottom:18}}>
+          <button onClick={()=>{setAll(!all);setExpanded(null);}} style={{padding:"6px 14px",borderRadius:6,fontSize:11,background:all?(C.teal+"14"):C.w03,border:"1px solid "+(all?(C.teal+"35"):C.w05),color:all?C.teal:C.w4,cursor:"pointer",fontFamily:"Open Sans"}}>{all?"Collapse all":"Expand all"}</button>
+        </div>
+
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          {Object.entries(p.tracks).map(([key,data])=>{
+            const m=TRACK_META[key];const isExp=all||expanded===key;
+            return(
+              <div key={key} onClick={()=>{if(all){setAll(false);setExpanded(key);}else setExpanded(expanded===key?null:key);}} style={{borderRadius:10,overflow:"hidden",cursor:"pointer",background:isExp?(m.accent+"08"):C.w03,border:"1px solid "+(isExp?(m.accent+"30"):C.w05),transition:"all .25s"}}>
+                <div style={{padding:"16px 20px",display:"flex",alignItems:"flex-start",gap:14,borderLeft:"3px solid "+(isExp?m.accent:C.w1)}}>
+                  <span style={{fontSize:18,flexShrink:0,marginTop:2}}>{m.icon}</span>
+                  <div style={{flex:1}}>
+                    <div style={{fontSize:9,color:m.accent,letterSpacing:"0.18em",fontWeight:700,fontFamily:"Montserrat",textTransform:"uppercase",marginBottom:3}}>{m.label}</div>
+                    <div style={{fontSize:15,fontWeight:600,lineHeight:1.3,fontFamily:"Montserrat"}}>{data.h}</div>
+                    {!isExp&&<p style={{fontSize:12,color:C.w4,marginTop:5,lineHeight:1.5,display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",overflow:"hidden",fontFamily:"Open Sans"}}>{data.d}</p>}
+                  </div>
+                  <div style={{color:isExp?m.accent:C.w4,fontSize:13,flexShrink:0,transition:"transform .25s",transform:isExp?"rotate(180deg)":"rotate(0)"}}>▾</div>
+                </div>
+                {isExp&&(
+                  <div style={{padding:"0 20px 18px 57px",borderLeft:"3px solid "+m.accent}}>
+                    <p style={{fontSize:13,color:C.w6,lineHeight:1.75,fontFamily:"Open Sans"}}>{data.d}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:36,paddingTop:22,borderTop:"1px solid "+C.w05}}>
+          <button onClick={()=>idx>0&&go(idx-1)} disabled={idx===0} style={{padding:"10px 22px",borderRadius:8,fontSize:12,background:"none",border:"1px solid "+C.w1,color:idx===0?C.w1:C.w4,cursor:idx===0?"default":"pointer",fontFamily:"Open Sans"}}>← {idx>0?HORIZON[idx-1].label:""}</button>
+          <span style={{fontSize:12,color:C.w2,fontFamily:"Montserrat"}}>{idx+1}/{HORIZON.length}</span>
+          <button onClick={()=>idx<HORIZON.length-1&&go(idx+1)} disabled={idx===HORIZON.length-1} style={{padding:"10px 22px",borderRadius:8,fontSize:13,fontWeight:600,fontFamily:"Montserrat",border:"none",background:idx===HORIZON.length-1?C.w05:C.teal,color:idx===HORIZON.length-1?C.w2:C.navy,cursor:idx===HORIZON.length-1?"default":"pointer"}}>{idx<HORIZON.length-1?HORIZON[idx+1].label:""} →</button>
+        </div>
+
+        <div style={{marginTop:40,padding:32,borderRadius:12,textAlign:"center",background:"linear-gradient(135deg,"+C.nc+","+C.nl+")",border:"1px solid "+C.w1}}>
+          <div style={{fontSize:10,color:C.teal,letterSpacing:"0.22em",fontWeight:700,fontFamily:"Montserrat",marginBottom:10}}>EDUCATION INTELLIGENCE</div>
+          <h3 style={{fontFamily:"Montserrat",fontSize:19,fontWeight:700,marginBottom:10}}>How ready is your college for what's coming?</h3>
+          <p style={{fontSize:13,color:C.w4,maxWidth:400,margin:"0 auto 18px",lineHeight:1.6,fontFamily:"Open Sans"}}>Take the free diagnostic and receive a personalised report mapping your institution against this timeline.</p>
+          <Btn primary onClick={()=>onNav("education")}>Begin Assessment</Btn>
+        </div>
+      </div>
     </div>
-  </div>);
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════════
 // PAGE: ABOUT
 // ═══════════════════════════════════════════════════════════════════
 function About({onNav}){
-  return(<div style={{maxWidth:800,margin:"0 auto",padding:"72px 24px"}}><SL text="About Provio"/><h1 style={{fontFamily:"Montserrat",fontSize:36,fontWeight:700,lineHeight:1.12,marginBottom:24}}>Futures, <span style={{color:C.teal}}>Proven</span></h1>
-    <div style={{fontSize:14,color:C.w6,lineHeight:1.8,marginBottom:40}}><p>AI is reshaping the economy faster than most organisations can adapt. Colleges are navigating a landscape where the skills students need are evolving in real time. Young people are entering a job market that looks fundamentally different from the one their courses were designed for. And local businesses can see the potential of AI but some can struggle to find the affordable talent, clear evidence, and practical pathways to make it work.</p><p style={{marginTop:14}}>These challenges are connected. PROVIO brings together the intelligence, tools, and practical pathways to help colleges, young people, and businesses navigate them — not in isolation, but as part of the same conversation.</p></div>
-    <h2 style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginBottom:20}}>What we do</h2>
-    {[{l:"For colleges",c:C.teal,t:"We provide Education Intelligence — a diagnostic and strategic reporting service that gives senior leaders an evidence-based picture of their institution's AI readiness, mapped against a six-year horizon. It is designed to support leadership teams in making informed decisions about where to focus and how they compare to the wider sector."},{l:"For young people",c:C.purple,t:"We run the AI Futures Pathway — an intensive programme that gives 18-24 year olds real-world experience with real businesses. Our associates conduct structured AI audits of local organisations, producing professional reports that identify where AI can add value. The process gives young people a portfolio, a credential, and practical insight employers recognise."},{l:"For businesses",c:C.orange,t:"We offer a straightforward way to explore what AI could do in your operation. The initial assessment is free and takes minutes. If you want to go deeper, a trained associate carries out a full audit at no cost. The output quantifies the opportunity, and the person who delivered it is available to help act on it."}].map((item,i)=>(<div key={i} style={{marginBottom:24,paddingLeft:18,borderLeft:`3px solid ${item.c}`}}><div style={{fontSize:10,color:item.c,letterSpacing:"0.15em",fontWeight:600,textTransform:"uppercase",marginBottom:4}}>{item.l}</div><p style={{fontSize:13,color:C.w6,lineHeight:1.75}}>{item.t}</p></div>))}
-    <h2 style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginTop:40,marginBottom:10}}>The PROVIO Intelligence Network</h2><div style={{fontSize:13,color:C.w6,lineHeight:1.8,marginBottom:24}}><p>Every audit, every diagnostic, every employer adds to a growing body of intelligence about how AI is actually landing across the UK economy. Each engagement generates value individually. Collectively, the network produces something that grows more useful over time: a living picture of AI adoption, readiness, and impact across a widening community.</p></div>
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:24}}>{[{t:"For businesses",d:"Your assessment gives you context — how your sector is responding, where comparable organisations find gains, what works in practice."},{t:"For colleges",d:"Your diagnostic benchmarks within a growing dataset. More colleges means more precise benchmarking and more grounded recommendations."},{t:"For the ecosystem",d:"A bottom-up map of how AI is reshaping local economies — intelligence policy-makers and sector bodies can draw on."},{t:"The network effect",d:"Every engagement informs the next. The intelligence deepens. A resource no single organisation could build alone."}].map((item,i)=>(<div key={i} style={{padding:18,borderRadius:10,background:C.w03,border:`1px solid ${C.w05}`}}><h4 style={{fontFamily:"Montserrat",fontSize:12,fontWeight:600,color:C.teal,marginBottom:4}}>{item.t}</h4><p style={{fontSize:11,color:C.w4,lineHeight:1.6}}>{item.d}</p></div>))}</div>
-    <h2 style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginTop:40,marginBottom:10}}>Why PROVIO exists</h2><div style={{fontSize:13,color:C.w6,lineHeight:1.8,marginBottom:24}}><p>PROVIO was founded by a West Midlands hospitality operator employing over 450 people. Running a large-scale, people-intensive business means dealing every day with recruitment, training, workforce development, and preparing teams for rapid change.</p><p style={{marginTop:12}}>That frontline experience made one thing clear: the gap between what AI can do and what most local businesses and colleges are ready for is growing wider — and the people most affected have the least support.</p><p style={{marginTop:12}}>PROVIO grew from a conviction that this gap does not need to exist. The businesses are there. The young people are there. The colleges are there. What was missing was a practical way to connect them — through intelligence, structured assessment, and a model that creates real outcomes rather than reports that gather dust.</p></div>
-    <h2 style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginTop:40,marginBottom:10}}>Who we are</h2><p style={{fontSize:13,color:C.w6,lineHeight:1.8}}>PROVIO is based in the West Midlands and works alongside delivery partners across further education and skills development. Our audit methodology is built to professional standards and our diagnostics are grounded in current sector research from Ofsted, Jisc, Skills England, and the DfE.</p><p style={{fontSize:13,color:C.w6,lineHeight:1.8,marginTop:12}}>AI is already here, and the pace of change is not slowing down. PROVIO is here to help the people and institutions closest to the impact navigate what comes next — practically, honestly, and together.</p>
-    <div style={{marginTop:40,display:"flex",gap:12}}><Btn primary onClick={()=>onNav("education")}>Education Intelligence</Btn><Btn onClick={()=>onNav("business")} style={{borderColor:`${C.orange}40`,color:C.orange}}>Business Intelligence</Btn></div>
-  </div>);
+  const pillars=[
+    {l:"For colleges",c:C.teal,t:"We provide Education Intelligence — a diagnostic and strategic reporting service that gives senior leaders an evidence-based picture of their institution's AI readiness, mapped against a six-year horizon. It is designed to support leadership teams in making informed decisions about where to focus and how they compare to the wider sector."},
+    {l:"For young people",c:C.purple,t:"We run the AI Futures Pathway — an intensive programme that gives 18-24 year olds real-world experience with real businesses. Our associates conduct structured AI audits of local organisations, producing professional reports that identify where AI can add value. The process gives young people a portfolio, a credential, and practical insight employers recognise."},
+    {l:"For businesses",c:C.orange,t:"We offer a straightforward way to explore what AI could do in your operation. The initial assessment is free and takes minutes. If you want to go deeper, a trained associate carries out a full audit at no cost. The output quantifies the opportunity, and the person who delivered it is available to help act on it."}
+  ];
+  const netItems=[
+    {t:"For businesses",d:"Your assessment gives you context — how your sector is responding, where comparable organisations find gains, what works in practice."},
+    {t:"For colleges",d:"Your diagnostic benchmarks within a growing dataset. More colleges means more precise benchmarking and more grounded recommendations."},
+    {t:"For the ecosystem",d:"A bottom-up map of how AI is reshaping local economies — intelligence policy-makers and sector bodies can draw on."},
+    {t:"The network effect",d:"Every engagement informs the next. The intelligence deepens. A resource no single organisation could build alone."}
+  ];
+
+  return(
+    <div style={{maxWidth:800,margin:"0 auto",padding:"80px 32px"}}>
+      <SL text="About Provio"/>
+      <h1 style={{fontFamily:"Montserrat",fontSize:40,fontWeight:700,lineHeight:1.1,marginBottom:28}}>Futures, <span style={{color:C.teal}}>Proven</span></h1>
+      <div style={{fontSize:14,color:C.w6,lineHeight:1.85,marginBottom:44,fontFamily:"Open Sans"}}>
+        <p>AI is reshaping the economy faster than most organisations can adapt. Colleges are navigating a landscape where the skills students need are evolving in real time. Young people are entering a job market that looks fundamentally different from the one their courses were designed for. And local businesses can see the potential of AI but some can struggle to find the affordable talent, clear evidence, and practical pathways to make it work.</p>
+        <p style={{marginTop:16}}>These challenges are connected. PROVIO brings together the intelligence, tools, and practical pathways to help colleges, young people, and businesses navigate them — not in isolation, but as part of the same conversation.</p>
+      </div>
+      <h2 style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700,marginBottom:22}}>What we do</h2>
+      {pillars.map((item,i)=>(
+        <div key={i} style={{marginBottom:26,paddingLeft:20,borderLeft:"3px solid "+item.c}}>
+          <div style={{fontSize:10,color:item.c,letterSpacing:"0.2em",fontWeight:700,fontFamily:"Montserrat",textTransform:"uppercase",marginBottom:5}}>{item.l}</div>
+          <p style={{fontSize:13,color:C.w6,lineHeight:1.8,fontFamily:"Open Sans"}}>{item.t}</p>
+        </div>
+      ))}
+      <h2 style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700,marginTop:44,marginBottom:12}}>The PROVIO Intelligence Network</h2>
+      <div style={{fontSize:13,color:C.w6,lineHeight:1.85,marginBottom:26,fontFamily:"Open Sans"}}>
+        <p>Every audit, every diagnostic, every employer adds to a growing body of intelligence about how AI is actually landing across the UK economy. Each engagement generates value individually. Collectively, the network produces something that grows more useful over time: a living picture of AI adoption, readiness, and impact across a widening community.</p>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:28}}>
+        {netItems.map((item,i)=>(
+          <div key={i} className="card-hover" style={{padding:20,borderRadius:10,background:C.w03,border:"1px solid "+C.w05}}>
+            <h4 style={{fontFamily:"Montserrat",fontSize:13,fontWeight:600,color:C.teal,marginBottom:6}}>{item.t}</h4>
+            <p style={{fontSize:12,color:C.w4,lineHeight:1.65,fontFamily:"Open Sans"}}>{item.d}</p>
+          </div>
+        ))}
+      </div>
+      <h2 style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700,marginTop:44,marginBottom:12}}>Why PROVIO exists</h2>
+      <div style={{fontSize:13,color:C.w6,lineHeight:1.85,marginBottom:26,fontFamily:"Open Sans"}}>
+        <p>PROVIO was founded by a West Midlands hospitality operator employing over 450 people. Running a large-scale, people-intensive business means dealing every day with recruitment, training, workforce development, and preparing teams for rapid change.</p>
+        <p style={{marginTop:14}}>That frontline experience made one thing clear: the gap between what AI can do and what most local businesses and colleges are ready for is growing wider — and the people most affected have the least support.</p>
+        <p style={{marginTop:14}}>PROVIO grew from a conviction that this gap does not need to exist. The businesses are there. The young people are there. The colleges are there. What was missing was a practical way to connect them — through intelligence, structured assessment, and a model that creates real outcomes rather than reports that gather dust.</p>
+      </div>
+      <h2 style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700,marginTop:44,marginBottom:12}}>Who we are</h2>
+      <p style={{fontSize:13,color:C.w6,lineHeight:1.85,fontFamily:"Open Sans"}}>PROVIO is based in the West Midlands and works alongside delivery partners across further education and skills development. Our audit methodology is built to professional standards and our diagnostics are grounded in current sector research from Ofsted, Jisc, Skills England, and the DfE.</p>
+      <p style={{fontSize:13,color:C.w6,lineHeight:1.85,marginTop:14,fontFamily:"Open Sans"}}>AI is already here, and the pace of change is not slowing down. PROVIO is here to help the people and institutions closest to the impact navigate what comes next — practically, honestly, and together.</p>
+      <div style={{marginTop:44,display:"flex",gap:14}}>
+        <Btn primary onClick={()=>onNav("education")}>Education Intelligence</Btn>
+        <Btn onClick={()=>onNav("business")} style={{borderColor:C.orange+"50",color:C.orange}}>Business Intelligence</Btn>
+      </div>
+    </div>
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -364,14 +851,45 @@ function Insight({onNav}){
     {title:"The Opportunity",text:"The narrative that intelligence will have no cost and robots will handle physical work is not a threat to Further Education. It is the strongest argument for FE's relevance that has ever existed.\n\nUniversities hold a monopoly on credentialing cognitive knowledge — and that monopoly is being undermined by AI more profoundly than most have admitted. But FE colleges are fundamentally rooted in the physical world, in local communities, in practical reality, and in the kind of hands-on, human-centred learning that no platform can replicate.\n\nIf FE can navigate the transition from teaching manual execution today, to teaching human-machine orchestration tomorrow, and to teaching deep human capability for the longer term, the sector will emerge not as the second choice to a university degree, but as the most vital educational institution in the country.\n\nThe two shocks are coming. The colleges that see both of them clearly — and prepare for both, not just the first — are the ones that will lead."},
   ];
 
-  return(<div style={{maxWidth:760,margin:"0 auto",padding:"72px 24px"}}>
-    {sections.map((s,i)=>{
-      if(s.type==="hero") return(<div key={i} style={{marginBottom:40}}><SL text="PROVIO Insight"/><h1 className="fu1" style={{fontFamily:"Montserrat",fontSize:36,fontWeight:700,lineHeight:1.15,letterSpacing:"-0.02em",marginBottom:10}}>{s.title}</h1><p className="fu2" style={{fontSize:17,color:C.w6,lineHeight:1.5}}>{s.subtitle}</p><p className="fu3" style={{fontSize:11,color:C.w2,marginTop:12}}>March 2026</p></div>);
-      if(s.capabilities) return(<div key={i} style={{marginTop:40,marginBottom:28}}><h2 style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginBottom:20}}>{s.title}</h2>{s.capabilities.map((c,j)=>(<div key={j} style={{marginBottom:20,paddingLeft:18,borderLeft:`3px solid ${C.teal}`}}><h3 style={{fontFamily:"Montserrat",fontSize:15,fontWeight:600,color:C.teal,marginBottom:6}}>{c.name}</h3><p style={{fontSize:13,color:C.w6,lineHeight:1.75}}>{c.desc}</p></div>))}</div>);
-      return(<div key={i} style={{marginBottom:s.title?36:0}}>{s.title&&<h2 style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginBottom:14,marginTop:40}}>{s.title}</h2>}{s.text&&s.text.split("\n\n").map((p,j)=>(<p key={j} style={{fontSize:14,color:i===2?C.w9:s.title?C.w6:i<=3?C.w8:C.w6,lineHeight:1.8,marginBottom:14,fontWeight:i===2?"600":"400"}}>{p}</p>))}</div>);
-    })}
-    <div style={{marginTop:48,padding:28,borderRadius:14,background:`linear-gradient(135deg,${C.nc},${C.nl})`,border:`1px solid ${C.w1}`,textAlign:"center"}}><div style={{fontSize:10,color:C.teal,letterSpacing:"0.2em",fontWeight:600,marginBottom:8}}>EDUCATION INTELLIGENCE</div><h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:8}}>How prepared is your college for both shocks?</h3><p style={{fontSize:12,color:C.w4,maxWidth:400,margin:"0 auto 16px",lineHeight:1.5}}>The free diagnostic now includes questions on embodied AI readiness and the trades assumption.</p><Btn primary onClick={()=>onNav("education")}>Begin Assessment</Btn></div>
-  </div>);
+  return(
+    <div style={{maxWidth:760,margin:"0 auto",padding:"80px 32px"}}>
+      {sections.map((s,i)=>{
+        if(s.type==="hero") return(
+          <div key={i} style={{marginBottom:44}}>
+            <SL text="PROVIO Insight"/>
+            <h1 className="fu1" style={{fontFamily:"Montserrat",fontSize:38,fontWeight:700,lineHeight:1.12,letterSpacing:"-0.02em",marginBottom:12}}>{s.title}</h1>
+            <p className="fu2" style={{fontSize:18,color:C.w6,lineHeight:1.55,fontFamily:"Open Sans"}}>{s.subtitle}</p>
+            <p className="fu3" style={{fontSize:11,color:C.w2,marginTop:14,fontFamily:"Open Sans"}}>March 2026</p>
+          </div>
+        );
+        if(s.capabilities) return(
+          <div key={i} style={{marginTop:44,marginBottom:32}}>
+            <h2 style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700,marginBottom:22}}>{s.title}</h2>
+            {s.capabilities.map((c,j)=>(
+              <div key={j} style={{marginBottom:22,paddingLeft:20,borderLeft:"3px solid "+C.teal}}>
+                <h3 style={{fontFamily:"Montserrat",fontSize:15,fontWeight:600,color:C.teal,marginBottom:7}}>{c.name}</h3>
+                <p style={{fontSize:14,color:C.w6,lineHeight:1.8,fontFamily:"Open Sans"}}>{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        );
+        return(
+          <div key={i} style={{marginBottom:s.title?38:0}}>
+            {s.title&&<h2 style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700,marginBottom:16,marginTop:44}}>{s.title}</h2>}
+            {s.text&&s.text.split("\n\n").map((para,j)=>(
+              <p key={j} style={{fontSize:14,color:i===2?C.w9:s.title?C.w6:i<=3?C.w8:C.w6,lineHeight:1.85,marginBottom:16,fontFamily:"Open Sans",fontWeight:i===2?"600":"400"}}>{para}</p>
+            ))}
+          </div>
+        );
+      })}
+      <div style={{marginTop:52,padding:32,borderRadius:14,background:"linear-gradient(135deg,"+C.nc+","+C.nl+")",border:"1px solid "+C.w1,textAlign:"center"}}>
+        <div style={{fontSize:10,color:C.teal,letterSpacing:"0.22em",fontWeight:700,fontFamily:"Montserrat",marginBottom:10}}>EDUCATION INTELLIGENCE</div>
+        <h3 style={{fontFamily:"Montserrat",fontSize:19,fontWeight:700,marginBottom:10}}>How prepared is your college for both shocks?</h3>
+        <p style={{fontSize:13,color:C.w4,maxWidth:400,margin:"0 auto 18px",lineHeight:1.6,fontFamily:"Open Sans"}}>The free diagnostic now includes questions on embodied AI readiness and the trades assumption.</p>
+        <Btn primary onClick={()=>onNav("education")}>Begin Assessment</Btn>
+      </div>
+    </div>
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -381,16 +899,18 @@ export default function Provio(){
   const[page,setPage]=useState("home");
   const nav=id=>{setPage(id);window.scrollTo({top:0,behavior:"smooth"});};
 
-  return(<div style={{minHeight:"100vh",background:C.navy,color:C.w,fontFamily:"'Open Sans',system-ui,sans-serif"}}>
-    <style>{CSS}</style>
-    {page!=="edu-survey"&&<Nav active={page} onNav={nav}/>}
-    {page==="home"&&<Home onNav={nav}/>}
-    {page==="education"&&<Education onNav={nav} onStartSurvey={()=>nav("edu-survey")}/>}
-    {page==="edu-survey"&&<EduSurvey onBack={()=>nav("education")}/>}
-    {page==="business"&&<Business onNav={nav}/>}
-    {page==="horizon"&&<HorizonMap onNav={nav}/>}
-    {page==="insight"&&<Insight onNav={nav}/>}
-    {page==="about"&&<About onNav={nav}/>}
-    {page!=="edu-survey"&&<Footer onNav={nav}/>}
-  </div>);
+  return(
+    <div style={{minHeight:"100vh",background:C.navy,color:C.w,fontFamily:"'Open Sans',system-ui,sans-serif"}}>
+      <style>{CSS}</style>
+      {page!=="edu-survey"&&<Nav active={page} onNav={nav}/>}
+      {page==="home"&&<Home onNav={nav}/>}
+      {page==="education"&&<Education onNav={nav} onStartSurvey={()=>nav("edu-survey")}/>}
+      {page==="edu-survey"&&<EduSurvey onBack={()=>nav("education")}/>}
+      {page==="business"&&<Business onNav={nav}/>}
+      {page==="horizon"&&<HorizonMap onNav={nav}/>}
+      {page==="insight"&&<Insight onNav={nav}/>}
+      {page==="about"&&<About onNav={nav}/>}
+      {page!=="edu-survey"&&<Footer onNav={nav}/>}
+    </div>
+  );
 }
