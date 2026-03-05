@@ -290,7 +290,7 @@ function Home({onNav}){
           <div style={{width:40,height:1,background:C.teal}}/>
           <span style={{fontSize:11,fontWeight:600,letterSpacing:"0.3em",color:C.teal,textTransform:"uppercase"}}>Futures, Proven</span>
         </div>
-        <h1 className="fu1 hero-heading" style={{fontFamily:"Montserrat",fontSize:"clamp(48px, 5.5vw, 80px)",fontWeight:700,lineHeight:1.05,letterSpacing:"-0.03em",maxWidth:900,marginBottom:32}}>Intelligence and<br/>pathways for the<br/><span style={{color:C.teal}}>AI transition</span></h1>
+        <h1 className="fu1 hero-heading" style={{fontFamily:"Montserrat",fontSize:"clamp(48px, 5.5vw, 80px)",fontWeight:700,lineHeight:1.05,letterSpacing:"-0.03em",maxWidth:900,marginBottom:32}}>Intelligence and<br/> pathways for the<br/> <span style={{color:C.teal}}>AI transition</span></h1>
         <p className="fu2" style={{fontSize:"clamp(16px, 1.3vw, 20px)",color:C.w6,maxWidth:560,lineHeight:1.8,fontFamily:"Open Sans",marginBottom:48}}>PROVIO brings together colleges, businesses, and young people to navigate the shift to AI — with evidence, practical tools, and a growing intelligence network.</p>
         <div className="fu3" style={{display:"flex",gap:16,flexWrap:"wrap"}}>
           <Btn primary onClick={()=>onNav("education")}>Education Intelligence</Btn>
