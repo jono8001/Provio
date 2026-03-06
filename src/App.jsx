@@ -248,6 +248,185 @@ function genReport(name,role,results,responses){
   h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>Readiness Profile</span></div></div>`;
   // Section pages
   for(const s of secs){const r=getRec(s.id,s.score);h+=`<div class="pg pb"><div class="lb">SECTION ANALYSIS</div><h2>${s.name} — ${s.score}/100</h2><div style="height:6px;background:#E2E8F0;border-radius:3px;margin:8px 0 16px"><div style="height:100%;width:${Math.max(s.score,2)}%;background:${sc(s.score)};border-radius:3px"></div></div><p style="font-size:11px;color:#94A3B8;margin-bottom:20px">Weight: ${Math.round(s.weight*100)}%</p><h3>Diagnostic Observation</h3><p class="bt" style="margin-bottom:20px">${r.obs}</p><h3>Recommended Actions</h3>`;for(let i=0;i<r.actions.length;i++){h+=`<div style="display:flex;gap:8px;margin-bottom:10px"><span style="color:#45D0B9;font-weight:700;font-size:13px;flex-shrink:0">${i+1}.</span><p class="bt" style="margin:0">${r.actions[i]}</p></div>`;}if(r.ctx){h+=`<div class="cx"><div style="font-size:11px;font-weight:700;color:#45D0B9;margin-bottom:6px">Sector Context & Timeline</div><p class="bt" style="margin:0;font-size:12px">${r.ctx}</p></div>`;}h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>${s.name}</span></div></div>`;}
+
+  // ── STRATEGIC PAGE 1: Top 5 Risks ──
+  const riskSeverity=s=>s<30?{label:"Critical",color:"#EF4444",prefix:"Critical exposure"}:s<50?{label:"Significant",color:"#F59E0B",prefix:"Significant vulnerability"}:s<70?{label:"Emerging",color:"#3B82F6",prefix:"Emerging concern"}:{label:"Low",color:"#45D0B9",prefix:"Maintenance risk"};
+  const riskStatements={
+    strategic_direction:{critical:"Without a formal AI strategy, adoption will remain reactive and fragmented. The institution is exposed to regulatory non-compliance as DfE expectations formalise, and risks losing competitive position to colleges that have already begun strategic planning.",developing:"AI strategy exists in nascent form but lacks the governance rigour and board-level accountability needed to drive systematic change. The gap between intent and implementation creates material risk as the sector accelerates.",solid:"Strategic foundations are in place, but there is a risk that incremental progress creates complacency. As regulatory expectations rise through 2027, what feels adequate today may fall below the new baseline.",strong:"Strong strategic positioning could erode if the institution assumes the work is done. In a rapidly evolving landscape, the greatest risk to leading institutions is the failure to keep moving."},
+    teaching_learning:{critical:"Teaching and assessment have not adapted to AI. Students are being assessed on competencies that AI can perform, creating a fundamental credibility gap. As Ofqual guidance shifts from prohibition to integration, unreformed assessment represents the most visible institutional risk.",developing:"Adaptation is partial and inconsistent across departments. The student experience of AI depends entirely on which teacher or course they encounter, creating equity and quality assurance vulnerabilities.",solid:"Meaningful progress in teaching adaptation, but the transition from AI-proofing to AI-enhanced assessment remains incomplete. The risk is plateauing at adequacy while the sector standard continues to rise.",strong:"Advanced practice in AI-integrated teaching, but sustainability and scalability require ongoing investment. The risk is resource fatigue as early innovation energy dissipates."},
+    pedagogical_transformation:{critical:"This is the most consequential finding. The institution has not fundamentally reconsidered what it teaches and why in light of AI. The entire pedagogical model — content delivery, output production, product assessment — remains unchanged. This carries 25% of total weight and represents an existential strategic risk.",developing:"Surface-level adaptation is underway but the core teaching model has not changed. Adding AI content to existing curricula is not transformation — it is accommodation. The risk is investing in incremental change while the required shift is fundamental.",solid:"Genuine pedagogical progress, but the risk of the 'plateau of adequacy' — where initial progress creates institutional satisfaction while AI capability continues to accelerate, widening the gap between practice and requirement.",strong:"Sector-leading pedagogical transformation, but AI capability is not static. The risk is that today's innovation becomes tomorrow's baseline without sustained investment in research and adaptation."},
+    staff_readiness:{critical:"Staff readiness is the critical bottleneck for every other dimension. Without confident, capable educators, no strategy, curriculum redesign, or technology investment will translate into classroom practice. This creates a compounding risk across the entire institution.",developing:"Investment has begun but impact is uneven. Enthusiastic early adopters coexist with anxious resisters. Without peer-led structures and role-specific development, progress depends on individual initiative — which does not sustain cultural change.",solid:"Above sector average, but the transition from early adoption to institutional norm is incomplete. The remaining non-adopters represent a persistent vulnerability as AI becomes a baseline expectation for all educators.",strong:"Strong staff capability, but the risk is assuming the development journey is complete. As AI evolves from tool use to learning design transformation, CPD must evolve with it."},
+    operations:{critical:"Operational AI adoption is minimal. Data remains siloed, processes manual, and no predictive analytics are in use. The institution lacks the intelligence layer that AI can provide — unable to identify at-risk students early or optimise resource allocation systematically.",developing:"Adoption has begun but remains partial. Data maturity is the binding constraint — without integrated, clean data infrastructure, AI applications will deliver inconsistent results.",solid:"Strong operational foundation, but operational efficiency without pedagogical evolution means running smoothly toward an outdated destination. The risk is efficiency gains that are not strategically reinvested.",strong:"Advanced and well-embedded operations. The risk is that operational success becomes the institutional narrative, masking slower progress in the harder challenge of pedagogical transformation."},
+    ethics_governance:{critical:"Ethical governance is minimal. DPIAs are not routine, equity of AI access is unaddressed, and no bias monitoring exists. FE serves some of the most disadvantaged learners in the system — unmonitored AI deployment creates both regulatory exposure and equity risk.",developing:"Ethics work has begun but is applied inconsistently — major tools only, not embedded systematically. As AI deployment expands, governance that does not scale becomes a liability.",solid:"Governance is developing well, but the risk is that it becomes a bottleneck or checkbox exercise rather than an enabler of confident experimentation. Scaling governance with expanding deployment is the key challenge.",strong:"Robust governance frameworks, but regulatory requirements are tightening. The EU AI Act and anticipated UK frameworks will raise the bar. Complacency at the leading edge is still complacency."},
+    workforce_alignment:{critical:"Students are being trained for occupations as they existed years ago. Employer engagement is infrequent, the Growth and Skills Levy is untapped, and most curriculum areas lack AI literacy. Graduates will enter a job market that has moved beyond what they were taught.",developing:"Some employer engagement exists but not at the frequency or depth required. The levy remains underutilised as a revenue and relevance opportunity. Employability content is inconsistent across programme areas.",solid:"Regular engagement and growing levy use, but the approach remains responsive rather than proactive. The risk is always being 12 months behind employer reality.",strong:"Systematic engagement and comprehensive AI literacy. The risk is assuming current employer relationships capture the full picture of future demand."},
+    student_experience:{critical:"Student experience is a blind spot. No structured engagement on AI usage, no AI-enhanced services. With 92% of students already using AI tools, the institution is less experienced than its own students — and has not asked them what they need.",developing:"Engagement has begun but is not systematic. Students are consulted but do not directly influence AI decisions. The risk is a widening gap between student expectations and institutional delivery.",solid:"Developing well with active feedback mechanisms. The risk is that consultation does not translate into genuine co-design — students advise but the institution decides.",strong:"Well-integrated student voice, but incoming cohorts will have progressively higher expectations. The risk is benchmarking against current satisfaction rather than future expectation."},
+    financial_sustainability:{critical:"Financial planning has not incorporated AI. No productivity dividend in forecasts, limited awareness of competitive threats from non-traditional providers. In the precarious FE financial environment, this is a strategic blind spot that could become existential.",developing:"Awareness is growing but not yet in concrete financial planning. Potential savings are not tracked or strategically reinvested. The risk is treating AI as a cost rather than a financial lever.",solid:"Financial planning reflects AI's importance, but the risk is that projections are optimistic without robust tracking of actual savings and competitive threats.",strong:"Well-aligned financial strategy, but the risk is underestimating the pace of competitive disruption from non-traditional providers leveraging AI-first delivery models."}
+  };
+  const topRisks=sorted.slice(0,5);
+  h+=`<div class="pg pb"><div class="lb">STRATEGIC RISKS</div><h2>Top 5 Risks to Your Institution</h2><p class="bt" style="margin-bottom:20px">Based on your diagnostic scores, these are the five areas presenting the greatest strategic risk. Each risk is classified by severity and should be considered in the context of the regulatory and competitive landscape evolving through 2027-2028.</p>`;
+  for(let i=0;i<topRisks.length;i++){
+    const rs=topRisks[i];
+    const sev=riskSeverity(rs.score);
+    const tier=rs.score<30?"critical":rs.score<50?"developing":rs.score<70?"solid":"strong";
+    const stmt=riskStatements[rs.id]?riskStatements[rs.id][tier]:"Review this area for potential vulnerabilities.";
+    h+=`<div class="fb" style="background:${sev.color}08;border-color:${sev.color};margin-bottom:12px;padding:14px 16px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span style="font-family:Montserrat;font-size:15px;font-weight:700;color:${sev.color}">${i+1}.</span><span style="padding:2px 10px;border-radius:12px;font-size:9px;font-weight:700;letter-spacing:.05em;background:${sev.color}18;color:${sev.color};border:1px solid ${sev.color}30">${sev.label.toUpperCase()}</span><span style="font-size:12px;font-weight:600;color:#1E293B">${rs.name}</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:${sev.color}">${rs.score}/100</span></div><p class="bt" style="margin:0;font-size:12px">${stmt}</p></div>`;
+  }
+  h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>Strategic Risks</span></div></div>`;
+
+  // ── STRATEGIC PAGE 2: Top 5 Quickest Wins ──
+  const quickWinSecs=sorted.filter(s=>s.score>=30&&s.score<70);
+  const fallbackSecs=sorted.filter(s=>s.score<30);
+  let winPool=[...quickWinSecs];
+  if(winPool.length<5) winPool=[...winPool,...fallbackSecs.filter(s=>!winPool.find(w=>w.id===s.id))];
+  const topWins=winPool.slice(0,5);
+  const winWhyMatters={
+    strategic_direction:"Strategic clarity enables everything else. Without it, AI adoption remains fragmented and reactive.",
+    teaching_learning:"Assessment is where students, staff, and external bodies see the institution's position on AI most clearly.",
+    pedagogical_transformation:"This carries the highest weight in your readiness profile. Even small progress here shifts the overall score significantly.",
+    staff_readiness:"Confident staff are the transmission mechanism for every other strategic initiative. Nothing reaches the classroom without them.",
+    operations:"Operational quick wins deliver measurable time savings that build institutional confidence in AI and free resources for teaching innovation.",
+    ethics_governance:"Governance provides the guardrails that enable confident experimentation. Without it, risk aversion slows everything down.",
+    workforce_alignment:"Employer relevance is increasingly visible to students, parents, and regulators. Quick wins here strengthen market position immediately.",
+    student_experience:"Students are your most important stakeholders and often your most experienced AI users. Engaging them costs little and yields rich intelligence.",
+    financial_sustainability:"Quantifying the AI productivity dividend transforms the conversation from cost to investment. This reframes every subsequent budget decision."
+  };
+  const winTimeframes=["2-4 weeks","3-6 weeks","4-8 weeks","6-10 weeks","8-12 weeks"];
+  h+=`<div class="pg pb"><div class="lb">QUICK WINS</div><h2>Top 5 Quickest Wins</h2><p class="bt" style="margin-bottom:20px">Actions that can be implemented within weeks, requiring minimal investment. These are drawn from your lowest-scoring sections where the first recommended action offers the highest return for the lowest effort.</p>`;
+  for(let i=0;i<topWins.length;i++){
+    const ws=topWins[i];
+    const wr=getRec(ws.id,ws.score);
+    const action=wr.actions[0]||"Review and address this area.";
+    const why=winWhyMatters[ws.id]||"Addressing this area will improve your overall readiness.";
+    h+=`<div style="display:flex;gap:12px;margin-bottom:16px;padding:14px 16px;border-radius:8px;background:#F8FAFC;border:1px solid #E2E8F0"><div style="flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#45D0B915;display:flex;align-items:center;justify-content:center;font-family:Montserrat;font-size:13px;font-weight:700;color:#45D0B9">${i+1}</div><div style="flex:1"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><span style="font-size:12px;font-weight:600;color:#1E293B">${ws.name}</span><span style="font-size:11px;font-weight:600;color:${sc(ws.score)}">${ws.score}/100</span></div><p class="bt" style="margin:0 0 6px;font-weight:500">${action}</p><div style="display:flex;gap:12px;align-items:center"><span style="font-size:10px;color:#94A3B8">⏱ ${winTimeframes[i]}</span></div><p style="font-size:11px;color:#64748B;margin:6px 0 0;line-height:1.5;font-style:italic">${why}</p></div></div>`;
+  }
+  h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>Quick Wins</span></div></div>`;
+
+  // ── STRATEGIC PAGE 3: 90-Day Plan ──
+  const weakest3=sorted.slice(0,3);
+  const midRange=sorted.filter(s=>s.score>=30&&s.score<70).slice(0,3);
+  const phase1Actions=weakest3.map(s=>{const r=getRec(s.id,s.score);return{name:s.name,score:s.score,action:r.actions[0]||"Address this area urgently."};});
+  const phase2Actions=midRange.map(s=>{const r=getRec(s.id,s.score);return{name:s.name,score:s.score,action:r.actions[1]||r.actions[0]||"Develop this area systematically."};});
+  const egRec=getRec("ethics_governance",results.sections.ethics_governance?results.sections.ethics_governance.score:50);
+  const sdRec=getRec("strategic_direction",results.sections.strategic_direction?results.sections.strategic_direction.score:50);
+  h+=`<div class="pg pb"><div class="lb">ACTION PLAN</div><h2>90-Day Implementation Plan</h2><p class="bt" style="margin-bottom:20px">A structured three-phase approach targeting your most critical areas first, then building systematically toward embedded practice.</p>`;
+  // Phase 1
+  h+=`<div style="padding:16px;border-radius:10px;background:#EF444408;border:1px solid #EF444420;margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;background:#EF444415;color:#EF4444">DAYS 1–30</span><span style="font-family:Montserrat;font-size:14px;font-weight:700;color:#1E293B">Foundation</span></div><p class="bt" style="margin-bottom:10px;font-size:12px">Focus on the weakest areas requiring immediate intervention.</p>`;
+  for(const a of phase1Actions){
+    h+=`<div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:#EF4444;font-size:11px;flex-shrink:0">▸</span><p class="bt" style="margin:0;font-size:12px"><strong>${a.name} (${a.score}/100):</strong> ${a.action}</p></div>`;
+  }
+  h+=`<p style="font-size:10px;color:#94A3B8;margin-top:8px">Sections addressed: ${weakest3.map(s=>s.name).join(", ")}</p></div>`;
+  // Phase 2
+  h+=`<div style="padding:16px;border-radius:10px;background:#F59E0B08;border:1px solid #F59E0B20;margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;background:#F59E0B15;color:#F59E0B">DAYS 31–60</span><span style="font-family:Montserrat;font-size:14px;font-weight:700;color:#1E293B">Build</span></div><p class="bt" style="margin-bottom:10px;font-size:12px">Extend to mid-range sections and deepen initial work.</p>`;
+  for(const a of phase2Actions){
+    h+=`<div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:#F59E0B;font-size:11px;flex-shrink:0">▸</span><p class="bt" style="margin:0;font-size:12px"><strong>${a.name} (${a.score}/100):</strong> ${a.action}</p></div>`;
+  }
+  h+=`<p style="font-size:10px;color:#94A3B8;margin-top:8px">Sections addressed: ${midRange.map(s=>s.name).join(", ")}</p></div>`;
+  // Phase 3
+  h+=`<div style="padding:16px;border-radius:10px;background:#45D0B908;border:1px solid #45D0B920;margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;background:#45D0B915;color:#45D0B9">DAYS 61–90</span><span style="font-family:Montserrat;font-size:14px;font-weight:700;color:#1E293B">Embed</span></div><p class="bt" style="margin-bottom:10px;font-size:12px">Establish governance, measurement, and communication frameworks.</p>`;
+  h+=`<div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:#45D0B9;font-size:11px;flex-shrink:0">▸</span><p class="bt" style="margin:0;font-size:12px"><strong>Ethics & Governance:</strong> ${egRec.actions[0]||"Establish ethical governance framework."}</p></div>`;
+  h+=`<div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:#45D0B9;font-size:11px;flex-shrink:0">▸</span><p class="bt" style="margin:0;font-size:12px"><strong>Measurement:</strong> Define KPIs for each section and establish baseline tracking for the next 6-month review.</p></div>`;
+  h+=`<div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:#45D0B9;font-size:11px;flex-shrink:0">▸</span><p class="bt" style="margin:0;font-size:12px"><strong>Communication:</strong> ${sdRec.actions.length>2?sdRec.actions[2]:"Present progress and roadmap to the Governing Body."}</p></div>`;
+  h+=`<div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:#45D0B9;font-size:11px;flex-shrink:0">▸</span><p class="bt" style="margin:0;font-size:12px"><strong>Re-assessment:</strong> Schedule the follow-up PROVIO diagnostic to measure progress against this baseline.</p></div>`;
+  h+=`<p style="font-size:10px;color:#94A3B8;margin-top:8px">Focus: Governance, measurement, accountability, and communication</p></div>`;
+  h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>90-Day Plan</span></div></div>`;
+
+  // ── STRATEGIC PAGE 4: 12-Month Roadmap ──
+  const q1Secs=sorted.slice(0,3);
+  const q2Ids=["operations","ethics_governance","staff_readiness"];
+  const q3Ids=["pedagogical_transformation","teaching_learning"];
+  const q4Ids=["financial_sustainability","workforce_alignment","student_experience"];
+  const getSecScore=(secId)=>{const found=secs.find(s=>s.id===secId);return found?found.score:50;};
+  h+=`<div class="pg pb"><div class="lb">STRATEGIC ROADMAP</div><h2>12-Month Transformation Roadmap</h2><p class="bt" style="margin-bottom:20px">A phased approach to institutional transformation, sequenced to address urgent risks first while building the infrastructure for sustained change.</p>`;
+  // Q1
+  h+=`<div style="padding:14px 16px;border-radius:10px;border-left:4px solid #EF4444;background:#F8FAFC;margin-bottom:12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div><span style="font-family:Montserrat;font-size:13px;font-weight:700;color:#1E293B">Q1: Months 1–3</span><span style="font-size:10px;color:#94A3B8;margin-left:8px">Quick Wins & Crisis Response</span></div></div><p class="bt" style="font-size:11px;margin-bottom:8px"><strong>Strategic focus:</strong> Address critical gaps in ${q1Secs.map(s=>s.name).join(", ")}.</p>`;
+  for(const qs of q1Secs){
+    const qr=getRec(qs.id,qs.score);
+    h+=`<div style="display:flex;gap:6px;margin-bottom:4px"><span style="color:#EF4444;font-size:10px;flex-shrink:0">▸</span><p style="margin:0;font-size:11px;color:#475569">${qr.actions[0]}</p></div>`;
+  }
+  h+=`<p style="font-size:10px;color:#45D0B9;margin-top:6px;font-weight:600">Success metric: All critical-severity sections moved above 30/100.</p></div>`;
+  // Q2
+  h+=`<div style="padding:14px 16px;border-radius:10px;border-left:4px solid #F59E0B;background:#F8FAFC;margin-bottom:12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div><span style="font-family:Montserrat;font-size:13px;font-weight:700;color:#1E293B">Q2: Months 4–6</span><span style="font-size:10px;color:#94A3B8;margin-left:8px">Building Infrastructure</span></div></div><p class="bt" style="font-size:11px;margin-bottom:8px"><strong>Strategic focus:</strong> Data maturity, governance frameworks, and staff capability.</p>`;
+  for(const qid of q2Ids){
+    const qr=getRec(qid,getSecScore(qid));
+    const qn=secs.find(s=>s.id===qid);
+    h+=`<div style="display:flex;gap:6px;margin-bottom:4px"><span style="color:#F59E0B;font-size:10px;flex-shrink:0">▸</span><p style="margin:0;font-size:11px;color:#475569">${qn?qn.name+": ":""} ${qr.actions[1]||qr.actions[0]}</p></div>`;
+  }
+  h+=`<p style="font-size:10px;color:#45D0B9;margin-top:6px;font-weight:600">Success metric: Data integration complete, governance framework published, 50%+ staff trained.</p></div>`;
+  // Q3
+  h+=`<div style="padding:14px 16px;border-radius:10px;border-left:4px solid #3B82F6;background:#F8FAFC;margin-bottom:12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div><span style="font-family:Montserrat;font-size:13px;font-weight:700;color:#1E293B">Q3: Months 7–9</span><span style="font-size:10px;color:#94A3B8;margin-left:8px">Deepening Transformation</span></div></div><p class="bt" style="font-size:11px;margin-bottom:8px"><strong>Strategic focus:</strong> Pedagogical redesign and teaching innovation.</p>`;
+  for(const qid of q3Ids){
+    const qr=getRec(qid,getSecScore(qid));
+    const qn=secs.find(s=>s.id===qid);
+    h+=`<div style="display:flex;gap:6px;margin-bottom:4px"><span style="color:#3B82F6;font-size:10px;flex-shrink:0">▸</span><p style="margin:0;font-size:11px;color:#475569">${qn?qn.name+": ":""} ${qr.actions[1]||qr.actions[0]}</p></div>`;
+  }
+  h+=`<p style="font-size:10px;color:#45D0B9;margin-top:6px;font-weight:600">Success metric: 50%+ qualifications AI-reviewed, pedagogical framework published.</p></div>`;
+  // Q4
+  h+=`<div style="padding:14px 16px;border-radius:10px;border-left:4px solid #45D0B9;background:#F8FAFC;margin-bottom:12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div><span style="font-family:Montserrat;font-size:13px;font-weight:700;color:#1E293B">Q4: Months 10–12</span><span style="font-size:10px;color:#94A3B8;margin-left:8px">Embedding & Benchmarking</span></div></div><p class="bt" style="font-size:11px;margin-bottom:8px"><strong>Strategic focus:</strong> Sustainability, external positioning, and continuous improvement.</p>`;
+  for(const qid of q4Ids){
+    const qr=getRec(qid,getSecScore(qid));
+    const qn=secs.find(s=>s.id===qid);
+    h+=`<div style="display:flex;gap:6px;margin-bottom:4px"><span style="color:#45D0B9;font-size:10px;flex-shrink:0">▸</span><p style="margin:0;font-size:11px;color:#475569">${qn?qn.name+": ":""} ${qr.actions[1]||qr.actions[0]}</p></div>`;
+  }
+  h+=`<p style="font-size:10px;color:#45D0B9;margin-top:6px;font-weight:600">Success metric: Re-assessment score improved by 15+ points, external benchmarking position established.</p></div>`;
+  h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>12-Month Roadmap</span></div></div>`;
+
+  // ── STRATEGIC PAGE 5: Questions Your Senior Team Is Not Yet Asking ──
+  const strategicQuestions=[];
+  strategicQuestions.push({q:"What percentage of your students\u2019 assessed work could current AI produce to a passing standard \u2014 and does your Governing Body know the answer?",why:"Most institutions have not conducted this analysis. Until you quantify the vulnerability, you cannot make informed decisions about assessment redesign. This is the single most important audit exercise an FE college can undertake in 2026."});
+  if(results.sections.pedagogical_transformation&&results.sections.pedagogical_transformation.score<50){
+    strategicQuestions.push({q:"If AI can produce competent work across the majority of your assessed content, what exactly are you certifying when you award a qualification?",why:`Your Pedagogical Transformation score of ${results.sections.pedagogical_transformation.score}/100 suggests the institution has not yet confronted this question. Awarding bodies are beginning to grapple with it. Colleges that answer it first will shape the standards rather than scramble to meet them.`});
+  }
+  if(results.sections.staff_readiness&&results.sections.staff_readiness.score<50){
+    strategicQuestions.push({q:"Is your CPD programme preparing staff for the teaching profession as it exists today, or as it existed three years ago?",why:`With a Staff Readiness score of ${results.sections.staff_readiness.score}/100, there is a significant gap between staff capability and what AI-era teaching demands. Generic tool training is not sufficient \u2014 educators need learning design capability for a fundamentally different pedagogical environment.`});
+  }
+  if(results.sections.financial_sustainability&&results.sections.financial_sustainability.score<50){
+    strategicQuestions.push({q:"If enrolment drops 15% by H2 2027 due to demographic decline and competition from AI-native providers, does your financial model survive?",why:`Your Financial Sustainability score of ${results.sections.financial_sustainability.score}/100 suggests this scenario has not been modelled. The first enrolment shock is projected for H2 2027. Colleges that have not scenario-planned for this will be making emergency decisions under pressure.`});
+  }
+  if(results.sections.workforce_alignment&&results.sections.workforce_alignment.score<50){
+    strategicQuestions.push({q:"Are you confident that the occupational roles your students are training for will exist in their current form by the time they graduate?",why:`Your Workforce Alignment score of ${results.sections.workforce_alignment.score}/100 suggests employer engagement is not frequent or deep enough to answer this question with confidence. By 2027, 90% of enterprises will face AI skills shortages and hiring criteria will shift to assess AI capability directly.`});
+  }
+  if(results.sections.operations&&results.sections.operations.score<50){
+    strategicQuestions.push({q:"Can your institution identify a student at risk of dropout 6 weeks before they leave \u2014 and if not, what is your data actually doing for you?",why:`Your Operations score of ${results.sections.operations.score}/100 indicates data maturity is a binding constraint. Predictive analytics can improve retention by up to 20%, but only if the data infrastructure exists to support them.`});
+  }
+  strategicQuestions.push({q:"By H2 2027, Ofsted will evaluate AI integration as part of leadership and management judgements. What evidence of meaningful AI strategy will your institution present?",why:"This is not a hypothetical timeline. The DfE AI Leadership Toolkit is already in circulation, and inspection frameworks are evolving to reflect the expectation that Good and Outstanding colleges have coherent AI strategies. The window for preparation is approximately 18 months."});
+  strategicQuestions.push({q:"When was the last time your institution asked students what they expect from AI in their learning \u2014 and did you act on what they said?",why:"92% of students already use AI tools, and 88% use them in assessments. Incoming cohorts from 2027-2028 will have used AI throughout their school education. They will not accept an institution that is less digitally capable than they are."});
+  const displayQuestions=strategicQuestions.slice(0,7);
+  h+=`<div class="pg pb"><div class="lb">STRATEGIC QUESTIONS</div><h2>Questions Your Senior Team Is Not Yet Asking</h2><p class="bt" style="margin-bottom:20px">These questions are designed to surface strategic blind spots \u2014 areas where institutions often feel secure but where emerging evidence suggests vulnerability. They are intentionally challenging and drawn directly from your diagnostic profile.</p>`;
+  for(let i=0;i<displayQuestions.length;i++){
+    const dq=displayQuestions[i];
+    h+=`<div style="border-left:3px solid #45D0B9;padding:12px 16px;margin-bottom:12px;background:#45D0B905;border-radius:0 8px 8px 0"><p style="font-size:13px;font-weight:600;color:#1E293B;line-height:1.5;margin-bottom:6px">${i+1}. ${dq.q}</p><p style="font-size:11px;color:#64748B;line-height:1.6;margin:0">${dq.why}</p></div>`;
+  }
+  h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>Strategic Questions</span></div></div>`;
+
+  // ── STRATEGIC PAGE 6: Benchmarking ──
+  const benchLevel=s=>s<=25?{label:"Emerging",color:"#EF4444",desc:"No meaningful adoption or strategy. The institution is at the earliest stage of AI awareness."}:s<=50?{label:"Developing",color:"#F59E0B",desc:"Early activity and growing awareness, but approach is fragmented and inconsistent."}:s<=75?{label:"Operational",color:"#3B82F6",desc:"Systematic adoption underway with coherent strategy and measurable progress."}:{label:"Leading",color:"#45D0B9",desc:"Advanced practice with embedded AI across operations, teaching, and governance."};
+  const benchCounts={Emerging:0,Developing:0,Operational:0,Leading:0};
+  for(const s of secs){benchCounts[benchLevel(s.score).label]++;}
+  h+=`<div class="pg pb"><div class="lb">SECTOR BENCHMARKING</div><h2>Your Benchmarking Profile</h2><p class="bt" style="margin-bottom:16px">Based on emerging sector data and the maturity frameworks developed by the Digital Education Council, MITRE, Jisc, and ATD, each of your nine dimensions is classified against a four-level benchmarking model.</p>`;
+  // Legend
+  h+=`<div style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap">`;
+  [{label:"Emerging",color:"#EF4444",range:"0–25"},{label:"Developing",color:"#F59E0B",range:"26–50"},{label:"Operational",color:"#3B82F6",range:"51–75"},{label:"Leading",color:"#45D0B9",range:"76–100"}].forEach(l=>{
+    h+=`<div style="display:flex;align-items:center;gap:6px"><div style="width:10px;height:10px;border-radius:3px;background:${l.color}"></div><span style="font-size:10px;color:#64748B"><strong>${l.label}</strong> (${l.range})</span></div>`;
+  });
+  h+=`</div>`;
+  // Table
+  h+=`<table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:18px">`;
+  h+=`<thead><tr style="border-bottom:2px solid #E2E8F0"><th style="text-align:left;padding:8px 6px;font-weight:600;color:#475569;font-size:11px">Section</th><th style="text-align:center;padding:8px 6px;font-weight:600;color:#475569;font-size:11px">Score</th><th style="text-align:center;padding:8px 6px;font-weight:600;color:#475569;font-size:11px">Level</th><th style="text-align:left;padding:8px 6px;font-weight:600;color:#475569;font-size:11px">Assessment</th></tr></thead><tbody>`;
+  for(const s of secs){
+    const bl=benchLevel(s.score);
+    h+=`<tr style="border-bottom:1px solid #F1F5F9"><td style="padding:8px 6px;font-weight:500;color:#1E293B">${s.name}</td><td style="padding:8px 6px;text-align:center;font-weight:700;color:${bl.color}">${s.score}</td><td style="padding:8px 6px;text-align:center"><span style="padding:2px 10px;border-radius:12px;font-size:9px;font-weight:700;background:${bl.color}15;color:${bl.color};border:1px solid ${bl.color}25">${bl.label}</span></td><td style="padding:8px 6px;font-size:11px;color:#64748B">${bl.desc}</td></tr>`;
+  }
+  h+=`</tbody></table>`;
+  // Summary
+  const dominantLevel=Object.entries(benchCounts).sort((a,b)=>b[1]-a[1])[0];
+  const emergingCount=benchCounts.Emerging;const leadingCount=benchCounts.Leading;
+  let benchSummary=`Your institution\'s dominant benchmarking classification is <strong>${dominantLevel[0]}</strong>, with ${dominantLevel[1]} of 9 sections at this level. `;
+  if(emergingCount>0) benchSummary+=`${emergingCount} section${emergingCount>1?"s":""} at Emerging level require${emergingCount===1?"s":""} urgent attention. `;
+  if(leadingCount>0) benchSummary+=`${leadingCount} section${leadingCount>1?"s":""} at Leading level provide${leadingCount===1?"s":""} a foundation for broader transformation. `;
+  benchSummary+=`As sector benchmarking data grows through the PROVIO Intelligence Network, your position will be contextualised against a widening dataset of comparable institutions.`;
+  h+=`<div class="cx"><p class="bt" style="margin:0;font-size:12px">${benchSummary}</p></div>`;
+  h+=`<div class="ft"><span>PROVIO Education Intelligence</span><span>Benchmarking</span></div></div>`;
+
   // Methodology
   h+=`<div class="pg pb"><div class="lb">METHODOLOGY</div><h2>About This Report</h2><p class="bt" style="margin-bottom:16px"><strong>Scoring:</strong> Weighted average of nine sections. Pedagogical Transformation carries 25%.</p><p class="bt" style="margin-bottom:16px"><strong>Maturity Model:</strong> Five levels from Initial (0-20) to Transforming (81-100), drawing from the Digital Education Council, MITRE, Jisc, and ATD frameworks.</p><p class="bt"><strong>Research:</strong> Grounded in Ofsted 2025, Jisc, Gatsby Foundation, Skills England, and DfE evidence.</p><div style="background:#0B192C;color:#fff;padding:24px;border-radius:10px;margin-top:28px"><h3 style="color:#fff;margin-bottom:12px">What Happens Next</h3><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px">1. <strong style="color:#45D0B9">Share this report</strong> with your Senior Leadership Team and Governing Body.</p><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px">2. <strong style="color:#45D0B9">Prioritise the quick wins</strong> — actions requiring minimal investment.</p><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:6px">3. <strong style="color:#45D0B9">Re-run in 6 months</strong> to track progress.</p><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7">4. <strong style="color:#45D0B9">Join the network</strong> of colleges benchmarking together.</p></div><div style="text-align:center;margin-top:24px"><div style="font-size:12px;font-weight:700;color:#45D0B9">PROVIO — Futures, Proven</div><div style="font-size:10px;color:#94A3B8;margin-top:4px">Free and independent</div></div></div>`;
   h+=`<div class="no-print" style="text-align:center;padding:32px"><button onclick="window.print()" style="padding:14px 40px;background:#45D0B9;color:#0B192C;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:Montserrat">Save as PDF</button><p style="font-size:12px;color:#94A3B8;margin-top:8px">Print → Save as PDF</p></div></body></html>`;
