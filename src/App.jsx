@@ -58,6 +58,31 @@ const CSS=`@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght
 }
 `;
 
+// ─── SEO: Dynamic page metadata ───
+const PAGE_SEO={
+  home:{title:"PROVIO — AI Readiness Intelligence for Colleges and Businesses | Futures, Proven",description:"PROVIO helps FE colleges assess AI readiness with a free 25-page diagnostic report, provides businesses with AI adoption intelligence, and maps the AI transition from 2026 to 2032. Free, independent, evidence-based."},
+  education:{title:"Education Intelligence — Free AI Readiness Diagnostic for FE Colleges | PROVIO",description:"How ready is your college for what's coming? Complete a free 15-minute assessment covering 9 dimensions and receive a personalised 25+ page AI readiness report with a 90-day plan, 12-month roadmap, and sector benchmarking."},
+  "edu-survey":{title:"AI Readiness Assessment — Education Intelligence Survey | PROVIO",description:"Complete the PROVIO AI readiness diagnostic for your FE college. 9 sections covering strategic direction, teaching, pedagogical transformation, staff readiness, operations, ethics, workforce alignment, student experience, and financial sustainability."},
+  business:{title:"Business Intelligence — Free AI Adoption Assessment | PROVIO",description:"Could AI save your business 5 hours a week? Take this free 3-minute assessment to find out where AI could help — and access a full professional AI audit at no cost."},
+  horizon:{title:"AI Horizon Map 2026–2032 — What's Coming for FE and Business | PROVIO",description:"Four forces, eight time windows, six years mapped. Explore how technology, policy, the labour market, and expectations will reshape further education and the UK economy from 2026 to 2032."},
+  insight:{title:"The Two Shocks — Why the Rush to the Trades Is Only Half the Answer | PROVIO Insight",description:"The rush to the trades feels like the right response to AI. It is — but only for now. The second shock — embodied robotics — is closer than most colleges are planning for."},
+  about:{title:"About PROVIO — Intelligence and Pathways for the AI Transition",description:"PROVIO was founded by a West Midlands hospitality operator. We bring together colleges, businesses, and young people to navigate the AI transition with evidence, practical tools, and a growing intelligence network."}
+};
+function useSEO(page){
+  useEffect(()=>{
+    const seo=PAGE_SEO[page]||PAGE_SEO.home;
+    document.title=seo.title;
+    const md=document.querySelector('meta[name="description"]');if(md)md.setAttribute('content',seo.description);
+    const can=document.querySelector('link[rel="canonical"]');if(can)can.setAttribute('href',page==='home'?'https://provio.co.uk/':'https://provio.co.uk/#'+page);
+    const ogt=document.querySelector('meta[property="og:title"]');if(ogt)ogt.setAttribute('content',seo.title);
+    const ogd=document.querySelector('meta[property="og:description"]');if(ogd)ogd.setAttribute('content',seo.description);
+    const ogu=document.querySelector('meta[property="og:url"]');if(ogu)ogu.setAttribute('content',page==='home'?'https://provio.co.uk/':'https://provio.co.uk/#'+page);
+    const twt=document.querySelector('meta[name="twitter:title"]');if(twt)twt.setAttribute('content',seo.title);
+    const twd=document.querySelector('meta[name="twitter:description"]');if(twd)twd.setAttribute('content',seo.description);
+    if(page!=='home'){window.history.replaceState(null,'','#'+page);}else{window.history.replaceState(null,'',window.location.pathname);}
+  },[page]);
+}
+
 const MATURITY=[
   {level:1,label:"Initial",floor:0,ceiling:20,color:C.red,desc:"No significant AI strategy or adoption. The institution is operating as if AI does not exist or is a distant concern."},
   {level:2,label:"Aware",floor:21,ceiling:40,color:"#F97316",desc:"Leadership recognises AI's importance but action is limited to isolated pilots, ad hoc tool use, or reactive policy."},
@@ -635,12 +660,18 @@ function Insight({onNav}){
 // APP — ROUTER
 // ═══════════════════════════════════════════════════════════════════
 export default function Provio(){
-  const[page,setPage]=useState("home");
+  const[page,setPage]=useState(()=>{
+    const hash=window.location.hash.replace('#','');
+    const valid=['home','education','edu-survey','business','horizon','insight','about'];
+    return valid.includes(hash)?hash:'home';
+  });
+  useSEO(page);
   const nav=id=>{setPage(id);window.scrollTo({top:0,behavior:"smooth"});};
 
   return(<div style={{minHeight:"100vh",background:C.navy,color:C.w,fontFamily:"'Open Sans',system-ui,sans-serif"}}>
     <style>{CSS}</style>
     {page!=="edu-survey"&&<Nav active={page} onNav={nav}/>}
+    <main role="main">
     {page==="home"&&<Home onNav={nav}/>}
     {page==="education"&&<Education onNav={nav} onStartSurvey={()=>nav("edu-survey")}/>}
     {page==="edu-survey"&&<EduSurvey onBack={()=>nav("education")}/>}
@@ -648,6 +679,7 @@ export default function Provio(){
     {page==="horizon"&&<HorizonMap onNav={nav}/>}
     {page==="insight"&&<Insight onNav={nav}/>}
     {page==="about"&&<About onNav={nav}/>}
+    </main>
     {page!=="edu-survey"&&<Footer onNav={nav}/>}
   </div>);
 }
