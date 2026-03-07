@@ -1070,7 +1070,7 @@ function ArticleReader({slug,onNav}){
   if(!article) return(<div style={{maxWidth:720,margin:"0 auto",padding:"72px 24px",textAlign:"center"}}><p style={{color:C.w4}}>Article not found.</p><button onClick={()=>onNav("insight")} style={{marginTop:16,padding:"10px 20px",background:"transparent",border:`1px solid ${C.w1}`,borderRadius:8,color:C.w6,cursor:"pointer",fontSize:13,fontFamily:"Montserrat"}}>← Back to Insight</button></div>);
 
   const cc=CAT_COLORS[article.category]||C.teal;
-  const paragraphs=article.body.split("\n\n");
+  const paragraphs=article.body.includes("\n\n")?article.body.split("\n\n"):article.body.split("\n");
   const related=ARTICLES.filter(a=>a.slug!==slug&&a.category===article.category).slice(0,3);
   const moreArticles=related.length>=3?related:[...related,...ARTICLES.filter(a=>a.slug!==slug&&!related.find(r=>r.slug===a.slug)).slice(0,3-related.length)];
 
@@ -1097,9 +1097,9 @@ function ArticleReader({slug,onNav}){
 
       {/* Article body */}
       <div style={{marginBottom:56}}>
-        {paragraphs.map((p,i)=>{
-          if(isHeading(p)) return(<h2 key={i} style={{fontFamily:"Montserrat",fontSize:20,fontWeight:700,marginTop:40,marginBottom:14,lineHeight:1.25,color:C.w}}>{p}</h2>);
-          return(<p key={i} style={{fontSize:15,color:C.w8,lineHeight:1.85,marginBottom:18}}>{p}</p>);
+        {paragraphs.filter(p=>p.trim().length>0).map((p,i)=>{
+          if(isHeading(p)) return(<h2 key={i} style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginTop:48,marginBottom:16,lineHeight:1.3,color:C.w,borderLeft:`3px solid ${cc}`,paddingLeft:16}}>{p}</h2>);
+          return(<p key={i} style={{fontSize:16,color:C.w8,lineHeight:1.9,marginBottom:24}}>{p}</p>);
         })}
       </div>
 
