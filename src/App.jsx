@@ -67,6 +67,7 @@ const PAGE_SEO={
   horizon:{title:"AI Horizon Map 2026–2032 — What's Coming for FE and Business | PROVIO",description:"Four forces, eight time windows, six years mapped. Explore how technology, policy, the labour market, and expectations will reshape further education and the UK economy from 2026 to 2032."},
   insight:{title:"PROVIO Insight — Intelligence for the AI Transition | Evidence-Based Analysis",description:"Evidence-based analysis on how AI is reshaping education, business, and the labour market. Deep research on sector change, policy, skills, and the forces ahead."},
   article:{title:"PROVIO Insight — Article",description:"In-depth analysis from PROVIO Insight on the AI transition in education and business."},
+  whatwedo:{title:"What We Do — From Education to Employment | PROVIO",description:"PROVIO bridges the gap between education and employment through a structured 5-phase pathway. Young people gain real skills, businesses get AI-ready talent, and the local economy grows."},
   about:{title:"About PROVIO — Intelligence and Pathways for the AI Transition",description:"PROVIO was founded by a West Midlands hospitality operator. We bring together colleges, businesses, and young people to navigate the AI transition with evidence, practical tools, and a growing intelligence network."}
 };
 function useSEO(page){
@@ -251,67 +252,51 @@ const CONF_LABELS={high:"High Confidence",probable:"Probable Trajectory",scenari
 const TRACK_META={technology:{label:"Technology & AI Capability",icon:"⚡",accent:C.blue},policy:{label:"Policy & Regulation",icon:"📋",accent:C.orange},labour:{label:"Labour Market & Economy",icon:"💼",accent:C.amber},expectations:{label:"Student & Employer Expectations",icon:"🎯",accent:C.teal}};
 
 const ARTICLES=[
-  {title:"The Two Shocks",summary:"The rush to the trades feels like the right response to AI. It is — but only for now. The second shock — embodied robotics — is closer than most colleges are planning for.",category:"Education",read_time:"8 minutes",slug:"the-two-shocks",date:"2026-02-14",featured:true,body:`There is a narrative taking hold across Further Education that feels reassuring: AI is coming for the office jobs, so the future belongs to the trades. Plumbing, electrical, construction, healthcare — the physical, hands-on work that no chatbot can do. Enrol students in practical courses, invest in workshops, and the college is future-proofed.
+  {title:"The Two Shocks",summary:"There is a reassuring narrative in FE: AI is coming for the office jobs, so the future belongs to the trades. That narrative is not wrong. But it is incomplete. The second shock — embodied robotics — changes the question entirely.",category:"Education",read_time:"6 minutes",slug:"the-two-shocks",date:"2026-02-14",featured:true,body:`There is a reassuring narrative taking hold across Further Education: AI is coming for the office jobs, so the future belongs to the trades. Plumbing. Electrical. Construction. Retrofitting. Care. The physical, hands-on work that no chatbot can do. Expand workshop space, recruit more technical tutors, deepen employer links, and the college is future-proofed.
 
-This narrative is not wrong. But it is dangerously incomplete.
+That narrative is not wrong. But it is incomplete.
 
-What the FE sector is experiencing right now is the first of two shocks. Understanding the second — and preparing for it while responding to the first — is the strategic challenge that will define which colleges thrive over the next decade and which ones find themselves restructuring twice.
+What FE is living through now is the first of two shocks. The first is already visible: generative AI is reducing the cost of routine cognitive work and reshaping the value of office-based skills. The second is still emerging: advances in robotics and embodied AI will, over time, begin to change the value of some physical work too. The strategic challenge for colleges is not choosing between these shocks. It is responding to the first while preparing for the second.
 
-The First Shock: When Thinking Becomes Free
+The First Shock: When Thinking Becomes Cheap
 
-The first shock is already here. Generative AI and autonomous software agents have collapsed the cost of cognitive work. Tasks that once justified entire departments — drafting correspondence, processing applications, compiling reports, basic financial analysis, routine IT support — can now be performed by AI at near-zero marginal cost.
+The first shock is easier to see because it is already affecting labour-market expectations. The World Economic Forum's 2025 survey of large employers points to the sharpest declines in clerical and secretarial roles over the 2025–2030 period, while demand rises in skilled trades, care roles, and other occupations rooted in physical presence, human interaction, or complex real-world environments. In other words, the immediate response many colleges are making is rational: when routine desk work becomes easier to automate, practical and place-based capability becomes more valuable.
 
-For FE colleges, the implications are immediate and visible. Enrolment in business administration, routine IT, and office-based pathways is declining. Meanwhile, courses in plumbing, electrical installation, construction, retrofitting, and complex healthcare are seeing record demand. In a world where cognitive tasks are being automated, physical skills in unstructured environments represent the safest bet.
+That pattern is visible in England's FE data too, though less neatly than some of the rhetoric suggests. Official Department for Education statistics for 2024/25 show business, administration and law enrolments down 8.1%, while construction, planning and the built environment rose 5.4%. Construction is also the only subject area to have increased year-on-year for the last five years, rising from 39,950 enrolments in 2019/20 to 62,570 in 2024/25. But the picture is not simply "all practical courses up": health, public services and care enrolments actually fell 8.9% in the same period, even though it remains one of the largest subject areas overall.
 
-And in the short term, this is correct. There is a window, probably lasting until the late 2020s, where complex physical trades represent the most secure career paths available to FE graduates. Colleges expanding workshop capacity and building stronger links with construction, engineering, and healthcare employers are making the right moves for this phase.
+So the near-term conclusion is not that "the trades are safe" in some absolute sense. It is that, right now, complex physical work in messy environments is one of the strongest hedges against the first wave of AI-driven disruption. That is why construction capacity has become such a live policy issue. The UK government has committed major new funding to expand college training places and facilities in response to construction shortages, and sector bodies are openly saying some colleges have had to turn potential students away in high-demand areas.
 
-But it is only a phase.
+The Second Shock: When the Physical World Gets Smarter
 
-The Second Shock: When Machines Learn to Move
+But this is where the second shock matters.
 
-The reason the trades feel safe right now comes down to something computer scientists call Moravec's Paradox. The things humans find intellectually difficult — legal reasoning, writing coherent prose — are computationally easy for AI. The things humans do without thinking — walking across uneven ground, gripping a wet pipe at an awkward angle — are computationally enormous.
+The reason physical trades feel protected today is that the real world is hard. Language, documents, spreadsheets, and repetitive digital workflows were easier for AI to absorb than movement in unstructured environments. Writing an acceptable report turned out to be easier for machines than climbing a ladder, adjusting grip on an awkward tool, or navigating a cramped site with incomplete information. That asymmetry has defined the current moment.
 
-This paradox explains the timeline. AI conquered the cognitive tasks first. Physical dexterity in unstructured environments has been exponentially harder for machines.
+Yet it would be a mistake to assume that asymmetry is permanent. Robotics has been moving more slowly than generative AI, but it has not been standing still. Vision-language-action systems, improved robot reasoning, and better multimodal world models are now pushing machines beyond fixed industrial routines toward more adaptive behaviour. Google's 2025 robotics releases were an important signal of that direction of travel, and the wider research field is advancing quickly. At the same time, serious observers are warning against hype: Stanford HAI has stressed the need for a more grounded view of robotics, and the OECD's 2025 capability indicators place current robotic systems at a level where they still perform best in structured settings and are not yet reliably capable of the multi-step, collaborative, unstructured work that would define a true breakthrough in general physical autonomy.
 
-Until recently.
+That means the second shock should not be described as "robots are about to replace the trades." That is too crude, and too early. The more accurate claim is that FE should now plan for a world in which physical occupations are gradually reconfigured by machines, just as cognitive occupations are being reconfigured by software. The first stage is not replacement. It is redistribution: more automation of routine sub-tasks, more machine assistance, more workflow redesign, and a growing premium on the humans who can supervise, adapt, troubleshoot, assure safety, and handle exceptions. McKinsey's recent work makes exactly this point, arguing that work is increasingly being reorganised around partnerships between people, agents, and robots rather than simple one-for-one substitution.
 
-Breakthroughs in Vision-Language-Action models have fundamentally changed the trajectory of robotics. Instead of being painstakingly programmed for specific movements in controlled environments, machines are now learning to move in the real world the same way AI learned to write: by absorbing vast amounts of data and learning through imitation.
+What Survives Both Shocks
 
-General-purpose robotics — machines capable of operating in messy, unpredictable physical environments — are moving from laboratories toward commercial deployment faster than most forecasts predicted. This is the second shock. And it is closer than the FE sector is currently planning for.
+For FE leaders, that changes the question. The question is no longer, "Which courses are safe from AI?" It is, "Which capabilities remain valuable across both shocks?"
 
-What the Second Shock Means for FE
+The first is cyber-physical orchestration: the ability to understand a real-world problem, break it into parts, decide what can be delegated to software or machines, deploy the right tools, and intervene when those tools fail. This is not just digital literacy, and it is not just trade skill. It is a hybrid capability that combines practical judgment, spatial reasoning, systems thinking, safety awareness, and technological fluency. That capability becomes more valuable, not less, as AI and robotics improve.
 
-The near term (2026–2029): The physical trades remain the strongest career pathway. This is the window to expand provision and build employer partnerships. But this is also the window to begin preparing for what comes next.
+The second is unstructured problem-solving. Old buildings, unpredictable sites, emergency repairs, retrofit work, live operational environments, and human bodies do not behave like clean datasets. The more variable, chaotic, and context-heavy the environment, the more valuable human judgment remains. This is why the future is unlikely to be kind to the most routine forms of manual work, but may still strongly reward technicians and practitioners who can operate in ambiguity.
 
-The transition period (2029–2033): General-purpose robotics reach commercial viability. The unit cost of a capable robot drops below the annual cost of a human apprentice. These machines graduate from controlled environments into construction sites, logistics centres, and healthcare facilities. The nature of the trades shifts from pure manual execution to human-machine orchestration.
+The third is deeply human relational skill. In healthcare and care-adjacent settings, robots are already being used for logistics and routine support tasks, and there is evidence that this can free staff time for more patient-centred work rather than simply removing the need for people. But that does not mean care becomes less human. If anything, it means the human core of care becomes more visible: reassurance, trust, motivation, emotional attunement, and presence. Colleges that treat empathy as a soft extra will miss the point. In an AI-shaped economy, some of the most defensible skills will be the ones that are technically hard to automate and socially hard to outsource.
 
-The FE graduate of 2032 is not someone who carries bricks or pulls cable. They are someone who surveys a site, identifies problems that AI cannot solve autonomously, deploys collaborative robots for executable tasks, and audits the result for safety and compliance. They are an orchestrator, not just an executor.
+The Premium on the Human-Made
 
-The longer term (2033+): Robots excel where environments are new and standardised. Humans remain essential where environments are old, chaotic, and unique — retrofitting a 300-year-old building, responding to emergencies, providing care that requires reading emotional states no machine can replicate.
+There is also a longer-run opportunity that FE should not ignore. As machine-made quality becomes cheaper and more common, genuinely human-made work may become more valuable at the premium end of the market. Bespoke craft, fine food, specialist making, restoration, and creative technical trades could all benefit from a world in which standardised perfection is abundant. Colleges should not bet the institution on that outcome, but neither should they overlook it.
 
-Three Capabilities That Survive Both Shocks
+The Strategic Conclusion
 
-Cyber-physical orchestration: The ability to understand a complex real-world problem, break it down into components that can be delegated to AI systems and robotic tools, deploy those tools effectively, and intervene when they fail. This is not coding or traditional project management. It is a new category of competence combining spatial awareness, systems thinking, and practical judgement.
+So the strategic conclusion is not that FE should retreat from the trades. Quite the opposite. Colleges are right to expand construction and technical capacity now. They are right to build stronger relationships with employers in the physical economy. They are right to treat practical learning as central, not secondary.
 
-Unstructured problem-solving: The ability to operate effectively in environments that are messy, unpredictable, and historically complex — where no two situations are identical. This is the core of what makes the most demanding trades valuable today, and it will remain valuable precisely because it is the hardest capability for machines to replicate.
+But they should not make the mistake universities made with cognitive knowledge: assuming today's scarce capability will remain scarce forever.
 
-Hyper-human empathy: The ability to provide care, support, and companionship that requires genuine emotional intelligence. As robotics handles more physical logistics of healthcare, the human role becomes more focused on psychological and emotional dimensions. Empathy and end-of-life companionship become high-status vocations because people will fundamentally reject machine substitution in matters that touch the soul.
-
-The Artisan Premium
-
-There is a fourth dynamic worth attention. When machines can manufacture anything to a high standard at low cost, perfection becomes cheap. And when perfection is cheap, imperfection — the evidence of a human hand — becomes a luxury.
-
-This is already visible in food, furniture, and fashion, where handmade products command significant premiums. As AI and robotics make production cheaper across every sector, this premium will extend further. FE colleges are well-placed to serve this market — bespoke carpentry, fine culinary arts, handmade textiles — but only if they position these programmes as premium creative pathways rather than basic vocational training.
-
-The Opportunity
-
-The narrative that intelligence will have no cost and robots will handle physical work is not a threat to Further Education. It is the strongest argument for FE's relevance that has ever existed.
-
-Universities hold a monopoly on credentialing cognitive knowledge — and that monopoly is being undermined by AI more profoundly than most have admitted. But FE colleges are fundamentally rooted in the physical world, in local communities, in practical reality, and in the kind of hands-on, human-centred learning that no platform can replicate.
-
-If FE can navigate the transition from teaching manual execution today, to teaching human-machine orchestration tomorrow, and to teaching deep human capability for the longer term, the sector will emerge not as the second choice to a university degree, but as the most vital educational institution in the country.
-
-The two shocks are coming. The colleges that see both of them clearly — and prepare for both, not just the first — are the ones that will lead.`},
+The strongest colleges over the next decade will be the ones that do three things at once: meet the immediate demand for practical skills, redesign programmes around human-machine collaboration, and elevate the durable human capabilities that survive both shocks. If they do that, FE will not be the educational sector left behind by AI. It may become the sector most aligned with what the economy actually needs next.`},
   {title:"AI in FE — Why Some Colleges Are Racing Ahead While Others Stall",summary:"A divide is opening in further education between colleges using AI with clear purpose and colleges treating it as a scattered tech experiment. The difference is rarely budget alone; it is leadership, governance and staff confidence.",category:"Education",read_time:"6 minutes",slug:"ai-in-fe-why-some-colleges-are-racing-ahead-while-others-stall",date:"2026-02-18",featured:false,body:`Two colleges can have roughly the same funding pressures, the same policy environment and access to the same AI tools, yet end up in very different places. One has a clear AI policy, small pilots tied to curriculum goals, staff development underway and governors asking the right questions. The other has a few isolated experiments, nervous staff, unclear rules and growing concern that AI is creating more noise than value. That is the real story of AI in FE colleges in 2026: a widening gap between strategic adopters and stalled adopters. And the difference is usually not budget. It is leadership clarity. (Gatsby)
 FE Week has put the point bluntly: some colleges are moving quickly, while others are struggling to do much at all, and that gap matters because learners are entering a labour market where AI is already reshaping tasks, roles and expectations. The World Economic Forum says around 40% of employers expect to reduce workforce numbers where AI can automate tasks, even while many plan to hire more people with AI-related skills. Colleges do not need to become technology companies, but they do need a credible plan for how AI affects teaching, assessment, operations and employability. (FE Week)
 The fast movers
@@ -767,20 +752,252 @@ function Nav({active,onNav}){
   const[resOpen,setResOpen]=useState(false);
   const[mobileResOpen,setMobileResOpen]=useState(false);
   const resTimeout=useRef(null);
-  const navItems=[{id:"home",l:"Home"},{id:"education",l:"Education"},{id:"business",l:"Business"}];
+  const navItems=[{id:"home",l:"Home"},{id:"whatwedo",l:"What We Do"},{id:"education",l:"Education"},{id:"business",l:"Business"}];
   const resItems=[{id:"insight",l:"Insight"},{id:"horizon",l:"Horizon Map"}];
   const afterItems=[{id:"about",l:"About"},{id:"contact",l:"Contact"}];
   const isResActive=active==="insight"||active==="horizon"||active==="article";
   const navBtnStyle=(isActive)=>({padding:"6px 16px",borderRadius:4,fontSize:13,fontWeight:isActive?600:400,cursor:"pointer",fontFamily:"Open Sans",transition:"color .18s",background:"transparent",border:"none",color:isActive?C.w:C.w4,borderBottom:isActive?"2px solid "+C.teal:"2px solid transparent",position:"relative",top:1});
   return(<><nav className="main-nav" style={{height:120,borderBottom:`1px solid ${C.w05}`,position:"sticky",top:0,zIndex:100,background:"rgba(11,25,44,0.94)",backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)"}}><div className="responsive-container" style={{height:"100%",display:"flex",justifyContent:"space-between",alignItems:"center"}}><div onClick={()=>onNav("home")} style={{display:"flex",alignItems:"center",cursor:"pointer"}}><img src={LOGO_SRC} alt="PROVIO" style={{height:100,width:"auto",display:"block",objectFit:"contain"}}/></div><div className="nav-desktop">{navItems.map(i=>(<button key={i.id} onClick={()=>onNav(i.id)} style={navBtnStyle(active===i.id)}>{i.l}</button>))}<div style={{position:"relative"}} onMouseEnter={()=>{clearTimeout(resTimeout.current);setResOpen(true);}} onMouseLeave={()=>{resTimeout.current=setTimeout(()=>setResOpen(false),200);}}><button style={{...navBtnStyle(isResActive),display:"flex",alignItems:"center",gap:4}} onClick={()=>setResOpen(!resOpen)}>Resources <span style={{fontSize:8,transition:"transform .2s",display:"inline-block",transform:resOpen?"rotate(180deg)":"rotate(0)"}}>▼</span></button>{resOpen&&<div style={{position:"absolute",top:"calc(100% + 4px)",left:0,minWidth:180,background:C.nm,border:`1px solid ${C.w1}`,borderRadius:8,overflow:"hidden",boxShadow:"0 8px 32px rgba(0,0,0,0.3)",zIndex:200}}>{resItems.map(i=>(<button key={i.id} onClick={()=>{onNav(i.id);setResOpen(false);}} style={{display:"block",width:"100%",padding:"12px 18px",background:"transparent",border:"none",color:active===i.id?C.teal:C.w6,fontSize:13,fontFamily:"Open Sans",cursor:"pointer",textAlign:"left",transition:"all .15s"}} onMouseOver={e=>{e.currentTarget.style.background=C.nl;e.currentTarget.style.color=C.teal;}} onMouseOut={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=active===i.id?C.teal:C.w6;}}>{i.l}</button>))}</div>}</div>{afterItems.map(i=>(<button key={i.id} onClick={()=>onNav(i.id)} style={navBtnStyle(active===i.id)}>{i.l}</button>))}</div><button className="nav-mobile-btn" onClick={()=>setMenuOpen(true)} aria-label="Open menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button></div></nav>{menuOpen&&<div className="mobile-menu"><button className="mobile-menu-close" onClick={()=>setMenuOpen(false)} aria-label="Close menu">✕</button>{navItems.map(i=>(<button key={i.id} onClick={()=>{onNav(i.id);setMenuOpen(false);}} style={{color:active===i.id?C.teal:undefined}}>{i.l}</button>))}<button onClick={()=>setMobileResOpen(!mobileResOpen)} style={{color:isResActive?C.teal:undefined}}>Resources {mobileResOpen?"▲":"▼"}</button>{mobileResOpen&&resItems.map(i=>(<button key={i.id} onClick={()=>{onNav(i.id);setMenuOpen(false);setMobileResOpen(false);}} style={{color:active===i.id?C.teal:undefined,fontSize:16,paddingLeft:40}}>{i.l}</button>))}{afterItems.map(i=>(<button key={i.id} onClick={()=>{onNav(i.id);setMenuOpen(false);}} style={{color:active===i.id?C.teal:undefined}}>{i.l}</button>))}</div>}</>);
 }
-function Footer({onNav}){return(<footer style={{borderTop:`1px solid ${C.w05}`,padding:"48px 0",background:C.navy}}><div className="responsive-container footer-inner"><div style={{cursor:"pointer"}} onClick={()=>onNav("home")}><img src={LOGO_SRC} alt="PROVIO" style={{height:70,width:"auto",display:"block",objectFit:"contain"}}/></div><div style={{display:"flex",gap:28,alignItems:"center",flexWrap:"wrap",justifyContent:"center"}}>{[{id:"education",l:"Education"},{id:"business",l:"Business"},{id:"insight",l:"Insight"},{id:"horizon",l:"Horizon Map"},{id:"about",l:"About"},{id:"contact",l:"Contact"}].map(i=>(<button key={i.id} onClick={()=>onNav(i.id)} style={{background:"none",border:"none",color:C.w4,fontSize:12,cursor:"pointer",fontFamily:"Open Sans",transition:"color .18s"}} onMouseOver={e=>e.currentTarget.style.color=C.w6} onMouseOut={e=>e.currentTarget.style.color=C.w4}>{i.l}</button>))}</div><div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:6,marginTop:8}}><a href="mailto:jon.swaby@uk.mcd.com" style={{fontSize:11,color:C.teal,textDecoration:"none"}}>jon.swaby@uk.mcd.com</a><span style={{fontSize:10,color:C.slate}}>Community Interest Company</span><span style={{fontSize:10,color:C.slate}}>© 2026 Provio</span></div></div></footer>);}
+function Footer({onNav}){return(<footer style={{borderTop:`1px solid ${C.w05}`,padding:"48px 0",background:C.navy}}><div className="responsive-container footer-inner"><div style={{cursor:"pointer"}} onClick={()=>onNav("home")}><img src={LOGO_SRC} alt="PROVIO" style={{height:70,width:"auto",display:"block",objectFit:"contain"}}/></div><div style={{display:"flex",gap:28,alignItems:"center",flexWrap:"wrap",justifyContent:"center"}}>{[{id:"whatwedo",l:"What We Do"},{id:"education",l:"Education"},{id:"business",l:"Business"},{id:"insight",l:"Insight"},{id:"horizon",l:"Horizon Map"},{id:"about",l:"About"},{id:"contact",l:"Contact"}].map(i=>(<button key={i.id} onClick={()=>onNav(i.id)} style={{background:"none",border:"none",color:C.w4,fontSize:12,cursor:"pointer",fontFamily:"Open Sans",transition:"color .18s"}} onMouseOver={e=>e.currentTarget.style.color=C.w6} onMouseOut={e=>e.currentTarget.style.color=C.w4}>{i.l}</button>))}</div><div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:6,marginTop:8}}><a href="mailto:jon.swaby@uk.mcd.com" style={{fontSize:11,color:C.teal,textDecoration:"none"}}>jon.swaby@uk.mcd.com</a><span style={{fontSize:10,color:C.slate}}>Strategic Education & Business Advisory</span><span style={{fontSize:10,color:C.slate}}>© 2026 Provio</span></div></div></footer>);}
 function SL({text,color=C.teal}){return(<div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}><div style={{width:24,height:1,background:color}}/><span style={{fontSize:10,fontWeight:600,letterSpacing:"0.25em",color,textTransform:"uppercase"}}>{text}</span></div>);}
 function Btn({children,onClick,primary,style:s}){return(<button onClick={onClick} style={{padding:"13px 28px",borderRadius:10,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",transition:"all .2s",background:primary?C.teal:"transparent",color:primary?C.navy:C.w6,border:primary?"none":`1px solid ${C.w1}`,boxShadow:primary?`0 0 30px ${C.teal}20`:"none",...s}} onMouseOver={e=>primary&&(e.target.style.transform="translateY(-2px)")} onMouseOut={e=>primary&&(e.target.style.transform="translateY(0)")}>{children}</button>);}
 
 // Survey question renderer
 function SurveyQ({q,qi,response,onAnswer,accent=C.teal,hasScore=true}){
   return(<div style={{marginBottom:24,paddingBottom:24,borderBottom:`1px solid ${C.w03}`}}><p style={{fontSize:13,color:C.w8,lineHeight:1.5,marginBottom:12}}><span style={{color:accent,fontWeight:600,marginRight:6}}>{qi+1}.</span>{q.text}</p><div style={{display:"flex",flexDirection:"column",gap:5}}>{q.options.map((opt,oi)=>{const label=hasScore?opt.label:opt;const val=hasScore?opt.score:oi;const sel=response===val;return(<button key={oi} onClick={()=>onAnswer(val)} style={{padding:"11px 14px",borderRadius:8,textAlign:"left",cursor:"pointer",fontSize:12,lineHeight:1.4,transition:"all .2s",fontFamily:"Open Sans",background:sel?`${accent}10`:C.w03,border:`1px solid ${sel?accent+"40":C.w05}`,color:sel?accent:C.w6,transform:sel?"translateX(3px)":"translateX(0)"}}><span style={{display:"inline-flex",width:18,height:18,borderRadius:"50%",alignItems:"center",justifyContent:"center",marginRight:8,fontSize:9,fontWeight:600,background:sel?accent:C.w05,color:sel?C.navy:C.w4}}>{String.fromCharCode(97+oi)}</span>{label}</button>);})}</div></div>);
+}
+
+
+// ═══════════════════════════════════════════════════════════════════
+// PAGE: WHAT WE DO
+// ═══════════════════════════════════════════════════════════════════
+function WhatWeDo({onNav}){
+  useSEO("whatwedo");
+  const phases=[
+    {num:"01",name:"Bootcamp",duration:"4 weeks",icon:"◆",color:C.teal,
+     headline:"Foundation Training",
+     desc:"15 young people (18–24) are recruited per cohort and trained in AI Audit Methodology, Process Mapping, and Business Prompting. Delivered in partnership with a leading West Midlands FE college, the programme builds structured analytical skills and professional confidence from day one.",
+     detail:"Participants learn to conduct structured AI audits using a methodology co-developed with a leading global consultancy. They master process mapping, AI tool evaluation, and professional report writing."},
+    {num:"02",name:"The AI Audit",duration:"2 weeks",icon:"■",color:"#3B82F6",
+     headline:"Real-World Application",
+     desc:"Each trainee is matched with a local SME and conducts a professional AI audit. Using the tools and methodology from the Bootcamp, they map workflows, identify automation opportunities, and produce a Transformation Report.",
+     detail:"The audit itself is the sales process. The SME receives a professional report quantifying where AI could save time and money — and the young person who delivered it is available to help implement it."},
+    {num:"03",name:"Build & Embed",duration:"4 weeks",icon:"▲",color:C.purple,
+     headline:"Deploy Quick Wins",
+     desc:"The trainee works alongside the business to deploy the quick-win automations identified in the audit. This phase is the real-world interview — the SME sees the value, the young person proves their capability.",
+     detail:"Typical quick wins include automated quoting, AI-assisted customer communication, and intelligent scheduling. Each deployment creates measurable time savings the business can see immediately."},
+    {num:"04",name:"Jobs Guarantee",duration:"6 months",icon:"●",color:C.orange,
+     headline:"Funded Employment",
+     desc:"The SME formally hires the young person. For the first six months, the government fully funds the salary. Zero cost to the business — the role has already proved its value through the audit and build phases.",
+     detail:"This removes the hiring risk entirely. The business has already seen what the young person can do. The salary is funded. The only question is whether the relationship works — and by this point, it usually does."},
+    {num:"05",name:"Permanent Role",duration:"Ongoing",icon:"◈",color:C.green,
+     headline:"Self-Sustaining Career",
+     desc:"From month seven, the role is self-funded. The business case has been proven — the productivity gains from AI adoption more than cover the salary. A permanent, skilled role has been created where none existed before.",
+     detail:"The young person has a career. The business has an AI-capable employee. The college has a graduate in work. The local economy has grown. Everyone wins."}
+  ];
+
+  const stats=[
+    {num:"957,000",label:"Young people not in education, employment or training (NEET) across the UK",color:C.teal},
+    {num:"90%+",label:"of SMEs have not meaningfully adopted AI",color:C.orange},
+    {num:"9.2%",label:"Youth unemployment in the West Midlands",color:C.purple},
+    {num:"15",label:"Young people trained per cohort",color:"#3B82F6"}
+  ];
+
+  return(<div>
+    {/* Hero Section */}
+    <section style={{position:"relative",minHeight:"70vh",display:"flex",alignItems:"center",overflow:"hidden"}}>
+      <div style={{position:"absolute",inset:0,background:`linear-gradient(135deg, ${C.navy} 0%, ${C.nm} 50%, ${C.navy} 100%)`}} />
+      <div style={{position:"absolute",right:0,top:0,bottom:0,width:"50%",overflow:"hidden",opacity:0.3}}>
+        <img src={IMG_WWD_HERO} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}} />
+        <div style={{position:"absolute",inset:0,background:`linear-gradient(to right, ${C.navy}, transparent 30%, transparent 70%, ${C.navy})`}} />
+      </div>
+      <div className="responsive-container" style={{position:"relative",zIndex:2,padding:"100px 80px 80px"}}>
+        <SL text="What We Do" />
+        <h1 className="hero-heading" style={{fontFamily:"Montserrat",fontSize:"clamp(36px, 5vw, 56px)",fontWeight:800,lineHeight:1.08,marginBottom:24,maxWidth:700}}>
+          From Education<br/>to <span style={{color:C.teal}}>Employment</span>
+        </h1>
+        <p style={{fontSize:18,color:C.w6,lineHeight:1.7,maxWidth:620,marginBottom:32}}>
+          A structured pathway that creates permanent, skilled roles — and builds the only regional intelligence network mapping how AI actually lands in businesses.
+        </p>
+        <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+          <Btn primary onClick={()=>{const el=document.getElementById('wwd-model');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}}>Discover the Model</Btn>
+        </div>
+      </div>
+    </section>
+
+    {/* The Dual Crisis */}
+    <section id="wwd-model" style={{background:C.nm,borderTop:`1px solid ${C.w05}`,scrollMarginTop:80}}>
+      <div className="responsive-section responsive-container">
+        <SL text="The Challenge" />
+        <h2 style={{fontFamily:"Montserrat",fontSize:32,fontWeight:700,marginBottom:16}}>Two crises. <span style={{color:C.w4}}>One solution.</span></h2>
+        <p style={{fontSize:14,color:C.w6,lineHeight:1.8,maxWidth:700,marginBottom:40}}>
+          Across the UK, two problems are accelerating in parallel. Young people cannot get the experience employers demand. And local businesses cannot find the affordable, AI-capable talent they need to adapt. These are not separate problems — they are two sides of the same coin.
+        </p>
+        <div className="responsive-grid-2-48">
+          <div style={{padding:32,borderRadius:14,background:C.nc,border:`1px solid ${C.w05}`,borderTop:`3px solid ${C.purple}`}}>
+            <div style={{fontSize:10,color:C.purple,letterSpacing:"0.2em",fontWeight:600,textTransform:"uppercase",marginBottom:12}}>The Youth Crisis</div>
+            <h3 style={{fontFamily:"Montserrat",fontSize:20,fontWeight:700,marginBottom:12}}>957,000 young people are NEET</h3>
+            <p style={{fontSize:13,color:C.w6,lineHeight:1.75}}>
+              They need jobs to prove their skills — but cannot get jobs without experience. Traditional routes are not working. Graduates are entering a market where AI literacy is now a hiring filter, and most courses have not caught up.
+            </p>
+          </div>
+          <div style={{padding:32,borderRadius:14,background:C.nc,border:`1px solid ${C.w05}`,borderTop:`3px solid ${C.orange}`}}>
+            <div style={{fontSize:10,color:C.orange,letterSpacing:"0.2em",fontWeight:600,textTransform:"uppercase",marginBottom:12}}>The Business Crisis</div>
+            <h3 style={{fontFamily:"Montserrat",fontSize:20,fontWeight:700,marginBottom:12}}>90%+ of SMEs have not adopted AI</h3>
+            <p style={{fontSize:13,color:C.w6,lineHeight:1.75}}>
+              They know AI matters. But they will not hire until they grow — and they cannot grow without AI adoption. They lack the time, the skills, and the clear evidence to act. The cost of inaction compounds every quarter.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* The Catch-22 */}
+    <section style={{borderTop:`1px solid ${C.w05}`}}>
+      <div className="responsive-section responsive-container" style={{textAlign:"center",maxWidth:800,margin:"0 auto"}}>
+        <SL text="The Catch-22" color={C.teal} />
+        <h2 style={{fontFamily:"Montserrat",fontSize:28,fontWeight:700,marginBottom:20}}>The problem <span style={{color:C.teal}}>reinforces itself</span></h2>
+        <div style={{padding:32,borderRadius:14,background:C.nm,border:`1px solid ${C.w1}`,marginBottom:24}}>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:16,flexWrap:"wrap"}}>
+            <div style={{padding:"14px 20px",borderRadius:10,background:C.nc,border:`1px solid ${C.w05}`,minWidth:200}}>
+              <div style={{fontSize:11,color:C.orange,fontWeight:600,marginBottom:4}}>SMEs</div>
+              <div style={{fontSize:12,color:C.w6,lineHeight:1.5}}>Need AI to grow</div>
+              <div style={{fontSize:12,color:C.w6,lineHeight:1.5}}>Will not hire until they grow</div>
+            </div>
+            <div style={{color:C.teal,display:'flex',alignItems:'center'}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 9h16m0 0l-4-4m4 4l-4 4"/><path d="M20 15H4m0 0l4-4m-4 4l4 4"/></svg></div>
+            <div style={{padding:"14px 20px",borderRadius:10,background:C.nc,border:`1px solid ${C.w05}`,minWidth:200}}>
+              <div style={{fontSize:11,color:C.purple,fontWeight:600,marginBottom:4}}>Young People</div>
+              <div style={{fontSize:12,color:C.w6,lineHeight:1.5}}>Need jobs to prove skills</div>
+              <div style={{fontSize:12,color:C.w6,lineHeight:1.5}}>Cannot get jobs without experience</div>
+            </div>
+          </div>
+        </div>
+        <p style={{fontSize:15,color:C.teal,fontWeight:600,fontFamily:"Montserrat"}}>PROVIO breaks this cycle.</p>
+        <p style={{fontSize:13,color:C.w6,lineHeight:1.8,marginTop:8}}>
+          By training young people to conduct AI audits for local businesses, we turn the problem into the solution. The audit itself is the sales process. The young person proves their value by delivering it. The business sees the evidence. The hire follows naturally.
+        </p>
+      </div>
+    </section>
+
+    {/* Stats Bar */}
+    <section style={{background:C.nm,borderTop:`1px solid ${C.w05}`,borderBottom:`1px solid ${C.w05}`}}>
+      <div className="responsive-container" style={{padding:"32px 80px"}}>
+        <div className="responsive-stats">
+          {stats.map((s,i)=>(<div key={i} style={{textAlign:"center"}}>
+            <div style={{fontFamily:"Montserrat",fontSize:28,fontWeight:800,color:s.color,marginBottom:4}}>{s.num}</div>
+            <div style={{fontSize:11,color:C.w4,lineHeight:1.4}}>{s.label}</div>
+          </div>))}
+        </div>
+      </div>
+    </section>
+
+    {/* The 5-Phase Pathway */}
+    <section style={{borderBottom:`1px solid ${C.w05}`}}>
+      <div className="responsive-section responsive-container">
+        <SL text="The Pathway" />
+        <h2 style={{fontFamily:"Montserrat",fontSize:32,fontWeight:700,marginBottom:8}}>Five phases. <span style={{color:C.w4}}>One outcome.</span></h2>
+        <p style={{fontSize:14,color:C.w6,lineHeight:1.8,maxWidth:600,marginBottom:48}}>
+          From classroom to career in a structured, evidence-based pathway. Each phase builds on the last. Every step creates value for the young person, the business, and the wider economy.
+        </p>
+
+        <div style={{position:"relative"}}>
+          {/* Vertical timeline line */}
+          <div style={{position:"absolute",left:24,top:0,bottom:0,width:2,background:`linear-gradient(to bottom, ${C.teal}, ${C.green})`,opacity:0.3}} className="timeline-line" />
+
+          {phases.map((p,i)=>(<div key={i} style={{display:"flex",gap:32,marginBottom:i<4?48:0,position:"relative"}}>
+            {/* Timeline dot */}
+            <div style={{flexShrink:0,width:50,display:"flex",flexDirection:"column",alignItems:"center",paddingTop:4}}>
+              <div style={{width:50,height:50,borderRadius:"50%",background:p.color+"15",border:`2px solid ${p.color}`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"Montserrat",fontSize:14,fontWeight:800,color:p.color,position:"relative",zIndex:2}}>{p.num}</div>
+            </div>
+            {/* Content */}
+            <div style={{flex:1,padding:28,borderRadius:14,background:C.nc,border:`1px solid ${C.w05}`,borderLeft:`3px solid ${p.color}`}}>
+              <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:8,flexWrap:"wrap"}}>
+                <h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700}}>{p.name}</h3>
+                <span style={{fontSize:10,color:p.color,fontWeight:600,padding:"3px 10px",borderRadius:20,background:p.color+"12",border:`1px solid ${p.color}30`}}>{p.duration}</span>
+              </div>
+              <div style={{fontSize:12,color:p.color,fontWeight:600,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8}}>{p.headline}</div>
+              <p style={{fontSize:13,color:C.w6,lineHeight:1.75,marginBottom:10}}>{p.desc}</p>
+              <p style={{fontSize:12,color:C.w4,lineHeight:1.7,fontStyle:"italic",borderTop:`1px solid ${C.w05}`,paddingTop:10}}>{p.detail}</p>
+            </div>
+          </div>))}
+        </div>
+      </div>
+    </section>
+
+    {/* Visual break - pathway image */}
+    <section>
+      <div className="responsive-container" style={{padding:"48px 80px"}}>
+        <div style={{position:"relative",borderRadius:16,overflow:"hidden"}}>
+          <img src={IMG_WWD_PATHWAY} alt="From education to employment" style={{width:"100%",maxHeight:360,objectFit:"cover",display:"block"}} />
+          <div style={{position:"absolute",bottom:0,left:0,right:0,height:"40%",background:`linear-gradient(to top, ${C.navy}, transparent)`,pointerEvents:"none"}} />
+        </div>
+      </div>
+    </section>
+
+    {/* The Flywheel */}
+    <section style={{background:C.nm,borderTop:`1px solid ${C.w05}`}}>
+      <div className="responsive-section responsive-container">
+        <SL text="The Model" />
+        <h2 style={{fontFamily:"Montserrat",fontSize:28,fontWeight:700,marginBottom:20}}>The flywheel that <span style={{color:C.teal}}>powers itself</span></h2>
+        <p style={{fontSize:14,color:C.w6,lineHeight:1.8,maxWidth:650,marginBottom:40}}>
+          PROVIO is not a one-off programme. It is a self-reinforcing system where each side — youth and business — makes the other stronger. Every audit generates intelligence. Every hire proves the model. Every success attracts the next participant.
+        </p>
+        <div className="responsive-grid-3">
+          {[
+            {icon:"◆",c:C.teal,t:"For Young People",items:["Structured training in AI audit methodology","Real-world experience with real businesses","A professional portfolio and credential","A clear path from training to permanent employment"]},
+            {icon:"■",c:C.orange,t:"For Businesses",items:["A free, professional AI audit of your operation","A detailed report quantifying where AI saves time and money","A trained associate to help implement the findings","Six months of fully-funded employment — zero risk"]},
+            {icon:"●",c:C.purple,t:"For the Economy",items:["Skilled roles created where none existed","AI adoption accelerated across the SME base","Youth unemployment reduced through structured pathways","Growing intelligence on how AI lands across sectors"]}
+          ].map((col,i)=>(<div key={i} style={{padding:28,borderRadius:14,background:C.nc,border:`1px solid ${C.w05}`}}>
+            <div style={{fontSize:18,color:col.c,marginBottom:8}}>{col.icon}</div>
+            <h3 style={{fontFamily:"Montserrat",fontSize:15,fontWeight:700,marginBottom:16,color:col.c}}>{col.t}</h3>
+            <div style={{display:"flex",flexDirection:"column",gap:10}}>
+              {col.items.map((item,j)=>(<div key={j} style={{display:"flex",gap:8,alignItems:"flex-start"}}>
+                <span style={{color:col.c,fontSize:8,marginTop:4,flexShrink:0}}>●</span>
+                <span style={{fontSize:12,color:C.w6,lineHeight:1.6}}>{item}</span>
+              </div>))}
+            </div>
+          </div>))}
+        </div>
+      </div>
+    </section>
+
+    {/* Delivery Partners */}
+    <section style={{borderTop:`1px solid ${C.w05}`}}>
+      <div className="responsive-section responsive-container">
+        <SL text="Delivery" />
+        <h2 style={{fontFamily:"Montserrat",fontSize:24,fontWeight:700,marginBottom:24}}>Built with <span style={{color:C.w4}}>the right partners</span></h2>
+        <div className="responsive-grid-2" style={{gap:14}}>
+          {[
+            {t:"Leading FE College Partner",d:"The Bootcamp and training phases are delivered in partnership with one of the largest FE colleges in the West Midlands — bringing deep expertise in skills development and employer engagement.",icon:"▲",c:C.teal},
+            {t:"Consultancy-Grade Methodology",d:"The AI audit framework is being co-branded with a leading global consultancy, ensuring the methodology meets the highest professional standards and carries real credibility with employers.",icon:"◆",c:"#3B82F6"},
+            {t:"West Midlands Focus",d:"Rooted in the West Midlands, working alongside local SMEs, FE colleges, and regional skills partnerships. The model is designed to scale nationally from a strong local foundation.",icon:"●",c:C.purple},
+            {t:"Government-Backed",d:"The Jobs Guarantee phase leverages government-funded employment schemes. Businesses hire at zero cost for six months while the role proves its value.",icon:"■",c:C.orange}
+          ].map((card,i)=>(<div key={i} style={{padding:22,borderRadius:12,background:C.nc,border:`1px solid ${C.w05}`,borderLeft:`3px solid ${card.c}`}}>
+            <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+              <span style={{color:card.c,fontSize:14}}>{card.icon}</span>
+              <h4 style={{fontFamily:"Montserrat",fontSize:13,fontWeight:600}}>{card.t}</h4>
+            </div>
+            <p style={{fontSize:12,color:C.w4,lineHeight:1.65}}>{card.d}</p>
+          </div>))}
+        </div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section style={{background:C.nm,borderTop:`1px solid ${C.w05}`}}>
+      <div className="responsive-section responsive-container" style={{textAlign:"center",maxWidth:600,margin:"0 auto"}}>
+        <h2 style={{fontFamily:"Montserrat",fontSize:28,fontWeight:700,marginBottom:16}}>Ready to be part of it?</h2>
+        <p style={{fontSize:14,color:C.w6,lineHeight:1.8,marginBottom:32}}>
+          Whether you are a college exploring AI readiness, a business curious about what AI could do, or a young person looking for a structured route into work — we would like to hear from you.
+        </p>
+        <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
+          <Btn primary onClick={()=>onNav("contact")}>Get in Touch</Btn>
+          <Btn onClick={()=>onNav("about")}>Learn More About PROVIO</Btn>
+        </div>
+      </div>
+    </section>
+  </div>);
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -819,7 +1036,7 @@ function Home({onNav}){
     </section>
     {/* Credibility Bar */}
     <section style={{background:C.nm,borderTop:`1px solid ${C.w05}`,borderBottom:`1px solid ${C.w05}`}}><div className="responsive-container" style={{padding:"18px 80px",display:"flex",alignItems:"center",justifyContent:"center",gap:0,flexWrap:"wrap"}}>
-      {[{t:"Community Interest Company",icon:"\u25C6"},{t:"450+ employees across the West Midlands",icon:"\u25CF"},{t:"Research grounded in Ofsted, Jisc, DfE & Skills England",icon:"\u25B2"},{t:"350-page practitioner workbook",icon:"\u25A0"}].map((s,i)=>(<div key={i} style={{display:"flex",alignItems:"center",gap:0}}>{i>0&&<div style={{width:1,height:20,background:C.w1,margin:"0 24px",flexShrink:0}} />}<span style={{fontSize:11,color:C.w4,fontFamily:"Montserrat",fontWeight:500,whiteSpace:"nowrap"}}><span style={{color:C.teal,marginRight:6,fontSize:9}}>{s.icon}</span>{s.t}</span></div>))}
+      {[{t:"Strategic Education & Business Advisory",icon:"◆"},{t:"450+ employees across the West Midlands",icon:"●"},{t:"Research grounded in Ofsted, Jisc, DfE & Skills England",icon:"▲"},{t:"350-page practitioner workbook",icon:"■"}].map((s,i)=>(<div key={i} style={{display:"flex",alignItems:"center",gap:0}}>{i>0&&<div style={{width:1,height:20,background:C.w1,margin:"0 24px",flexShrink:0}} />}<span style={{fontSize:11,color:C.w4,fontFamily:"Montserrat",fontWeight:500,whiteSpace:"nowrap"}}><span style={{color:C.teal,marginRight:6,fontSize:9}}>{s.icon}</span>{s.t}</span></div>))}
     </div></section>
     <section style={{borderTop:`1px solid ${C.w05}`,background:C.nm}}><div className="responsive-section responsive-container"><SL text="What we do"/><h2 style={{fontFamily:"Montserrat",fontSize:32,fontWeight:700,marginBottom:40}}>Three connected challenges. <span style={{color:C.w4}}>One conversation.</span></h2><div className="responsive-grid-3">{[{l:"For Colleges",icon:"◉",c:C.teal,t:"Education Intelligence",d:"A diagnostic giving senior leaders an evidence-based picture of AI readiness, mapped against six years of sector change.",cta:"Begin assessment",nav:"education"},{l:"For Businesses",icon:"◆",c:C.orange,t:"Business Intelligence",d:"A free initial assessment highlighting where AI could add value — and a pathway to a deeper audit at no cost.",cta:"Take the survey",nav:"business"},{l:"For Young People",icon:"◈",c:C.purple,t:"AI Futures Pathway",d:"An intensive programme training 18-24 year olds to conduct professional AI audits — building careers by proving the business case.",cta:"Coming soon",nav:null}].map((p,i)=>(<div key={i} style={{padding:32,borderRadius:12,background:C.nc,border:`1px solid ${C.w05}`,display:"flex",flexDirection:"column"}}><div style={{fontSize:10,color:p.c,letterSpacing:"0.2em",fontWeight:600,textTransform:"uppercase",marginBottom:6}}>{p.l}</div><div style={{fontSize:22,color:p.c,marginBottom:12}}>{p.icon}</div><h3 style={{fontFamily:"Montserrat",fontSize:17,fontWeight:600,marginBottom:10}}>{p.t}</h3><p style={{fontSize:13,color:C.w4,lineHeight:1.7,flex:1}}>{p.d}</p>{p.nav?<button onClick={()=>onNav(p.nav)} style={{marginTop:16,padding:"8px 0",background:"none",border:"none",color:p.c,fontSize:13,fontWeight:600,cursor:"pointer",textAlign:"left"}}>{p.cta} →</button>:<span style={{marginTop:16,fontSize:12,color:C.w2}}>{p.cta}</span>}</div>))}</div></div></section>
     <section style={{borderTop:`1px solid ${C.w05}`}}><div className="responsive-section responsive-container"><SL text="Latest Insight"/><h2 style={{fontFamily:"Montserrat",fontSize:28,fontWeight:700,marginBottom:12}}>Evidence-based analysis for the <span style={{color:C.teal}}>AI transition</span></h2><p style={{fontSize:14,color:C.w4,maxWidth:520,lineHeight:1.7,marginBottom:36}}>Deep research on the forces reshaping education, business, and the labour market.</p><div className="responsive-grid-3">{ARTICLES.slice(0,3).map((a,i)=>{const catColors={Education:C.blue,Business:C.orange,"Sector Spotlight":C.purple,"Regional / Policy":C.green};const cc=catColors[a.category]||C.teal;return(<div key={i} onClick={()=>onNav("article/"+a.slug)} style={{padding:0,borderRadius:12,background:C.nc,border:`1px solid ${C.w05}`,cursor:"pointer",transition:"all .25s",overflow:"hidden",display:"flex",flexDirection:"column"}} onMouseOver={e=>{e.currentTarget.style.borderColor=C.teal+"40";e.currentTarget.style.transform="translateY(-3px)";}} onMouseOut={e=>{e.currentTarget.style.borderColor=C.w05;e.currentTarget.style.transform="translateY(0)";}}>{ARTICLE_IMAGES[a.slug]&&<div style={{height:160,overflow:"hidden"}}><img src={ARTICLE_IMAGES[a.slug]} alt="" style={{width:"100%",height:"100%",objectFit:"cover",display:"block",transition:"transform .4s"}}/></div>}<div style={{padding:"18px 22px 0 22px",flex:1,display:"flex",flexDirection:"column"}}><div style={{marginBottom:10}}><span style={{display:"inline-block",padding:"3px 10px",borderRadius:20,fontSize:10,fontWeight:600,letterSpacing:"0.04em",background:cc+"18",color:cc}}>{a.category}</span></div><h3 style={{fontFamily:"Montserrat",fontSize:16,fontWeight:700,lineHeight:1.3,marginBottom:8}}>{a.title}</h3><p style={{fontSize:12,color:C.w4,lineHeight:1.6,marginBottom:14,flex:1,display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{a.summary}</p></div><div style={{padding:"14px 22px",borderTop:`1px solid ${C.w05}`,display:"flex",justifyContent:"space-between",alignItems:"center"}}><span style={{fontSize:10,color:C.slate}}>{a.date&&fmtDate(a.date)} · {a.read_time}</span><span style={{fontSize:12,color:C.teal,fontWeight:600}}>Read →</span></div></div>);})}</div><div style={{marginTop:32,textAlign:"center"}}><button onClick={()=>onNav("insight")} style={{padding:"10px 24px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"Montserrat",background:"transparent",border:`1px solid ${C.w1}`,color:C.w6,transition:"all .2s"}} onMouseOver={e=>{e.currentTarget.style.borderColor=C.teal;e.currentTarget.style.color=C.teal;}} onMouseOut={e=>{e.currentTarget.style.borderColor=C.w1;e.currentTarget.style.color=C.w6;}}>View all articles →</button></div></div></section>
@@ -950,7 +1167,7 @@ function About({onNav}){
         </div>
         <div>
           <p style={{fontSize:13,color:C.w6,lineHeight:1.8,marginBottom:14}}>Jon Swaby is the Managing Director of Salus Restaurants Limited, a McDonald’s franchisee operating across the West Midlands with over 450 employees. Before hospitality, his career spanned marketing and strategy roles across tech and financial services — including leading global marketing for Allianz Trade from Paris, with five years based in France and Germany.</p>
-          <p style={{fontSize:13,color:C.w6,lineHeight:1.8,marginBottom:14}}>Running a large-scale, people-intensive business brought one thing into sharp focus: the gap between what AI can do and what most local businesses and colleges are ready for is widening — and the people most affected have the least support. It was not the first time he had seen that gap. He previously founded Network Five, a mentoring programme working with job centres in Dudley and Stourbridge to support people back into employment.</p>
+          <p style={{fontSize:13,color:C.w6,lineHeight:1.8,marginBottom:14}}>Running a large-scale, people-intensive business brought one thing into sharp focus: the gap between what AI can do and what most local businesses and colleges are ready for is widening — and the people most affected have the least support. It was not the first time he had seen that gap. He previously founded Network Five, a mentoring programme working with local job centres to support people back into employment.</p>
           <p style={{fontSize:13,color:C.w6,lineHeight:1.8}}>PROVIO grew from a conviction that this gap does not need to exist. The businesses are there. The young people are there. The colleges are there. What was missing was a practical way to connect them — through intelligence, structured assessment, and a model that creates real outcomes.</p>
         </div>
       </div>
@@ -962,12 +1179,12 @@ function About({onNav}){
       <h2 style={{fontFamily:"Montserrat",fontSize:22,fontWeight:700,marginBottom:24}}>Built on Evidence</h2>
       <div className="responsive-grid-2" style={{gap:14}}>
         {[
-          {t:"Community Interest Company",d:"PROVIO is a registered CIC — a social enterprise model ensuring all activity serves community benefit.",icon:"\u25C6"},
-          {t:"Grounded in Sector Research",d:"Our diagnostics draw on current evidence from Ofsted, Jisc, the Gatsby Foundation, Skills England, and the Department for Education.",icon:"\u25B2"},
-          {t:"Professional Methodology",d:"Our AI audit framework is supported by a 350-page practitioner workbook covering an 8-step methodology.",icon:"\u25A0"},
-          {t:"Operational Experience",d:"Founded by an operator managing 450+ employees across multiple sites — we understand the practical realities businesses face.",icon:"\u25CF"},
-          {t:"West Midlands Roots",d:"Based in the heart of the West Midlands, working alongside FE colleges, SMEs, and regional skills partnerships.",icon:"\u25C8"},
-          {t:"5-Phase AI Futures Pathway",d:"Our youth programme follows a structured 5-phase pathway from training through to professional audit delivery.",icon:"\u25CE"}
+          {t:"Strategic Advisory",d:"PROVIO provides evidence-based strategic advisory for education providers and businesses navigating the AI transition.",icon:"◆"},
+          {t:"Grounded in Sector Research",d:"Our diagnostics draw on current evidence from Ofsted, Jisc, the Gatsby Foundation, Skills England, and the Department for Education.",icon:"▲"},
+          {t:"Professional Methodology",d:"Our AI audit framework is supported by a 350-page practitioner workbook covering an 8-step methodology.",icon:"■"},
+          {t:"Operational Experience",d:"Founded by an operator managing 450+ employees across multiple sites — we understand the practical realities businesses face.",icon:"●"},
+          {t:"West Midlands Roots",d:"Based in the heart of the West Midlands, working alongside FE colleges, SMEs, and regional skills partnerships.",icon:"◈"},
+          {t:"5-Phase AI Futures Pathway",d:"Our youth programme follows a structured 5-phase pathway from training through to professional audit delivery.",icon:"◎"}
         ].map((card,i)=>(<div key={i} style={{padding:22,borderRadius:12,background:C.nc,border:`1px solid ${C.w05}`,borderLeft:`3px solid ${C.teal}`}}><div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}><span style={{color:C.teal,fontSize:14}}>{card.icon}</span><h4 style={{fontFamily:"Montserrat",fontSize:13,fontWeight:600}}>{card.t}</h4></div><p style={{fontSize:12,color:C.w4,lineHeight:1.65}}>{card.d}</p></div>))}
       </div>
     </div>
@@ -1008,6 +1225,9 @@ function About({onNav}){
 const CAT_COLORS={Education:"#3B82F6",Business:"#F97316","Sector Spotlight":"#8B5CF6","Regional / Policy":"#10B981"};
 const INSIGHT_CATS=["All","Education","Business","Sector Spotlight","Regional / Policy"];
 const ARTICLE_IMAGES={"the-two-shocks":"./the-two-shocks.jpg","ai-in-fe-why-some-colleges-are-racing-ahead-while-others-stall":"./ai-in-fe.jpg","how-smes-can-escape-the-ai-fumble-period":"./sme-fumble.jpg","robotics-in-construction-why-the-west-midlands-needs-a-skills-pipeline-now":"./robotics-construction.jpg","the-west-midlands-skills-landscape-where-the-opportunities-are-in-2026":"./wm-skills.jpg","what-the-growth-and-skills-levy-means-for-smes":"./growth-levy.jpg","why-every-college-needs-an-ai-strategy-before-ofsted-expects-one":"./ofsted-ai.jpg","youth-unemployment-at-161-what-the-data-really-tells-us":"./youth-unemployment.jpg","what-employers-really-want-in-2026-ai-literacy-is-now-a-hiring-filter":"./employers-want.jpg","the-ai-skills-boost-is-free-training-enough":"./ai-skills-boost.jpg","the-dfes-quiet-revolution-ai-product-safety-standards-are-now-mandatory":"./dfe-safety.jpg"};
+
+const IMG_WWD_HERO = "./what-we-do-hero.jpg";
+const IMG_WWD_PATHWAY = "./what-we-do-pathway.jpg";
 const fmtDate=(d)=>{if(!d)return"";const dt=new Date(d+"T00:00:00");return dt.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});};
 
 function InsightHub({onNav}){
@@ -1134,7 +1354,7 @@ export default function Provio(){
   const[page,setPage]=useState(()=>{
     const hash=window.location.hash.replace('#','');
     if(hash.startsWith('article/'))return 'article';
-    const valid=['home','education','edu-survey','business','horizon','insight','article','about'];
+    const valid=['home','whatwedo','education','edu-survey','business','horizon','insight','article','about'];
     return valid.includes(hash)?hash:'home';
   });
   const[articleSlug,setArticleSlug]=useState(()=>{
@@ -1149,6 +1369,7 @@ export default function Provio(){
     {page!=="edu-survey"&&<Nav active={page} onNav={nav}/>}
     <main role="main">
     {page==="home"&&<Home onNav={nav}/>}
+    {page==="whatwedo"&&<WhatWeDo onNav={nav}/>}
     {page==="education"&&<Education onNav={nav} onStartSurvey={()=>nav("edu-survey")}/>}
     {page==="edu-survey"&&<EduSurvey onBack={()=>nav("education")}/>}
     {page==="business"&&<Business onNav={nav}/>}
