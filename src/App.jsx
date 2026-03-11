@@ -1,4 +1,23 @@
 import { useState, useMemo, useRef, useCallback, useEffect } from "react";
+// ─── FIREBASE REST API (no SDK = no IndexedDB dependency) ───
+const FIRESTORE_PROJECT="provio-data";
+const FIRESTORE_URL=`https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJECT}/databases/(default)/documents`;
+function firestoreValue(v){
+  if(v===null||v===undefined)return{nullValue:null};
+  if(typeof v==="string")return{stringValue:v};
+  if(typeof v==="number")return Number.isInteger(v)?{integerValue:String(v)}:{doubleValue:v};
+  if(typeof v==="boolean")return{booleanValue:v};
+  if(Array.isArray(v))return{arrayValue:{values:v.map(firestoreValue)}};
+  if(typeof v==="object"){const fields={};Object.entries(v).forEach(([k,val])=>{fields[k]=firestoreValue(val);});return{mapValue:{fields}};}
+  return{stringValue:String(v)};
+}
+async function addFirestoreDoc(collectionName,data){
+  const fields={};Object.entries(data).forEach(([k,v])=>{fields[k]=firestoreValue(v);});
+  fields.submitted_at={timestampValue:new Date().toISOString()};
+  const res=await fetch(`${FIRESTORE_URL}/${collectionName}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({fields})});
+  if(!res.ok)throw new Error(`Firestore error: ${res.status}`);
+  return res.json();
+}
 
 // ═══════════════════════════════════════════════════════════════════
 // PROVIO — Unified Application
@@ -1086,9 +1105,36 @@ function Education({onNav,onStartSurvey}){
 // ═══════════════════════════════════════════════════════════════════
 function EduSurvey({onBack}){
   const[responses,setResponses]=useState({});const[sec,setSec]=useState(0);const[view,setView]=useState("survey");const[name,setName]=useState("");const[role,setRole]=useState("");const ref=useRef(null);
+  const[collegeContact,setCollegeContact]=useState({collegeName:"",contactName:"",email:"",contactRole:""});
+  const[dataSaved,setDataSaved]=useState(false);const[saving,setSaving]=useState(false);const[saveError,setSaveError]=useState("");
   const totalQ=EDU_SECTIONS.reduce((s,c)=>s+c.questions.length,0);const answered=Object.keys(responses).length;
   const results=useMemo(()=>scoreEdu(responses),[responses]);const section=EDU_SECTIONS[sec];
   const download=useCallback(()=>{const h=genReport(name,role,results,responses);const b=new Blob([h],{type:"text/html"});window.open(URL.createObjectURL(b),"_blank");},[name,role,results,responses]);
+
+  const saveToFirestore=useCallback(async()=>{
+    if(!collegeContact.collegeName||!collegeContact.contactName||!collegeContact.email){setSaveError("Please complete all required fields.");return;}
+    setSaving(true);setSaveError("");
+    try{
+      const sectionScores={};Object.entries(results.sections).forEach(([id,d])=>{sectionScores[id]={name:d.name,score:d.score,weight:d.weight};});
+      await addFirestoreDoc("education_assessments",{
+        college_name:collegeContact.collegeName,
+        contact_name:collegeContact.contactName,
+        contact_email:collegeContact.email,
+        contact_role:collegeContact.contactRole,
+        survey_name_field:name||"Not provided",
+        survey_role_field:role||"Not provided",
+        responses:responses,
+        section_scores:sectionScores,
+        composite_score:results.composite,
+        maturity_level:results.maturity.label,
+        total_questions:totalQ,
+        questions_answered:answered,
+        version:"1.0"
+      });
+      setDataSaved(true);
+    }catch(err){console.error("Firestore save error:",err);setSaveError("Something went wrong. Please try again.");}
+    finally{setSaving(false);}
+  },[collegeContact,name,role,responses,results,totalQ,answered]);
 
   if(view==="results"){
     const secs=Object.entries(results.sections).map(([id,d])=>({id,...d}));const sorted=[...secs].sort((a,b)=>a.score-b.score);
@@ -1096,7 +1142,7 @@ function EduSurvey({onBack}){
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:40}}><button onClick={onBack} style={{fontSize:12,color:C.w4,background:"none",border:`1px solid ${C.w1}`,padding:"6px 14px",borderRadius:6,cursor:"pointer"}}>← Back to site</button><button onClick={()=>setView("survey")} style={{fontSize:12,color:C.w4,background:"none",border:`1px solid ${C.w1}`,padding:"6px 14px",borderRadius:6,cursor:"pointer"}}>Edit Responses</button></div>
       <div className="fi" style={{textAlign:"center",marginBottom:44}}><div style={{fontSize:10,color:C.teal,letterSpacing:"0.25em",fontWeight:600,marginBottom:14}}>{name||"YOUR COLLEGE"}</div><div style={{width:120,height:120,borderRadius:"50%",margin:"0 auto 16px",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",background:`${results.maturity.color}12`,border:`3px solid ${results.maturity.color}`}}><div style={{fontFamily:"Montserrat",fontSize:36,fontWeight:700,color:results.maturity.color}}>{results.composite}</div><div style={{fontSize:10,color:C.w4}}>/100</div></div><div style={{fontFamily:"Montserrat",fontSize:20,fontWeight:700}}>Maturity: <span style={{color:results.maturity.color}}>{results.maturity.label}</span></div><p style={{fontSize:12,color:C.w4,maxWidth:400,margin:"6px auto 0",lineHeight:1.5}}>{results.maturity.desc}</p></div>
       <div style={{background:C.nc,padding:22,borderRadius:12,border:`1px solid ${C.w05}`,marginBottom:24}}><div style={{fontSize:10,color:C.w4,letterSpacing:"0.15em",fontWeight:600,marginBottom:12}}>SECTION SCORES</div>{secs.map((s,i)=>{const c=s.score<30?C.red:s.score<50?C.amber:s.score<70?C.blue:C.teal;return(<div key={i} style={{marginBottom:8}}><div style={{display:"flex",justifyContent:"space-between",marginBottom:2}}><span style={{fontSize:11,color:C.w6}}>{s.name}</span><span style={{fontSize:11,fontWeight:600,color:c}}>{s.score}</span></div><div style={{height:4,background:C.w05,borderRadius:2}}><div style={{height:"100%",width:`${Math.max(s.score,2)}%`,borderRadius:2,background:c,transition:"width .6s"}}/></div></div>);})}</div>
-      <div style={{padding:28,borderRadius:14,textAlign:"center",background:`linear-gradient(135deg,${C.nc},${C.nl})`,border:`1px solid ${C.w1}`,marginBottom:24}}><div style={{fontSize:10,color:C.teal,letterSpacing:"0.2em",fontWeight:600,marginBottom:8}}>YOUR REPORT</div><h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:8}}>Download your personalised report</h3><p style={{fontSize:12,color:C.w4,maxWidth:400,margin:"0 auto 16px",lineHeight:1.5}}>Detailed analysis, personalised recommendations, sector context, and methodology.</p><Btn primary onClick={download}>Download Report</Btn><p style={{fontSize:10,color:C.w2,marginTop:8}}>Opens in new tab — Print → Save as PDF</p></div>
+      <div style={{padding:28,borderRadius:14,background:`linear-gradient(135deg,${C.nc},${C.nl})`,border:`1px solid ${C.w1}`,marginBottom:24}}>{dataSaved?(<div style={{textAlign:"center"}}><div style={{fontSize:10,color:C.teal,letterSpacing:"0.2em",fontWeight:600,marginBottom:8}}>YOUR REPORT</div><h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:8}}>Download your personalised report</h3><p style={{fontSize:12,color:C.w4,maxWidth:400,margin:"0 auto 16px",lineHeight:1.5}}>Detailed analysis, personalised recommendations, sector context, and methodology.</p><Btn primary onClick={download}>Download Report</Btn><p style={{fontSize:10,color:C.w2,marginTop:8}}>Opens in new tab — Print → Save as PDF</p></div>):(<div><div style={{fontSize:10,color:C.teal,letterSpacing:"0.2em",fontWeight:600,marginBottom:8,textAlign:"center"}}>DOWNLOAD YOUR REPORT</div><h3 style={{fontFamily:"Montserrat",fontSize:18,fontWeight:700,marginBottom:6,textAlign:"center"}}>Enter your details to access the full report</h3><p style={{fontSize:12,color:C.w4,maxWidth:440,margin:"0 auto 18px",lineHeight:1.5,textAlign:"center"}}>Your data helps us build anonymous sector benchmarking so every college can see where they stand. No data is shared with your name or institution attached.</p><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}><div><label style={{fontSize:10,color:C.w4,display:"block",marginBottom:3}}>College Name <span style={{color:C.red}}>*</span></label><input value={collegeContact.collegeName} onChange={e=>setCollegeContact(p=>({...p,collegeName:e.target.value}))} placeholder="e.g. Dudley College of Technology" style={{width:"100%",padding:"10px 12px",background:C.w05,border:`1px solid ${C.w1}`,borderRadius:7,color:C.w,fontSize:12,outline:"none",fontFamily:"Open Sans"}}/></div><div><label style={{fontSize:10,color:C.w4,display:"block",marginBottom:3}}>Contact Name <span style={{color:C.red}}>*</span></label><input value={collegeContact.contactName} onChange={e=>setCollegeContact(p=>({...p,contactName:e.target.value}))} placeholder="e.g. Sarah Johnson" style={{width:"100%",padding:"10px 12px",background:C.w05,border:`1px solid ${C.w1}`,borderRadius:7,color:C.w,fontSize:12,outline:"none",fontFamily:"Open Sans"}}/></div><div><label style={{fontSize:10,color:C.w4,display:"block",marginBottom:3}}>Email <span style={{color:C.red}}>*</span></label><input type="email" value={collegeContact.email} onChange={e=>setCollegeContact(p=>({...p,email:e.target.value}))} placeholder="e.g. s.johnson@college.ac.uk" style={{width:"100%",padding:"10px 12px",background:C.w05,border:`1px solid ${C.w1}`,borderRadius:7,color:C.w,fontSize:12,outline:"none",fontFamily:"Open Sans"}}/></div><div><label style={{fontSize:10,color:C.w4,display:"block",marginBottom:3}}>Role</label><input value={collegeContact.contactRole} onChange={e=>setCollegeContact(p=>({...p,contactRole:e.target.value}))} placeholder="e.g. Vice Principal" style={{width:"100%",padding:"10px 12px",background:C.w05,border:`1px solid ${C.w1}`,borderRadius:7,color:C.w,fontSize:12,outline:"none",fontFamily:"Open Sans"}}/></div></div>{saveError&&<p style={{fontSize:11,color:C.red,textAlign:"center",marginBottom:8}}>{saveError}</p>}<div style={{textAlign:"center",marginTop:8}}><Btn primary onClick={saveToFirestore} style={{opacity:saving?0.6:1,pointerEvents:saving?"none":"auto"}}>{saving?"Saving...":"Submit & Download Report"}</Btn></div><p style={{fontSize:10,color:C.w2,marginTop:10,textAlign:"center",lineHeight:1.5}}>Your responses contribute to anonymous sector-wide benchmarking. Individual college data is never published.</p></div>)}</div>
     </div>);
   }
 
